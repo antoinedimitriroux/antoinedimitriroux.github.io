@@ -16,6 +16,7 @@
   }
   </style>
 
+
   <title>TEMPORAL MATCHING IN LINK STREAMS</title>
   </head>
 
@@ -26,16 +27,51 @@
   TEST TEST
   ZEST
 
-  <canvas id="tutoriel" width="150" height="150" background: 0xff0000 color: 0x00ff00></canvas>
+  <canvas id="canvas_1" width="150" height="150"></canvas>
 
   <script src="index.js"></script>
 
   <script type="text/javascript">
 
-  var c=document.getElementById("tutoriel");
-  var ctx=c.getContext("2d");
-  ctx.fillStyle="#FF0000";
-  ctx.fillRect(20,20,150,100);
+
+
+    var nombre_equipes = 5;
+    var nombre_joueurs_par_equipe = 5;
+    var rayon = 10;
+    var vitesse_max = 10;
+
+    var equipes = [];
+    var couleurs_equipes = [];
+    var rollernet_canvas = document.getElementById("canvas_1");
+
+    var canvas_window = rollernet_canvas.getContext("2d");
+
+    var largeur = rollernet_canvas.width;
+    var hauteur = rollernet_canvas.height;
+    var SQRT_2 = Math.sqrt(2);
+
+    for (var i = 0; i < nombre_equipes; i++){
+
+      for (var j = 0; j < nombre_joueurs_par_equipe; j++){
+
+        var position = new Point2D(rollernet_canvas.width * Math.random(), (rollernet_canvas.height * Math.random());
+        var vitesse = new Point2D((SQRT_2 - Math.random() * 2 * SQRT_2) * vitesse_max, (SQRT_2 - Math.random() * 2 * SQRT_2) * vitesse_max);
+        var couleur = couleurs_equipes[i];
+
+        var nouveau_joueur = {i, j, position, vitesse, rayon, couleur};
+
+        canvas_window.fillStyle = nouveau_joueur.couleur;
+        canvas_window.fillRect(nouveau_joueur.position.x,nouveau_joueur.position.y,rayon / 2,rayon / 2);
+
+      }
+
+    }
+
+
+
+
+
+
 
   </script>
 
