@@ -26,11 +26,16 @@
   TEST TEST
   ZEST
 
-  <canvas id="tutoriel" width="150" height="150" background: 0xff0000></canvas>
+  <canvas id="tutoriel" width="150" height="150" background: 0xff0000 color: 0x00ff00></canvas>
 
   <script src="index.js"></script>
 
   <script type="text/javascript">
+
+  var c=document.getElementById("tutoriel");
+  var ctx=c.getContext("2d");
+  ctx.fillStyle="#FF0000";
+  ctx.fillRect(20,20,150,100);
 
   </script>
 
