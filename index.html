@@ -120,13 +120,11 @@
       drawEllipseByCenter(canvas_window,roller.x,roller.y,rayon*2,rayon*2);
     }
     var draw_collisions = function(collisions_array){
-        console.log("collision_drawing: " + collisions_array.length);
       for (var i = 0; i < collisions_array.length; i++){
         draw_collision(collisions_array[i][0],collisions_array[i][1]);
       }
     }
     var draw_collision = function (roller_1, roller_2){
-        console.log("collision: [" + roller_1.equipe + " " + roller_1.numero + "] > [" + roller_2.equipe + " " + roller_2.numero + "]");
         canvas_window.fillStyle = 0x000000;
         canvas_window.beginPath();
         canvas_window.moveTo(roller_1.x, roller_1.y);
