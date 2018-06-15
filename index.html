@@ -46,7 +46,7 @@
 
     var canvas_window = rollernet_canvas.getContext("2d");
     canvas_window.fillStyle="#00FF00";
-    canvas_window.fillRect(0,0,150,100);
+  //  canvas_window.fillRect(0,0,150,100);
 
     var largeur = rollernet_canvas.width;
     var hauteur = rollernet_canvas.height;
@@ -65,7 +65,10 @@
         var nouveau_joueur = {i, j, position, vitesse, rayon, couleur};
 
     //   canvas_window.fillStyle = nouveau_joueur.couleur;
-        canvas_window.fillRect(nouveau_joueur.position.x,nouveau_joueur.position.y,rayon / 2,rayon / 2);
+        canvas_window.fillRect( nouveau_joueur.position.x - rayon/4,
+                                nouveau_joueur.position.y - rayon/4,
+                                nouveau_joueur.position.x + rayon/4,
+                                nouveau_joueur.position.y + rayon/4);
 
       }
 
