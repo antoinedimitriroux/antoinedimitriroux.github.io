@@ -54,7 +54,7 @@
 
     for (var i = 0; i < nombre_equipes; i++){
 
-      couleurs_equipes[i] = parseInt(Math.random() * 0xffffff);
+   //   couleurs_equipes[i] = parseInt(Math.random() * 0xffffff);
 
       for (var j = 0; j < nombre_joueurs_par_equipe; j++){
 
@@ -64,7 +64,7 @@
 
         var nouveau_joueur = {i, j, position, vitesse, rayon, couleur};
 
-        canvas_window.fillStyle = nouveau_joueur.couleur;
+    //   canvas_window.fillStyle = nouveau_joueur.couleur;
         canvas_window.fillRect(nouveau_joueur.position.x,nouveau_joueur.position.y,rayon / 2,rayon / 2);
 
       }
