@@ -37,7 +37,7 @@
 
     var nombre_equipes = 5;
     var nombre_joueurs_par_equipe = 5;
-    var rayon = 10;
+    var rayon = 40;
     var vitesse_max = 10;
 
     var equipes = [];
@@ -63,6 +63,9 @@
         var couleur = couleurs_equipes[i];
 
         var nouveau_joueur = {i, j, position, vitesse, rayon, couleur};
+
+        canvas_window.fillStyle = 'rgba(' + parseInt(Math.random() * 256), + ',' + parseInt(Math.random() * 256), + ',' + parseInt(Math.random() * 256), + ',' + Math.random()+ ')';
+    //    canvas_window.fillRect(30, 30, 50, 50);
 
     //   canvas_window.fillStyle = nouveau_joueur.couleur;
         canvas_window.fillRect( nouveau_joueur.position.x - rayon/4,
