@@ -9,7 +9,7 @@
   }
   body {
     z-index: 0;
-    background-color: #ffffff;
+    background-color: #c0c0c0;
     margin: 0;
     overflow: hidden;
     font-family: arial;
@@ -23,11 +23,7 @@
 
   <body>
 
-  TEST
-  TEST TEST
-  ZEST
-
-  <canvas id="canvas_1" width="150" height="150"></canvas>
+  <canvas id="canvas_1" width="500" height="500" color: 0xffffff></canvas>
 
   <script src="index.js"></script>
 
@@ -35,53 +31,174 @@
 
 
 
-    var nombre_equipes = 5;
-    var nombre_joueurs_par_equipe = 5;
-    var rayon = 40;
-    var vitesse_max = 10;
 
-    var equipes = [];
-    var couleurs_equipes = [];
     var rollernet_canvas = document.getElementById("canvas_1");
-
     var canvas_window = rollernet_canvas.getContext("2d");
-    canvas_window.fillStyle="#00FF00";
-  //  canvas_window.fillRect(0,0,150,100);
-
     var largeur = rollernet_canvas.width;
     var hauteur = rollernet_canvas.height;
     var SQRT_2 = Math.sqrt(2);
 
-    for (var i = 0; i < nombre_equipes; i++){
+    var nombre_equipes = 7;
+    var nombre_joueurs_par_equipe = 10;
+    var rayon = 10;
+    var vitesse_max = 3.;
+    var acceleration_max = 0.8;
+    var equipes = [];
+    var couleurs_equipes = [];
 
-   //   couleurs_equipes[i] = parseInt(Math.random() * 0xffffff);
+    var wait_time_ms = 1000. / 60.;
 
-      for (var j = 0; j < nombre_joueurs_par_equipe; j++){
 
-        var x = rollernet_canvas.width * Math.random();
-        var y = rollernet_canvas.height * Math.random();
-        var vitesse = new Point2D((SQRT_2 - Math.random() * 2 * SQRT_2) * vitesse_max, (SQRT_2 - Math.random() * 2 * SQRT_2) * vitesse_max);
-        var couleur = couleurs_equipes[i];
 
-        var nouveau_joueur = {i, j, x, y, vitesse, rayon, couleur};
+    
 
-        canvas_window.fillStyle = 'rgba(' + parseInt(Math.random() * 256), + ',' + parseInt(Math.random() * 256), + ',' + parseInt(Math.random() * 256), + ',' + Math.random()+ ')';
-    //    canvas_window.fillRect(30, 30, 50, 50);
 
-    //   canvas_window.fillStyle = nouveau_joueur.couleur;
-        canvas_window.fillRect( nouveau_joueur.x - rayon/4,
-                                nouveau_joueur.y - rayon/4,
-                                nouveau_joueur.x + rayon/4,
-                                nouveau_joueur.y + rayon/4);
+    var init = function(){
+      for (var i = 0; i < nombre_equipes; i++){
+            equipes[i] = [];
+            couleurs_equipes[i] = 'rgba(' + 
+                                    parseInt(Math.random() * 256) + ',' + 
+                                    parseInt(Math.random() * 256) + ',' + 
+                                    parseInt(Math.random() * 256) + ',' +
+                                    '0.5)';
 
+            for (var j = 0; j < nombre_joueurs_par_equipe; j++){
+
+              var x = rollernet_canvas.width * Math.random();
+              var y = rollernet_canvas.height * Math.random();
+              var dx = (SQRT_2 - Math.random() * 2 * SQRT_2) * vitesse_max;
+              var dy = (SQRT_2 - Math.random() * 2 * SQRT_2) * vitesse_max;
+              var couleur = couleurs_equipes[i];
+
+              var nouveau_roller = {equipe:i, numero:j, x:x, y:y, dx:dx, dy:dy, rayon:rayon, couleur:couleur};
+              equipes[i][j] = nouveau_roller;
+            }
       }
+    }
+    var loop = function (){
+          clear_canvas();
+          for (var i = 0; i < nombre_equipes; i++){
+            for (var j = 0; j < nombre_joueurs_par_equipe; j++){
+              update_roller(equipes[i][j]);
+            }
+          }
+          var collisions_array = collisions();
+          draw_collisions(collisions_array);
+          for (var i = 0; i < nombre_equipes; i++){
+            for (var j = 0; j < nombre_joueurs_par_equipe; j++){
+              draw_roller(equipes[i][j]);
+            }
+          }
+          setTimeout(function() {requestAnimationFrame(loop)}, wait_time_ms);
+    }
+    var collisions = function(){
+      var collisions_array = [];
+      for (var i = 0; i < nombre_equipes; i++){
+        for (var ii = 0; ii < nombre_joueurs_par_equipe; ii++){
+          for (var j = i + 1; j < nombre_equipes; j++){
+            for (var jj = 0; jj < nombre_joueurs_par_equipe; jj++){
+              var dist_j0_j_1 = dist(equipes[i][ii].x, equipes[i][ii].y, equipes[j][jj].x, equipes[j][jj].y);
+          //    console.log("dist: " + dist_j0_j_1);
+              if (dist_j0_j_1 < 2 * equipes[i][ii].rayon + equipes[j][jj].rayon){
+                collisions_array.push([equipes[i][ii], equipes[j][jj]]);
+              }
+            }
+          }
+        }
+      }
+      return collisions_array;
+    }
+    var draw_roller = function(roller){
+      canvas_window.fillStyle = roller.couleur;
+      /*
+      canvas_window.fillRect( roller.x - roller.rayon / 2,
+                              roller.y - roller.rayon / 2,
+                              roller.rayon,
+                              roller.rayon);
+      */
 
+      drawEllipseByCenter(canvas_window,roller.x,roller.y,rayon*2,rayon*2);
+    }
+    var draw_collisions = function(collisions_array){
+        console.log("collision_drawing: " + collisions_array.length);
+      for (var i = 0; i < collisions_array.length; i++){
+        draw_collision(collisions_array[i][0],collisions_array[i][1]);
+      }
+    }
+    var draw_collision = function (roller_1, roller_2){
+        console.log("collision: [" + roller_1.equipe + " " + roller_1.numero + "] > [" + roller_2.equipe + " " + roller_2.numero + "]");
+        canvas_window.fillStyle = 0x000000;
+        canvas_window.beginPath();
+        canvas_window.moveTo(roller_1.x, roller_1.y);
+        canvas_window.lineTo(roller_2.x, roller_2.y);
+        canvas_window.stroke();
+    }
+    var clear_canvas = function(){
+      canvas_window.fillStyle = 0xffffff;
+      canvas_window.fillRect( 0,0,largeur,hauteur);
+
+    }
+    var update_roller = function (roller) {
+      var acc_x = (Math.random() - 1. / 2.) * 2 * acceleration_max;
+      var acc_y = (Math.random() - 1. / 2.) * 2 * acceleration_max;
+      var acc = dist(0,0,acc_x, acc_y);
+      roller.dx += acc_x;
+      roller.dy += acc_y;
+      var vit = dist(0,0,roller.dx, roller.dy);
+      if (vit > vitesse_max){
+        roller.dx *= vitesse_max / vit;
+        roller.dy *= vitesse_max / vit;
+      }
+      roller.x += roller.dx;
+      roller.y += roller.dy;
+      if (roller.x < 0){
+        roller.x = largeur - 1;
+      }
+      if (roller.x >= largeur){
+        roller.x = 0;
+      }
+      if (roller.y < 0){
+        roller.y = hauteur - 1;
+      }
+      if (roller.y >= hauteur){
+        roller.y = 0;
+      }
+    };
+    var dist = function (x_1, y_1, x_2, y_2){
+      return Math.sqrt(dist_squared(x_1, y_1, x_2, y_2));
+    }
+    var dist_squared = function (x_1, y_1, x_2, y_2){
+      return (x_1-x_2)*(x_1-x_2)+(y_1-y_2)*(y_1-y_2);
+    }
+    function drawEllipseByCenter(ctx, cx, cy, w, h) {
+      drawEllipse(ctx, cx - w/2.0, cy - h/2.0, w, h);
+    }
+
+    function drawEllipse(ctx, x, y, w, h) {
+      var kappa = .5522848,
+          ox = (w / 2) * kappa, // control point offset horizontal
+          oy = (h / 2) * kappa, // control point offset vertical
+          xe = x + w,           // x-end
+          ye = y + h,           // y-end
+          xm = x + w / 2,       // x-middle
+          ym = y + h / 2;       // y-middle
+
+      ctx.beginPath();
+      ctx.moveTo(x, ym);
+      ctx.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
+      ctx.bezierCurveTo(xm + ox, y, xe, ym - oy, xe, ym);
+      ctx.bezierCurveTo(xe, ym + oy, xm + ox, ye, xm, ye);
+      ctx.bezierCurveTo(xm - ox, ye, x, ym + oy, x, ym);
+      ctx.fill();
+      ctx.strokeStyle = 0x000000;
+      ctx.stroke();
     }
 
 
 
 
-
+    init();
+    loop();
 
 
   </script>
