@@ -45,12 +45,16 @@
     var rollernet_canvas = document.getElementById("canvas_1");
 
     var canvas_window = rollernet_canvas.getContext("2d");
+    canvas_window.fillStyle="#00FF00";
+    canvas_window.fillRect(0,0,150,100);
 
     var largeur = rollernet_canvas.width;
     var hauteur = rollernet_canvas.height;
     var SQRT_2 = Math.sqrt(2);
 
     for (var i = 0; i < nombre_equipes; i++){
+
+      couleurs_equipes[i] = parseInt(Math.random() * 0xffffff);
 
       for (var j = 0; j < nombre_joueurs_par_equipe; j++){
 
