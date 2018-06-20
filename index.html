@@ -13,9 +13,19 @@
   }
   #link_stream_div {
     position: absolute;
-    border-style: solid;
-    margin:0;
     display: table-cell;
+  }
+  #button_parameters {
+    float: left;
+    clear: left;
+    vertical-align: center;
+  }
+  #parameters {
+    float: left;
+    clear: left;
+    vertical-align: center;
+    display: table-cell;
+    visibility: hidden;
   }
   #canvas_1 {
     float: left;
@@ -49,18 +59,44 @@
 
 
   <body>
-  <div id="link_stream_div">
+    <div id="link_stream_div">
       <canvas id="canvas_1" title="link stream canvas" width="321" height="321" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }"></canvas>
-
       <textarea id="compteur_lignes" cols="50"  rows="1"></textarea>
       <textarea id="textarea_1" title="result1" cols="50" rows="3"></textarea>
       <textarea id="textarea_2" title="result2" cols="50" rows="3"></textarea>
+
+      <div id = "button_parameters">
+        <button onclick="display_or_not()">Parameters</button>
+      </div>
+      <form id="parameters" width="321">
+      <font size="2">
+        <input id="gamma_value" type="number" title="The value of gamma" value="10" width="Gamma">
+        <label for="gamma_value">Gamma</br></label>
+                       
+        <input id="teams_value" type="number" title="The number of teams" value="5" width="#Teams">
+        <label for="teams_value">#Teams</br></label>      
+                            
+        <input id="disksteam_value" type="number" title="The number of disks in each team" value ="3" width="#Disks/Team">
+        <label for="disksteam_value">#Disks/Team</br></label> 
+         
+        <input id="rayon_value" type="number" title="The rayon of disks" value="10" width="Rayon">   
+        <label for="rayon_value">Rayon</br></label>               
+                     
+        <input id="max_veloc_value" type="number" title="The maximum velocity of disks" value="3" width="Maximum Velocity">
+        <label for="max_veloc_value">Max velocity</br></label>    
+                  
+        <input id="max_acc_value" type="number" title="The maximum acceleration of disks" value="0.8" width="">
+        <label for="max_acc_value">Max acceleration</br></label>        
+      </font>
+    </form>
     </div>
+    
 
   <script src="index.js"></script>
 
   <script type="text/javascript">
 
+    var menu_deroulant = document.getElementById("parameters");
     var textarea_link_stream = document.getElementById("textarea_1");
     var textarea_gamma_aretes = document.getElementById("textarea_2");
     var textarea_compteur_lignes = document.getElementById("compteur_lignes");
@@ -80,7 +116,7 @@
     var nombre_equipes = 3;
     var nombre_joueurs_par_equipe = 4;
     var rayon = 10;
-    var vitesse_max = 3.;
+    var vitesse_max = 2.;
     var acceleration_max = 0.8;
     var equipes = [];
     var couleurs_equipes = [];
@@ -267,7 +303,20 @@
       //  textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
         textarea_gamma_aretes.value = text_gamma_aretes;
       //  textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
-        textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " lines   " + nombre_gamma_aretes + " gamma edges";
+        textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " edges   " + nombre_gamma_aretes + " gamma-edges";
+    }
+
+
+    function display_or_not(){
+      console.log("test");
+      if (menu_deroulant.style.visibility == "hidden"){
+        menu_deroulant.style.visibility = "visible";
+        console.log("oui");
+      }
+      else{
+        menu_deroulant.style.visibility = "hidden";
+        console.log("non");
+      }
     }
 
 
