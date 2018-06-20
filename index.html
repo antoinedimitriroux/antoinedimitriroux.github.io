@@ -15,14 +15,12 @@
     position: absolute;
     display: table-cell;
   }
-  #button_parameters {
-    float: left;
-    clear: left;
-    vertical-align: center;
+  #button_charts{
   }
   #parameters {
-    float: left;
-    clear: left;
+    position: relative;
+    left:20px;
+    top:20px;
     vertical-align: center;
     display: table-cell;
     visibility: hidden;
@@ -60,74 +58,93 @@
 
   <body>
     <div id="link_stream_div">
+      <div id="button_charts">
+        <button id="button_pause" title="Play/Pause" onclick="pause_loop()"> &#10074;&#10074; &#9658; </button>
+        <button id="button_parameters" title="Personalize parameters" onclick="display_or_not()">&#9881;</button>
+        <button id="button_quicker" title="Slower" onclick="slower()">&#9194;</button>
+        <button id="button_slower" title="Faster" onclick="faster()">&#9193;</button>
+      </div>
       <canvas id="canvas_1" title="link stream canvas" width="321" height="321" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }"></canvas>
       <textarea id="compteur_lignes" cols="50"  rows="1"></textarea>
       <textarea id="textarea_1" title="result1" cols="50" rows="3"></textarea>
       <textarea id="textarea_2" title="result2" cols="50" rows="3"></textarea>
-
-      <div id = "button_parameters">
-        <button onclick="display_or_not()">Parameters</button>
-      </div>
-      <form id="parameters" width="321">
+    </div>
+    <form id="parameters" width="321" >
       <font size="2">
-        <input id="gamma_value" type="number" title="The value of gamma" value="10" width="Gamma">
-        <label for="gamma_value">Gamma</br></label>
-                       
         <input id="teams_value" type="number" title="The number of teams" value="5" width="#Teams">
         <label for="teams_value">#Teams</br></label>      
-                            
         <input id="disksteam_value" type="number" title="The number of disks in each team" value ="3" width="#Disks/Team">
-        <label for="disksteam_value">#Disks/Team</br></label> 
-         
-        <input id="rayon_value" type="number" title="The rayon of disks" value="10" width="Rayon">   
+        <label for="disksteam_value">#Disks/Team</br></label>
+        <input id="gamma_value" type="number" title="The value of gamma" value="7" width="Gamma">
+        <label for="gamma_value">Gamma</br></label>
+        <input id="rayon_value" type="number" title="The rayon of disks" value="12" width="Rayon">   
         <label for="rayon_value">Rayon</br></label>               
-                     
         <input id="max_veloc_value" type="number" title="The maximum velocity of disks" value="3" width="Maximum Velocity">
         <label for="max_veloc_value">Max velocity</br></label>    
-                  
         <input id="max_acc_value" type="number" title="The maximum acceleration of disks" value="0.8" width="">
-        <label for="max_acc_value">Max acceleration</br></label>        
+        <label for="max_acc_value">Max acceleration</br></label>
+        <button id="button_launch" title="Restart with new parameters" onclick="launch()">&#8634;</button>
       </font>
     </form>
-    </div>
     
 
   <script src="index.js"></script>
 
   <script type="text/javascript">
 
+
+    var gamma;
+    var nombre_equipes;
+    var nombre_joueurs_par_equipe;
+    var rayon;
+    var vitesse_max;
+    var acceleration_max;
+    var equipes = [];
+    var couleurs_equipes = [];
+    var gamma_collisions = [];
+    var gamma_array = [];
+    var nombre_lignes = 0;
+    var nombre_gamma_aretes = 0;
+
+    var rollernet_canvas;
+    var canvas_window;
+    var largeur;
+    var hauteur;
     var menu_deroulant = document.getElementById("parameters");
     var textarea_link_stream = document.getElementById("textarea_1");
     var textarea_gamma_aretes = document.getElementById("textarea_2");
     var textarea_compteur_lignes = document.getElementById("compteur_lignes");
-
+    var bouton_pause = document.getElementById("button_pause");
     var text_collisions = "";
+    var text_collisions_last_tick = "";
     var text_gamma_aretes = "";
-    var nombre_lignes = 0;
-    var nombre_gamma_aretes = 0;
-
-    var rollernet_canvas = document.getElementById("canvas_1");
-    var canvas_window = rollernet_canvas.getContext("2d");
-    var largeur = rollernet_canvas.width;
-    var hauteur = rollernet_canvas.height;
+    var text_gamma_aretes_last_tick = "";
     var SQRT_2 = Math.sqrt(2);
-
-    var gamma = 10;
-    var nombre_equipes = 3;
-    var nombre_joueurs_par_equipe = 4;
-    var rayon = 10;
-    var vitesse_max = 2.;
-    var acceleration_max = 0.8;
-    var equipes = [];
-    var couleurs_equipes = [];
-
-    var gamma_collisions = [];
-    var gamma_array = [];
 
     var wait_time_ms = 1000. / 60.;
     var tick = 0;
     var d = new Date();
     var time = d.getTime();
+
+    var pause = true;
+
+    function launch(){
+      pause = false;
+      tick = 0;
+      nombre_lignes = 0;
+      nombre_gamma_aretes = 0;
+      text_collisions = "";
+      text_gamma_aretes = "";
+      gamma_collisions = [];
+      gamma_array = [];
+      gamma = parseInt(document.getElementById("gamma_value").value);
+      nombre_equipes = parseInt(document.getElementById("teams_value").value);
+      nombre_joueurs_par_equipe = parseInt(document.getElementById("disksteam_value").value);
+      rayon = parseInt(document.getElementById("rayon_value").value);
+      vitesse_max = parseFloat(document.getElementById("max_veloc_value").value);
+      acceleration_max = parseFloat(document.getElementById("max_acc_value").value);
+      init();
+    }
 
 
 
@@ -135,6 +152,15 @@
 
 
     var init = function(){
+      text_collisions = "";
+      text_gamma_aretes = "";
+      nombre_lignes = 0;
+      nombre_gamma_aretes = 0;
+      rollernet_canvas = document.getElementById("canvas_1");
+      canvas_window = rollernet_canvas.getContext("2d");
+      largeur = rollernet_canvas.width;
+      hauteur = rollernet_canvas.height;
+      SQRT_2 = Math.sqrt(2);
       for (var i = 0; i < nombre_equipes; i++){
             equipes[i] = [];
             couleurs_equipes[i] = 'rgba(' + 
@@ -144,13 +170,11 @@
                                     '0.5)';
 
             for (var j = 0; j < nombre_joueurs_par_equipe; j++){
-
               var x = rollernet_canvas.width * Math.random();
               var y = rollernet_canvas.height * Math.random();
               var dx = (SQRT_2 - Math.random() * 2 * SQRT_2) * vitesse_max;
               var dy = (SQRT_2 - Math.random() * 2 * SQRT_2) * vitesse_max;
               var couleur = couleurs_equipes[i];
-
               var nouveau_roller = {equipe:i, numero:j, x:x, y:y, dx:dx, dy:dy, rayon:rayon, couleur:couleur};
               equipes[i][j] = nouveau_roller;
             }
@@ -161,6 +185,7 @@
       }
     }
     var loop = function (){
+        if (!pause){
           fps = (d.getTime() - time);
           clear_canvas();
           for (var i = 0; i < nombre_equipes; i++){
@@ -169,32 +194,39 @@
             }
           }
           var collisions_array = collisions();
-          draw_collisions(collisions_array);
           for (var i = 0; i < nombre_equipes; i++){
             for (var j = 0; j < nombre_joueurs_par_equipe; j++){
               draw_roller(equipes[i][j]);
             }
           }
-
+          draw_collisions(collisions_array);
           refreshText();
           tick++;
           time = d.getTime();
-          setTimeout(function() {requestAnimationFrame(loop)}, wait_time_ms);
+        }
+        setTimeout(function() {requestAnimationFrame(loop)}, wait_time_ms);
     }
+
+    var stop_loop = function(){
+      loop_stoped = true;
+    }
+
     var collisions = function(){
       var collisions_array = [];
+      text_collisions_last_tick = "";
+      text_gamma_aretes_last_tick = "";
       for (var i = 0; i < nombre_equipes; i++){
         for (var j = i + 1; j < nombre_equipes; j++){
           var collision_equipe_i_j = false;
 
           for (var ii = 0; ii < nombre_joueurs_par_equipe; ii++){
             for (var jj = 0; jj < nombre_joueurs_par_equipe; jj++){
-              var dist_j0_j_1 = dist_squared(equipes[i][ii].x, equipes[i][ii].y, equipes[j][jj].x, equipes[j][jj].y);
-              if (dist_j0_j_1 <= (equipes[i][ii].rayon + equipes[j][jj].rayon) * (equipes[i][ii].rayon + equipes[j][jj].rayon)){
+              var dist_j0_j_1 = dist(equipes[i][ii].x, equipes[i][ii].y, equipes[j][jj].x, equipes[j][jj].y);
+              if (dist_j0_j_1 < equipes[i][ii].rayon + equipes[j][jj].rayon){
                 var nouvelle_collision = [equipes[i][ii], equipes[j][jj]];
                 collision_equipe_i_j = true;
                 collisions_array.push([equipes[i][ii], equipes[j][jj]]);
-                text_collisions += i + " " + j + " " + tick + "\n";
+                text_collisions_last_tick += i + " " + j + " " + tick + "\n";
                 nombre_lignes++;
                 break;
               }
@@ -204,7 +236,7 @@
             gamma_array[i][j]++;
             if (gamma_array[i][j] >= gamma){
               gamma_collisions.push([i,j,tick-gamma+1]);
-              text_gamma_aretes += i + " " + j + " " + (tick-gamma+1) + "\n";
+              text_gamma_aretes_last_tick += i + " " + j + " " + (tick-gamma+1) + "\n";
               nombre_gamma_aretes++;
             }
           }
@@ -213,12 +245,13 @@
           }  
         }
       }
+      text_collisions += text_collisions_last_tick;
+      text_gamma_aretes += text_gamma_aretes_last_tick;
       return collisions_array;
     }
     var draw_roller = function(roller){
       canvas_window.fillStyle = roller.couleur;
       drawEllipseByCenter(canvas_window,roller.x,roller.y,rayon*2,rayon*2);
-      canvas_window.fillStyle = 0x000000;
    //   canvas_window.strokeText(roller.numero+"",roller.x,roller.y);
     }
     var draw_collisions = function(collisions_array, new_gamma_collisions){
@@ -237,10 +270,9 @@
         canvas_window.stroke();
     }
     var clear_canvas = function(){
-      canvas_window.fillStyle = 0xffffff;
+      canvas_window.fillStyle = 'rgba(255,255,255)';
       canvas_window.fillRect( 0,0,largeur,hauteur);
-
-    }
+  }
     var update_roller = function (roller) {
       var acc_x = (Math.random() - 1. / 2.) * 2 * acceleration_max;
       var acc_y = (Math.random() - 1. / 2.) * 2 * acceleration_max;
@@ -298,32 +330,39 @@
     }
 
     function refreshText() {
-      //  text_link_stream.appendChild(document.createTextNode(text));
         textarea_link_stream.value = text_collisions;
-      //  textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
+     //   textarea_link_stream.value = text_collisions_last_tick;
+        textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
         textarea_gamma_aretes.value = text_gamma_aretes;
-      //  textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
+      //  textarea_gamma_aretes.value = text_gamma_aretes_last_tick;
+        textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
         textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " edges   " + nombre_gamma_aretes + " gamma-edges";
     }
 
 
     function display_or_not(){
-      console.log("test");
-      if (menu_deroulant.style.visibility == "hidden"){
-        menu_deroulant.style.visibility = "visible";
-        console.log("oui");
+      if (menu_deroulant.style.visibility == "visible"){
+        menu_deroulant.style.visibility = "hidden";
       }
       else{
-        menu_deroulant.style.visibility = "hidden";
-        console.log("non");
+        menu_deroulant.style.visibility = "visible";
       }
     }
 
+    function pause_loop(){
+      pause = !pause;
+    }
 
+    function slower(){
+      wait_time_ms *= 1.1;
+    }
+    function faster(){
+      wait_time_ms *= 0.9;
+    }
 
-
-    init();
     loop();
+    launch();
+
 
 
   </script>
