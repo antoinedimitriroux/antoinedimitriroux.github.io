@@ -8,11 +8,37 @@
     height: 100%;
   }
   body {
-    z-index: 0;
     background-color: #c0c0c0;
-    margin: 0;
-    overflow: hidden;
     font-family: arial;
+  }
+  #link_stream_div {
+    border-style: solid;
+    margin:0;
+    display: table-cell;
+  }
+  #canvas_1 {
+    float: left;
+    clear: left;
+    vertical-align: center;
+  }
+  #textarea_1 {
+    resize: vertical;
+    float: left;
+    clear: left;
+    vertical-align: center;
+  }
+  #textarea_2 {
+    resize: vertical;
+    float: left;
+    clear: left;
+    vertical-align: center;
+  }
+  #compteur_lignes {
+    text-align:right;
+    resize: none;
+    float: left;
+    clear: left;
+    vertical-align: center;
   }
   </style>
 
@@ -22,15 +48,26 @@
 
 
   <body>
+  <div id="link_stream_div">
+      <canvas id="canvas_1" title="link stream canvas" width="321" height="321" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }"></canvas>
 
-  <canvas id="canvas_1" width="500" height="500" color: 0xffffff></canvas>
+      <textarea id="compteur_lignes" cols="50"  rows="1"></textarea>
+      <textarea id="textarea_1" title="result1" cols="50" rows="6"></textarea>
+      <textarea id="textarea_2" title="result2" cols="50" rows="6"></textarea>
+    </div>
 
   <script src="index.js"></script>
 
   <script type="text/javascript">
 
+    var textarea_link_stream = document.getElementById("textarea_1");
+    var textarea_gamma_aretes = document.getElementById("textarea_2");
+    var textarea_compteur_lignes = document.getElementById("compteur_lignes");
 
-
+    var text_collisions = "";
+    var text_gamma_aretes = "";
+    var nombre_lignes = 0;
+    var nombre_gamma_aretes = 0;
 
     var rollernet_canvas = document.getElementById("canvas_1");
     var canvas_window = rollernet_canvas.getContext("2d");
@@ -38,15 +75,22 @@
     var hauteur = rollernet_canvas.height;
     var SQRT_2 = Math.sqrt(2);
 
-    var nombre_equipes = 7;
-    var nombre_joueurs_par_equipe = 10;
+    var gamma = 10;
+    var nombre_equipes = 3;
+    var nombre_joueurs_par_equipe = 4;
     var rayon = 10;
     var vitesse_max = 3.;
     var acceleration_max = 0.8;
     var equipes = [];
     var couleurs_equipes = [];
 
+    var gamma_collisions = [];
+    var gamma_array = [];
+
     var wait_time_ms = 1000. / 60.;
+    var tick = 0;
+    var d = new Date();
+    var time = d.getTime();
 
 
 
@@ -73,9 +117,14 @@
               var nouveau_roller = {equipe:i, numero:j, x:x, y:y, dx:dx, dy:dy, rayon:rayon, couleur:couleur};
               equipes[i][j] = nouveau_roller;
             }
+            gamma_array[i] = [];
+            for (var j = 0; j < nombre_equipes; j++){
+              gamma_array[i][j] = 0;
+            }
       }
     }
     var loop = function (){
+          fps = (d.getTime() - time);
           clear_canvas();
           for (var i = 0; i < nombre_equipes; i++){
             for (var j = 0; j < nombre_joueurs_par_equipe; j++){
@@ -89,39 +138,58 @@
               draw_roller(equipes[i][j]);
             }
           }
+
+          refreshText();
+          tick++;
+          time = d.getTime();
           setTimeout(function() {requestAnimationFrame(loop)}, wait_time_ms);
     }
     var collisions = function(){
       var collisions_array = [];
       for (var i = 0; i < nombre_equipes; i++){
-        for (var ii = 0; ii < nombre_joueurs_par_equipe; ii++){
-          for (var j = i + 1; j < nombre_equipes; j++){
+        for (var j = i + 1; j < nombre_equipes; j++){
+          var collision_equipe_i_j = false;
+
+          for (var ii = 0; ii < nombre_joueurs_par_equipe; ii++){
             for (var jj = 0; jj < nombre_joueurs_par_equipe; jj++){
-              var dist_j0_j_1 = dist(equipes[i][ii].x, equipes[i][ii].y, equipes[j][jj].x, equipes[j][jj].y);
-          //    console.log("dist: " + dist_j0_j_1);
-              if (dist_j0_j_1 < 2 * equipes[i][ii].rayon + equipes[j][jj].rayon){
+              var dist_j0_j_1 = dist_squared(equipes[i][ii].x, equipes[i][ii].y, equipes[j][jj].x, equipes[j][jj].y);
+              if (dist_j0_j_1 <= (equipes[i][ii].rayon + equipes[j][jj].rayon) * (equipes[i][ii].rayon + equipes[j][jj].rayon)){
+                var nouvelle_collision = [equipes[i][ii], equipes[j][jj]];
+                collision_equipe_i_j = true;
                 collisions_array.push([equipes[i][ii], equipes[j][jj]]);
+                text_collisions += i + " " + j + " " + tick + "\n";
+                nombre_lignes++;
+                break;
               }
             }
           }
+          if (collision_equipe_i_j){
+            gamma_array[i][j]++;
+            if (gamma_array[i][j] >= gamma){
+              gamma_collisions.push([i,j,tick-gamma+1]);
+              text_gamma_aretes += i + " " + j + " " + (tick-gamma+1) + "\n";
+              nombre_gamma_aretes++;
+            }
+          }
+          else{
+            gamma_array[i][j] = 0;
+          }  
         }
       }
       return collisions_array;
     }
     var draw_roller = function(roller){
       canvas_window.fillStyle = roller.couleur;
-      /*
-      canvas_window.fillRect( roller.x - roller.rayon / 2,
-                              roller.y - roller.rayon / 2,
-                              roller.rayon,
-                              roller.rayon);
-      */
-
       drawEllipseByCenter(canvas_window,roller.x,roller.y,rayon*2,rayon*2);
+      canvas_window.fillStyle = 0x000000;
+   //   canvas_window.strokeText(roller.numero+"",roller.x,roller.y);
     }
-    var draw_collisions = function(collisions_array){
+    var draw_collisions = function(collisions_array, new_gamma_collisions){
       for (var i = 0; i < collisions_array.length; i++){
         draw_collision(collisions_array[i][0],collisions_array[i][1]);
+      }
+      if (collisions_array.length > 0){
+        text_collisions += "\n";
       }
     }
     var draw_collision = function (roller_1, roller_2){
@@ -190,6 +258,15 @@
       ctx.fill();
       ctx.strokeStyle = 0x000000;
       ctx.stroke();
+    }
+
+    function refreshText() {
+      //  text_link_stream.appendChild(document.createTextNode(text));
+        textarea_link_stream.value = text_collisions;
+      //  textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
+        textarea_gamma_aretes.value = text_gamma_aretes;
+      //  textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
+        textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " lines   " + nombre_gamma_aretes + " gamma edges";
     }
 
 
