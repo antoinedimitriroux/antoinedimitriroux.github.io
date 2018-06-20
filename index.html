@@ -330,11 +330,11 @@
     }
 
     function refreshText() {
-        textarea_link_stream.value = text_collisions;
-     //   textarea_link_stream.value = text_collisions_last_tick;
+      //  textarea_link_stream.value = text_collisions;
+        textarea_link_stream.value = text_collisions_last_tick;
         textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
-        textarea_gamma_aretes.value = text_gamma_aretes;
-      //  textarea_gamma_aretes.value = text_gamma_aretes_last_tick;
+      //  textarea_gamma_aretes.value = text_gamma_aretes;
+        textarea_gamma_aretes.value = text_gamma_aretes_last_tick;
         textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
         textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " edges   " + nombre_gamma_aretes + " gamma-edges";
     }
