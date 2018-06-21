@@ -51,7 +51,7 @@
       background-color: #ddd;
   }
   .tab button.active {
-      background-color: #ccc;
+      background-color: #aaa;
   }
   .tabcontent {
     display: none;
@@ -110,10 +110,19 @@
   #link_stream_copy_past{
     position: relative;
     left:8px;
-    top:8px;
     width:300px;
-    height:321px;
+    height:444px;
     resize: none;
+  }
+  #bouton_generator_export{
+    z-index: 10;
+    position: absolute;
+    left:235px;
+    display:none;
+  }
+  #bouton_pasted_export{
+    position: relative;
+    left:235px;
   }
   #tests_div {
     width:321px;
@@ -122,6 +131,49 @@
   #algorithm_div{
     width:321px;
     position: absolute;
+  }
+  #compteur_edges{
+    position: absolute;
+    top:8px;
+    left:8px
+    height:10px;
+
+  }
+  #original_link_stream_to_process{
+    top:20px;
+    width:70px;
+    height:432px;
+    position: absolute;
+    left:8px;
+    display: none;
+    resize:none;
+  }
+  #gamma_link_stream_to_process{
+    top:20px;
+    width:70px;
+    height:432px;
+    position: absolute;
+    left: 80px;
+    display: none;
+    resize:none;
+  }
+  #greedy_gamma_link_stream_to_process {
+    top:20px;
+    width:70px;
+    height:432px;
+    position: absolute;
+    left:160px;
+    display: none;
+    resize:none;
+  }
+  #kernel_gamma_link_stream_to_process{
+    top:20px;
+    width:70px;
+    height:432px;
+    position: absolute;
+    left:240px;
+    display: none;
+    resize:none;
   }
   </style>
 
@@ -136,10 +188,11 @@
       <button class="tablinks" title="Generates a link-stream (based on the rollernet experience) depending on some parameters" onclick="openTab('generator_div')">Generator</button>
       <button class="tablinks" title="Enables you to paste your personnal link-stream" onclick="openTab('import_div')">Import</button>
       <button class="tablinks" title="Enables you to chose between some link-streams we already generated" onclick="openTab('tests_div')">Tests</button>
-      <button class="tablinks" title="Processes the kernel algorithm on the actual link-stream" onclick="openTab('algorithm_div')">Process</button>
+      <button class="tablinks" title="Processes the kernel algorithm on the actual link-stream" onclick="process_alert_message();openTab('algorithm_div')">Process</button>
     </div>
 
     <div id="generator_div" class="tabcontent">
+      <button id="bouton_generator_export" title="Export the link-stream above" onclick="export_generated_txt_link_stream()">&#8593;</button>
       <canvas id="canvas_1" title="link stream canvas" width="321" height="321" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }"></canvas>
       <div class="tab">
         <button class="tablinks" title="Pauses the link-stream generation and the animation" onclick="pause_loop()">&#10074;&#10074; &#9658; </button>
@@ -170,6 +223,7 @@
 
     
     <div id="import_div" class="tabcontent">
+      <button id="bouton_pasted_export" title="Export the link-stream above" onclick="export_pasted_txt_link_stream()">&#8593;</button>
       <textarea id="link_stream_copy_past">
 0 3 0
 1 4 0
@@ -186,7 +240,7 @@
 1 2 9
 0 3 10
 1 2 10
-    </textarea>
+      </textarea>
     </div>
     <div id="tests_div" class="tabcontent"></div>
     <div id="algorithm_div" class="tabcontent">
@@ -198,8 +252,15 @@
         or chose between some link-streams in the "tests" one.</br></br>
         Come back when it's done! :)
       </div>
+      <textarea id="original_link_stream_to_process" readonly>
+      </textarea>
+      <textarea id="gamma_link_stream_to_process" readonly>
+      </textarea>
+      <textarea id="greedy_gamma_link_stream_to_process" readonly>
+      </textarea>
+      <textarea id="kernel_gamma_link_stream_to_process" readonly>
+      </textarea>
     </div>
-    
   </div>
     
 
@@ -229,8 +290,12 @@
     var textarea_link_stream = document.getElementById("textarea_1");
     var textarea_gamma_aretes = document.getElementById("textarea_2");
     var textarea_compteur_lignes = document.getElementById("compteur_lignes");
+    var textarea_import = document.getElementById("link_stream_copy_past");
     var bouton_pause = document.getElementById("button_pause");
-
+    var textarea_original_link_stream_to_process = document.getElementById("original_link_stream_to_process");
+    var textarea_gamma_link_stream_to_process = document.getElementById("gamma_link_stream_to_process");
+    var textarea_greedy_gamma_link_stream_to_process = document.getElementById("greedy_gamma_link_stream_to_process");
+    var textarea_kernel_gamma_link_stream_to_process = document.getElementById("kernel_gamma_link_stream_to_process");
 
     var txt_link_stream = "";
     var txt_link_stream_last_tick = "";
@@ -278,7 +343,6 @@
 
 
     var init = function(){
-
       equipes = [];
       couleurs_equipes = [];
       gamma_collisions = [];
@@ -483,6 +547,7 @@
       }
       else{
         menu_deroulant.style.visibility = "visible";
+        bouton_generator_export.style.display = 'none';
       }
       if (!pause){
         pause = true;
@@ -492,9 +557,17 @@
     function pause_loop(){
       pause = !pause;
       if (!pause){
-        menu_deroulant.style.visibility = "hidden";
+        textarea_original_link_stream_to_process.value = "";
+        menu_deroulant.style.visibility = 'hidden';
+        bouton_generator_export.style.display = 'none';
       }
       if (pause){
+        if (txt_link_stream.length = ""){
+          bouton_generator_export.style.display = 'none';
+        }
+        else{
+          bouton_generator_export.style.display = 'table-cell';
+        }
         textarea_link_stream.value = txt_link_stream;
         textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
         textarea_gamma_aretes.value = txt_gamma_link_stream;
@@ -513,18 +586,15 @@
           process_alert_message();
         }
         if (tabName != "generator_div" && !pause){
-          console.log("pause loop");
           pause_loop();
         }
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
-          console.log("tabcontent["+i+"].style.display = none");
             tabcontent[i].style.display = "none";
         }
         tablinks = document.getElementsByClassName("tablinks");
         for (i = 0; i < tablinks.length; i++) {
-            console.log("tablinks["+i+"].className = tablinks[" + i + "].className.replace(active, )");
             tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
         document.getElementById(tabName).style.display = "block";
@@ -536,12 +606,141 @@
           openTab("generator_div");
         }
         else{
+          var original_link_stream = clean_original_link_stream_txt(txt_link_stream);
+          var txt_original_link_stream = "";
+          for (var i = 0; i < original_link_stream.list_edges.length; i++){
+            txt_original_link_stream +=   original_link_stream.list_edges[i][0] + " " +
+                                          original_link_stream.list_edges[i][1] + " " + 
+                                          original_link_stream.list_edges[i][2] + "\n";
+          }
+          var gamma_link_stream = original_to_gamma_link_stream(original_link_stream,gamma);
+          var txt_gamma_link_stream = "";
+          for (var i = 0; i < gamma_link_stream.list_edges.length; i++){
+            txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][0] + " " +
+                                      gamma_link_stream.list_edges[i][1] + " " + 
+                                      gamma_link_stream.list_edges[i][2] + "\n";
+          }
+
+          textarea_original_link_stream_to_process.value = txt_original_link_stream;
+          textarea_original_link_stream_to_process.style.display = 'table-cell';
+          textarea_gamma_link_stream_to_process.value = txt_gamma_link_stream;
+          textarea_gamma_link_stream_to_process.style.display = 'table-cell';
+          textarea_greedy_gamma_link_stream_to_process.value = "";
+          textarea_greedy_gamma_link_stream_to_process.style.display = 'table-cell';
+          textarea_kernel_gamma_link_stream_to_process.value = "";
+          textarea_kernel_gamma_link_stream_to_process.style.display = 'table-cell';
           document.getElementById("no_link_stream_alert_message").style.display='none';
         }
+    }
+    function export_pasted_txt_link_stream(){
+      txt_link_stream = textarea_import.value;
+      openTab("algorithm_div")
+    }
+    function export_generated_txt_link_stream(){
+      txt_link_stream = textarea_link_stream.value;
+      openTab("algorithm_div")
     }
 
     loop();
     launch();
+
+
+
+
+
+
+    function clean_original_link_stream_txt(txt){
+      var original_link_stream = {list_edges,array_edges,teams,t_min,t_max};
+      var list_edges = [];
+      var array_edges = [];
+      var t_min = Number.MAX_SAFE_INTEGER;
+      var t_max = 0;
+      var teams = [];
+      var parsed_link_stream = txt.split("\n");
+      for (var i = 0; i < parsed_link_stream.length; i++){
+        var edge_txt = parsed_link_stream[i].split(" ");
+        var u = parseInt(edge_txt[0]);
+        var v = parseInt(edge_txt[1]);
+        var t = parseInt(edge_txt[2]);
+        if (t > t_max){t_max = t;}
+        if (t < t_min){t_min = t;}
+        if (!teams.includes(u)){teams.push(u);}
+        if (!teams.includes(v)){teams.push(v);}
+        if (array_edges[u] == null){array_edges[u] = [];}
+        if (array_edges[u][v] == null){array_edges[u][v] = [];}
+        array_edges[u][v].push(parseInt(t)+0);
+      }
+      for (var u = 0; u < array_edges.length; u++){
+          if (array_edges[u] != null){
+          for (var v = 0; v < array_edges[u].length; v++){
+            if (array_edges[u][v] != null){
+              array_edges[u][v].sort();
+              for (var t = 0; t < array_edges[u][v].length; t++){
+                var edge = [u,v,array_edges[u][v][t]];
+                list_edges.push(edge);                
+              }
+            }
+          }
+        }
+      }
+      original_link_stream.list_edges = list_edges;
+      original_link_stream.array_edges = array_edges;
+      original_link_stream.teams = teams;
+      original_link_stream.t_min = t_min;
+      original_link_stream.t_max = t_max;
+      return original_link_stream;
+    }
+    
+    function original_to_gamma_link_stream(original, gamma){
+      var gamma_link_stream = {list_edges:[],array_edges:[],teams:original.teams,t_min:original.t_min,t_max:original.t_max};
+      var gamma_counter = 0;
+      var last_u = -1;
+      var last_v = -1;
+      var last_t = original.t_max;
+      for (var i = 0; i < original.list_edges.length; i++){
+        var u = original.list_edges[i][0];
+        var v = original.list_edges[i][1];
+        var t = original.list_edges[i][2];
+        if (u == last_u && v == last_v && t == last_t + 1){
+          gamma_counter++;
+        }
+        else{
+          gamma_counter = 0;
+        }
+        if (gamma_counter >= gamma-1){
+          var gamma_edge = [u,v,t-gamma+1];
+          gamma_link_stream.list_edges.push(gamma_edge);
+        }
+        last_u = u;
+        last_v = v;
+        last_t = t;
+      }
+      for (var i = 0; i < gamma_link_stream.list_edges.length; i++){
+        var u = gamma_link_stream.list_edges[i][0];
+        var v = gamma_link_stream.list_edges[i][1];
+        var t = gamma_link_stream.list_edges[i][2];
+        if (gamma_link_stream.array_edges[u] == null){
+          gamma_link_stream.array_edges[u] = [];
+        }
+        if (gamma_link_stream.array_edges[u][v] == null){
+          gamma_link_stream.array_edges[u][v] = [];
+        }
+        gamma_link_stream.array_edges[u][v].push([u,v,gamma_link_stream.list_edges[u][2]]);
+      }
+      return gamma_link_stream;
+    }
+
+    function gamma_to_2approx_link_stream(gamma_link_stream){
+      var approx_link_stream = {list_edges:[],teams:original.teams,t_min:original.t_min,t_max:original.t_max};
+      while (gamma_link_stream.list_edges.length > 0){
+        var edge = gamma_link_stream.list_edges.pop();
+        var u = edge[0];
+        var v = edge[1];
+        var t = edge[0];
+      }
+
+    }
+
 
 
 
