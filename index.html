@@ -12,8 +12,8 @@
     font-family: arial;
   }
   .tab {
-
       width:321px;
+      height: 40px;
       overflow: hidden;
       border: 1px solid #ccc;
       background-color: #f1f1f1;
@@ -35,8 +35,11 @@
   }
   .tabcontent {
     display: none;
-    border: 1px solid #ccc;
     border-top: none;
+  }
+  #main_div{
+    width:321px;
+    height:642px;
   }
   #generator_div {
     width:321px;
@@ -82,17 +85,14 @@
   #import_div {
     width:321px;
     position: absolute;
-    display: table-cell;
   }
   #tests_div {
     width:321px;
     position: absolute;
-    display: table-cell;
   }
   #algorithm_div{
     width:321px;
     position: absolute;
-    display: table-cell;
   }
   </style>
 
@@ -102,6 +102,7 @@
 
 
   <body>
+  <div id="main_div">
     <div class="tab">
       <button class="tablinks" onclick="openTab(event, 'generator_div')">Generator</button>
       <button class="tablinks" onclick="openTab(event, 'import_div')">Import</button>
@@ -150,6 +151,7 @@
     <div id="import_div" class="tabcontent"></div>
     <div id="tests_div" class="tabcontent"></div>
     <div id="algorithm_div" class="tabcontent"></div>
+  </div>
     
 
   <script src="index.js"></script>
@@ -181,10 +183,10 @@
     var bouton_pause = document.getElementById("button_pause");
 
 
-    var text_collisions = "";
-    var text_collisions_last_tick = "";
-    var text_gamma_aretes = "";
-    var text_gamma_aretes_last_tick = "";
+    var txt_link_stream = "";
+    var txt_link_stream_last_tick = "";
+    var txt_gamma_link_stream = "";
+    var txt_gamma_link_stream_last_tick = "";
     var SQRT_2 = Math.sqrt(2);
 
     var wait_time_ms = 1000. / 60.;
@@ -199,8 +201,8 @@
       tick = 0;
       nombre_lignes = 0;
       nombre_gamma_aretes = 0;
-      text_collisions = "";
-      text_gamma_aretes = "";
+      txt_link_stream = "";
+      txt_gamma_link_stream = "";
       gamma_collisions = [];
       gamma_array = [];
       if (document.getElementById("gamma_value").value > 0){gamma = parseInt(document.getElementById("gamma_value").value);}
@@ -223,8 +225,8 @@
       couleurs_equipes = [];
       gamma_collisions = [];
       gamma_array = [];
-      text_collisions = "";
-      text_gamma_aretes = "";
+      txt_link_stream = "";
+      txt_gamma_link_stream = "";
       nombre_lignes = 0;
       nombre_gamma_aretes = 0;
       rollernet_canvas = document.getElementById("canvas_1");
@@ -288,8 +290,8 @@
 
     var collisions = function(){
       var collisions_array = [];
-      text_collisions_last_tick = "";
-      text_gamma_aretes_last_tick = "";
+      txt_link_stream_last_tick = "";
+      txt_gamma_link_stream_last_tick = "";
       for (var i = 0; i < nombre_equipes; i++){
         for (var j = i + 1; j < nombre_equipes; j++){
           var collision_equipe_i_j = false;
@@ -301,7 +303,7 @@
                 var nouvelle_collision = [equipes[i][ii], equipes[j][jj]];
                 collision_equipe_i_j = true;
                 collisions_array.push([equipes[i][ii], equipes[j][jj]]);
-                text_collisions_last_tick += i + " " + j + " " + tick + "\n";
+                txt_link_stream_last_tick += i + " " + j + " " + tick + "\n";
                 nombre_lignes++;
                 break;
               }
@@ -311,7 +313,7 @@
             gamma_array[i][j]++;
             if (gamma_array[i][j] >= gamma){
               gamma_collisions.push([i,j,tick-gamma+1]);
-              text_gamma_aretes_last_tick += i + " " + j + " " + (tick-gamma+1) + "\n";
+              txt_gamma_link_stream_last_tick += i + " " + j + " " + (tick-gamma+1) + "\n";
               nombre_gamma_aretes++;
             }
           }
@@ -320,8 +322,8 @@
           }  
         }
       }
-      text_collisions += text_collisions_last_tick;
-      text_gamma_aretes += text_gamma_aretes_last_tick;
+      txt_link_stream += txt_link_stream_last_tick;
+      txt_gamma_link_stream += txt_gamma_link_stream_last_tick;
       return collisions_array;
     }
     var draw_roller = function(roller){
@@ -334,7 +336,7 @@
         draw_collision(collisions_array[i][0],collisions_array[i][1]);
       }
       if (collisions_array.length > 0){
-        text_collisions += "\n";
+        txt_link_stream += "\n";
       }
     }
     var draw_collision = function (roller_1, roller_2){
@@ -405,11 +407,11 @@
     }
 
     function refreshText() {
-      //  textarea_link_stream.value = text_collisions;
-        textarea_link_stream.value = text_collisions_last_tick;
+      //  textarea_link_stream.value = txt_link_stream;
+        textarea_link_stream.value = txt_link_stream_last_tick;
         textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
-      //  textarea_gamma_aretes.value = text_gamma_aretes;
-        textarea_gamma_aretes.value = text_gamma_aretes_last_tick;
+      //  textarea_gamma_aretes.value = txt_gamma_link_stream;
+        textarea_gamma_aretes.value = txt_gamma_link_stream_last_tick;
         textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
         textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " edges   " + nombre_gamma_aretes + " gamma-edges";
     }
@@ -435,20 +437,28 @@
       wait_time_ms *= 0.9;
     }
     function openTab(evt, tabName) {
-      console.log("opening tab: " + tabName);
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        console.log("tabcontent["+i+"].style.display = none");
-          tabcontent[i].style.display = "none";
+      if (tabName == "algorithm_div" && txt_link_stream == ""){
+        
       }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-          console.log("tablinks["+i+"].className = tablinks[" + i + "].className.replace(active, )");
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
+      else{
+        if (tabName != "generator_div" && !pause){
+          console.log("pause loop");
+          pause_loop();
+        }
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          console.log("tabcontent["+i+"].style.display = none");
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            console.log("tablinks["+i+"].className = tablinks[" + i + "].className.replace(active, )");
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
       }
-      document.getElementById(tabName).style.display = "block";
-      evt.currentTarget.className += " active";
     }
 
     loop();
