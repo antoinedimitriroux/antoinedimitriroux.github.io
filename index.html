@@ -31,7 +31,7 @@
       color: black;
   }
   .tab {
-      width:320px;
+      width:359px;
       height: 40px;
       overflow: hidden;
       border: 1px solid #ccc;
@@ -58,11 +58,11 @@
   }
   #main_div{
     background-color: #eee; /* Red */
-    width:321px;
+    width:360px;
     height:514px;
   }
   #generator_div {
-    width:321px;
+    width:360px;
     position: absolute;
     display: table-cell;
   }
@@ -71,8 +71,8 @@
   #parameters {
     z-index:10;
     position: relative;
-    left:138px;
-    bottom:263px;
+    left:177px;
+    bottom:176px;
     vertical-align: center;
     display: table-cell;
     visibility: hidden;
@@ -80,25 +80,28 @@
     background-color:#fff;
   }
   #canvas_1 {
-    width:321px;
-    height:321px;
+    width:360px;
+    height:360px;
     float: left;
     clear: left;
     vertical-align: center;
   }
   #textarea_1 {
+    width:355px;
     resize: none;
     float: left;
     clear: left;
     vertical-align: center;
   }
   #textarea_2 {
+    width:355px;
     resize: none;
     float: left;
     clear: left;
     vertical-align: center;
   }
   #compteur_lignes {
+    width:355px;
     text-align:right;
     resize: none;
     float: left;
@@ -106,27 +109,27 @@
     vertical-align: center;
   }
   #import_div {
-    width:321px;
+    width:360px;
   }
   #link_stream_copy_past{
     position: relative;
     left:8px;
-    width:300px;
+    width:339px;
     height:444px;
     resize: none;
   }
   #bouton_generator_export{
     z-index: 10;
     position: absolute;
-    left:235px;
+    left:234px;
     display:none;
   }
   #bouton_pasted_export{
     position: relative;
-    left:235px;
+    left:234px;
   }
   #tests_div {
-    width:321px;
+    width:360px;
     position: absolute;
   }
   #compteur_edges{
@@ -134,50 +137,48 @@
     top:8px;
     left:8px
     height:10px;
-
   }
   #algorithm_div{
-    width:321px;
+    width:360px;
     position: relative;
   }
   #original_link_stream_to_process{
     position: relative;
     top:30px;
-    width:70px;
+    width:78px;
     height:432px;
-    left: 5px;
-    right: 0%;
+    left: 6px;
+    right: 5px;
     display: none;
     resize:horizontal;
   }
   #gamma_link_stream_to_process{
     position: relative;
     top:30px;
-    width:70px;
+    width:78px;
     height:432px;
-    left: 0%;
-    right: 0%;
+    left: 5px;
+    right: 5px;
     display: none;
     resize:horizontal;
   }
   #greedy_gamma_link_stream_to_process {
     position: relative;
     top:30px;
-    width:70px;
+    width:78px;
     height:432px;
-    left: 0%;
-    right: 0%;
+    left: 5px;
+    right: 5px;
     display: none;
     resize:horizontal;
   }
   #kernel_gamma_link_stream_to_process{
     position: relative;
     top:30px;
-    width:70px;
+    width:78px;
     height:432px;
-    left: 0%;
+    left: 5px;
     right: 5px;
-    right: 0%;
     display: none;
     resize:horizontal;
   }
@@ -199,30 +200,30 @@
 
     <div id="generator_div" class="tabcontent">
       <button id="bouton_generator_export" title="Export the link-stream above" onclick="export_generated_txt_link_stream()">&#8593;</button>
-      <canvas id="canvas_1" title="link stream canvas" width="321" height="321" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }"></canvas>
+      <canvas id="canvas_1" title="link stream canvas" width="360" height="360" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }"></canvas>
       <div class="tab">
         <button class="tablinks" title="Pauses the link-stream generation and the animation" onclick="pause_loop()">&#10074;&#10074; &#9658; </button>
         <button class="tablinks" title="Restarts the link-stream generation and the animation with new paramaters" onclick="launch()">&#8634;</button>
         <button class="tablinks" title="Enables you to change the different parameters of the link-stream generator" onclick="display_or_not()">&#9881;</button>
+        <button class="tablinks" title="Makes process go slower" onclick="slower()">&#171;</button>
+        <button class="tablinks" title="Makes process go faster" onclick="faster()">&#187;</button>
       </div>
       <textarea id="compteur_lignes" cols="50"  rows="1"></textarea>
-      <textarea id="textarea_1" title="Edges of the original link stream (the one shown in the canvas)" cols="50" rows="3"></textarea>
-      <textarea id="textarea_2" title="The meta-edges of the original link stream (the one shown in the canvas)" cols="50" rows="3" ></textarea>
+      <!--textarea id="textarea_1" title="Edges of the original link stream (the one shown in the canvas)" cols="50" rows="3"></textarea>
+      <textarea id="textarea_2" title="The meta-edges of the original link stream (the one shown in the canvas)" cols="50" rows="3" ></textarea-->
       <form id="parameters">
         <font size="2">
-          <input id="teams_value" type="number" title="The number of teams" value="10" min="3" max="100" width="#Teams" onchange="launch()" width="5">
+          <input id="teams_value" type="number" title="The number of teams" value="8" min="3" max="100" width="#Teams" onchange="launch()" width="5">
           <label>#Teams</br></label>
           <input id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="4" max="100" width="#Disks/Team" onchange="launch()" width="5">
           <label>#Disks/Team</br></label>
           <input id="gamma_value" type="number" title="The value of gamma" min="2" value="5" width="Gamma" onchange="launch()" width="5">
           <label>Gamma</br></label>
-          <input id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="10" max="100" width="Rayon" onchange="launch()" width="5"><label>Rayon</br></label>               
-          <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="5" max="100" width="Maximum Velocity" onchange="launch()" width="5">
+          <input id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="6" max="100" width="Rayon" onchange="launch()" width="5"><label>Rayon</br></label>               
+          <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" width="Maximum Velocity" onchange="launch()" width="5">
           <label>Max velocity</br></label>    
-          <input id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.6" max="100" width="" onchange="launch()" width="5">
+          <input id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" width="" onchange="launch()" width="5">
           <label>Max acceleration</br></label>
-          <!--input type="submit" name="submit"-->
-          <!--label> &#8634; </br></label-->
         </font>
       </form>
     </div>
@@ -344,7 +345,7 @@
     var txt_gamma_link_stream_last_tick = "";
     var SQRT_2 = Math.sqrt(2);
 
-    var wait_time_ms = 1000. / 60.;
+    var wait_time_ms = 30;
     var tick = 0;
     var d = new Date();
     var time = d.getTime();
@@ -582,11 +583,11 @@
 
     function refreshText() {
       //  textarea_link_stream.value = txt_link_stream;
-        textarea_link_stream.value = txt_link_stream_last_tick;
-        textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
+      //  textarea_link_stream.value = txt_link_stream_last_tick;
+      //  textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
       //  textarea_gamma_aretes.value = txt_gamma_link_stream;
-        textarea_gamma_aretes.value = txt_gamma_link_stream_last_tick;
-        textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
+      //  textarea_gamma_aretes.value = txt_gamma_link_stream_last_tick;
+      //  textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
         textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " edges   " + nombre_gamma_aretes + " gamma-edges";
     }
 
@@ -618,15 +619,17 @@
         else{
           bouton_generator_export.style.display = 'table-cell';
         }
+        /*
         textarea_link_stream.value = txt_link_stream;
         textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
         textarea_gamma_aretes.value = txt_gamma_link_stream;
         textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
+        */
       }
      }
 
     function slower(){
-      wait_time_ms *= 1.1;
+      wait_time_ms *= 1.3;
     }
     function faster(){
       wait_time_ms *= 0.9;
@@ -672,9 +675,10 @@
             if (i < original_link_stream.list_edges.length - 1 &&
               (original_link_stream.list_edges[i][2]/10) < 
               (original_link_stream.list_edges[i+1][2]/10)){
-              txt_original_link_stream += "-------\n";
+        //      txt_original_link_stream += "-------\n";
             }
           }
+          gamma_link_stream.list_edges.sort(sort_edges_by_time);
           for (var i = 0; i < gamma_link_stream.list_edges.length; i++){
             txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][0] + " " +
                                       gamma_link_stream.list_edges[i][1] + " " + 
@@ -682,7 +686,7 @@
             if (i < gamma_link_stream.list_edges.length - 1 &&
               (gamma_link_stream.list_edges[i][2]/10) < 
               (gamma_link_stream.list_edges[i+1][2]/10)){
-              txt_gamma_link_stream += "-------\n";
+        //      txt_gamma_link_stream += "-------\n";
             }
           }
 
@@ -694,7 +698,7 @@
             if (i < two_approx_link_stream.list_edges.length - 1 &&
               (two_approx_link_stream.list_edges[i][2]/10) < 
               (two_approx_link_stream.list_edges[i+1][2]/10)){
-              txt_two_approx_link_stream += "-------\n";
+          //   txt_two_approx_link_stream += "-------\n";
             }
           }
 
@@ -706,7 +710,7 @@
             if (i < kernel_link_stream.list_edges.length - 1 &&
               (kernel_link_stream.list_edges[i][2]/10) < 
               (kernel_link_stream.list_edges[i+1][2]/10)){
-              txt_kernel_link_stream += "-------\n";
+        //      txt_kernel_link_stream += "-------\n";
             }
           }
 
@@ -726,7 +730,7 @@
       openTab("algorithm_div")
     }
     function export_generated_txt_link_stream(){
-      txt_link_stream = textarea_link_stream.value;
+    //  txt_link_stream = textarea_link_stream.value;
       openTab("algorithm_div")
     }
 
