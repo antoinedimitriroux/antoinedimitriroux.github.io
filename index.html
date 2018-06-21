@@ -11,8 +11,28 @@
     background-color: #c0c0c0;
     font-family: arial;
   }
+  .alert {
+    width:300px;
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+  }
+  .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+  }
+  .closebtn:hover {
+      color: black;
+  }
   .tab {
-      width:321px;
+      width:320px;
       height: 40px;
       overflow: hidden;
       border: 1px solid #ccc;
@@ -38,8 +58,9 @@
     border-top: none;
   }
   #main_div{
+    background-color: #eee; /* Red */
     width:321px;
-    height:642px;
+    height:514px;
   }
   #generator_div {
     width:321px;
@@ -49,9 +70,10 @@
   #button_charts{
   }
   #parameters {
+    z-index:10;
     position: relative;
-    left:20px;
-    top:20px;
+    left:0px;
+    bottom:263px;
     vertical-align: center;
     display: table-cell;
     visibility: hidden;
@@ -84,7 +106,14 @@
   }
   #import_div {
     width:321px;
-    position: absolute;
+  }
+  #link_stream_copy_past{
+    position: relative;
+    left:8px;
+    top:8px;
+    width:300px;
+    height:321px;
+    resize: none;
   }
   #tests_div {
     width:321px;
@@ -104,53 +133,73 @@
   <body>
   <div id="main_div">
     <div class="tab">
-      <button class="tablinks" onclick="openTab(event, 'generator_div')">Generator</button>
-      <button class="tablinks" onclick="openTab(event, 'import_div')">Import</button>
-      <button class="tablinks" onclick="openTab(event, 'tests_div')">Tests</button>
-      <button class="tablinks" onclick="openTab(event, 'algorithm_div')">Process</button>
+      <button class="tablinks" title="Generates a link-stream (based on the rollernet experience) depending on some parameters" onclick="openTab('generator_div')">Generator</button>
+      <button class="tablinks" title="Enables you to paste your personnal link-stream" onclick="openTab('import_div')">Import</button>
+      <button class="tablinks" title="Enables you to chose between some link-streams we already generated" onclick="openTab('tests_div')">Tests</button>
+      <button class="tablinks" title="Processes the kernel algorithm on the actual link-stream" onclick="openTab('algorithm_div')">Process</button>
     </div>
-    <div id="generator_div" class="tabcontent">
-      <div id="button_charts">
-        <!--button class="tab" id="button_pause" title="Play/Pause" onclick=""> &#10074;&#10074; &#9658; </button-->
-        <!--button class="tab" id="button_launch" title="Restart with new parameters" onclick="">&#8634;</button-->
-        <!--button class="tab" id="button_parameters" title="Personalize parameters" onclick="">&#9881;</button-->
-        <!--button id="button_export" title="Personalize parameters" onclick="display_all_link_stream_text()">&#9881;</button-->
-        <!--button id="button_quicker" title="Slower" onclick="slower()">&#9194;</button-->
-        <!--button id="button_slower" title="Faster" onclick="faster()">&#9193;</button-->
-      </div>
 
+    <div id="generator_div" class="tabcontent">
       <canvas id="canvas_1" title="link stream canvas" width="321" height="321" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }"></canvas>
       <div class="tab">
-        <button class="tablinks" onclick="pause_loop()">&#10074;&#10074; &#9658; </button>
-        <button class="tablinks" onclick="launch()">&#8634;</button>
-        <button class="tablinks" onclick="display_or_not()">&#9881;</button>
+        <button class="tablinks" title="Pauses the link-stream generation and the animation" onclick="pause_loop()">&#10074;&#10074; &#9658; </button>
+        <button class="tablinks" title="Restarts the link-stream generation and the animation with new paramaters" onclick="launch()">&#8634;</button>
+        <button class="tablinks" title="Enables you to change the different parameters of the link-stream generator" onclick="display_or_not()">&#9881;</button>
       </div>
-        <textarea id="compteur_lignes" cols="50"  rows="1"></textarea>
-        <textarea id="textarea_1" title="Edges of the original link stream (the one shown in the canvas)" cols="50" rows="3"></textarea>
-      
+      <textarea id="compteur_lignes" cols="50"  rows="1"></textarea>
+      <textarea id="textarea_1" title="Edges of the original link stream (the one shown in the canvas)" cols="50" rows="3"></textarea>
       <textarea id="textarea_2" title="The meta-edges of the original link stream (the one shown in the canvas)" cols="50" rows="3" ></textarea>
-      
+      <form id="parameters">
+        <font size="2">
+          <input id="teams_value" type="number" title="The number of teams" value="5" min="3" max="100" width="#Teams" onchange="launch()" width="5">
+          <label>#Teams</br></label>
+          <input id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="3" max="100" width="#Disks/Team" onchange="launch()" width="5">
+          <label>#Disks/Team</br></label>
+          <input id="gamma_value" type="number" title="The value of gamma" min="2" value="7" width="Gamma" onchange="launch()" width="5">
+          <label>Gamma</br></label>
+          <input id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="12" max="100" width="Rayon" onchange="launch()" width="5"><label>Rayon</br></label>               
+          <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" width="Maximum Velocity" onchange="launch()" width="5">
+          <label>Max velocity</br></label>    
+          <input id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.8" max="100" width="" onchange="launch()" width="5">
+          <label>Max acceleration</br></label>
+          <!--input type="submit" name="submit"-->
+          <!--label> &#8634; </br></label-->
+        </font>
+      </form>
     </div>
-    <form id="parameters">
-      <font size="2">
-        <input id="teams_value" type="number" title="The number of teams" value="5" min="3" max="100" width="#Teams" onchange="launch()" width="5">
-        <label>#Teams</br></label>
-        <input id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="3" max="100" width="#Disks/Team" onchange="launch()" width="5">
-        <label>#Disks/Team</br></label>
-        <input id="gamma_value" type="number" title="The value of gamma" min="2" value="7" width="Gamma" onchange="launch()" width="5">
-        <label>Gamma</br></label>
-        <input id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="12" max="100" width="Rayon" onchange="launch()" width="5"><label>Rayon</br></label>               
-        <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" width="Maximum Velocity" onchange="launch()" width="5">
-        <label>Max velocity</br></label>    
-        <input id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.8" max="100" width="" onchange="launch()" width="5">
-        <label>Max acceleration</br></label>
-        <!--input type="submit" name="submit"-->
-        <!--label> &#8634; </br></label-->
-      </font>
-    </form>
-    <div id="import_div" class="tabcontent"></div>
+
+    
+    <div id="import_div" class="tabcontent">
+      <textarea id="link_stream_copy_past">
+0 3 0
+1 4 0
+0 3 1
+1 4 1
+0 3 2
+0 3 3
+0 3 4
+0 3 5
+0 3 6
+0 3 7
+0 3 8
+0 3 9
+1 2 9
+0 3 10
+1 2 10
+    </textarea>
+    </div>
     <div id="tests_div" class="tabcontent"></div>
-    <div id="algorithm_div" class="tabcontent"></div>
+    <div id="algorithm_div" class="tabcontent">
+      <div id = "no_link_stream_alert_message" class="alert">
+        <span class="closebtn" onclick="process_alert_message()">&times;</span> 
+        There is no link-stream to process kernel algorithm on.</br></br>
+        You can generate one with the "generate" tab,</br>
+        paste your own one with the "import" tab,</br>
+        or chose between some link-streams in the "tests" one.</br></br>
+        Come back when it's done! :)
+      </div>
+    </div>
+    
   </div>
     
 
@@ -197,12 +246,14 @@
     var pause = true;
 
     function launch(){
-      pause = false;
+    //  pause = false;
       tick = 0;
       nombre_lignes = 0;
       nombre_gamma_aretes = 0;
       txt_link_stream = "";
+      txt_link_stream_last_tick = "";
       txt_gamma_link_stream = "";
+      txt_gamma_link_stream_last_tick = "";
       gamma_collisions = [];
       gamma_array = [];
       if (document.getElementById("gamma_value").value > 0){gamma = parseInt(document.getElementById("gamma_value").value);}
@@ -212,6 +263,13 @@
       if (document.getElementById("max_veloc_value").value > 0){vitesse_max = parseFloat(document.getElementById("max_veloc_value").value);}
       if (document.getElementById("max_acc_value").value > 0){acceleration_max = parseFloat(document.getElementById("max_acc_value").value);}
       init();
+      clear_canvas();
+      for (var i = 0; i < nombre_equipes; i++){
+        for (var j = 0; j < nombre_joueurs_par_equipe; j++){
+          draw_roller(equipes[i][j]);
+        }
+      }
+      refreshText();
     }
 
 
@@ -335,9 +393,11 @@
       for (var i = 0; i < collisions_array.length; i++){
         draw_collision(collisions_array[i][0],collisions_array[i][1]);
       }
+      /*
       if (collisions_array.length > 0){
         txt_link_stream += "\n";
       }
+      */
     }
     var draw_collision = function (roller_1, roller_2){
         canvas_window.fillStyle = 0x000000;
@@ -424,11 +484,23 @@
       else{
         menu_deroulant.style.visibility = "visible";
       }
+      if (!pause){
+        pause = true;
+      }
     }
 
     function pause_loop(){
       pause = !pause;
-    }
+      if (!pause){
+        menu_deroulant.style.visibility = "hidden";
+      }
+      if (pause){
+        textarea_link_stream.value = txt_link_stream;
+        textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
+        textarea_gamma_aretes.value = txt_gamma_link_stream;
+        textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
+      }
+     }
 
     function slower(){
       wait_time_ms *= 1.1;
@@ -436,11 +508,10 @@
     function faster(){
       wait_time_ms *= 0.9;
     }
-    function openTab(evt, tabName) {
-      if (tabName == "algorithm_div" && txt_link_stream == ""){
-        
-      }
-      else{
+    function openTab(tabName) {
+        if (tabName == "algorithm_div"){
+          process_alert_message();
+        }
         if (tabName != "generator_div" && !pause){
           console.log("pause loop");
           pause_loop();
@@ -457,8 +528,16 @@
             tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
         document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-      }
+    //    evt.currentTarget.className += " active";
+    }
+    function process_alert_message(){
+        if (txt_link_stream == ""){
+          document.getElementById("no_link_stream_alert_message").style.display='table-cell';
+          openTab("generator_div");
+        }
+        else{
+          document.getElementById("no_link_stream_alert_message").style.display='none';
+        }
     }
 
     loop();
