@@ -356,6 +356,15 @@
       largeur = rollernet_canvas.width;
       hauteur = rollernet_canvas.height;
       SQRT_2 = Math.sqrt(2);
+
+      textarea_original_link_stream_to_process.value = "";
+      textarea_original_link_stream_to_process.style.display = 'none';
+      textarea_gamma_link_stream_to_process.value = "";
+      textarea_gamma_link_stream_to_process.style.display = 'none';
+      textarea_greedy_gamma_link_stream_to_process.value = "";
+      textarea_greedy_gamma_link_stream_to_process.style.display = 'none';
+      textarea_kernel_gamma_link_stream_to_process.value = "";
+      textarea_kernel_gamma_link_stream_to_process.style.display = 'none';
       for (var i = 0; i < nombre_equipes; i++){
             equipes[i] = [];
             couleurs_equipes[i] = 'rgba(' + 
@@ -668,16 +677,21 @@
         if (!teams.includes(v)){teams.push(v);}
         if (array_edges[u] == null){array_edges[u] = [];}
         if (array_edges[u][v] == null){array_edges[u][v] = [];}
-        array_edges[u][v].push(parseInt(t)+0);
+        array_edges[u][v].push(parseInt(t));
+      }
+      function sortNumber(a,b) {
+        return a - b;
       }
       for (var u = 0; u < array_edges.length; u++){
           if (array_edges[u] != null){
           for (var v = 0; v < array_edges[u].length; v++){
             if (array_edges[u][v] != null){
-              array_edges[u][v].sort();
+              array_edges[u][v].sort(sortNumber);
               for (var t = 0; t < array_edges[u][v].length; t++){
                 var edge = [u,v,array_edges[u][v][t]];
-                list_edges.push(edge);                
+                if (list_edges[list_edges.length - 1] != edge || list_edges.length == 0){
+                  list_edges.push(edge);
+                }              
               }
             }
           }
