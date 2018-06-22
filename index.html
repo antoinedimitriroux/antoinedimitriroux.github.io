@@ -13,9 +13,9 @@
   }
   .alert {
     padding: 20px;
+    margin-bottom: 15px;
     background-color: #f44336; /* Red */
     color: white;
-    margin-bottom: 15px;
   }
   .closebtn {
       margin-left: 15px;
@@ -57,12 +57,13 @@
     border-top: none;
   }
   #main_div{
-    background-color: #eee; /* Red */
+    background-color: #f00;
     width:360px;
-    height:514px;
+    height:480px;
   }
   #generator_div {
     width:360px;
+    height:100%;
     position: absolute;
     display: table-cell;
   }
@@ -87,21 +88,21 @@
     vertical-align: center;
   }
   #textarea_1 {
-    width:355px;
+    width:100%;
     resize: none;
     float: left;
     clear: left;
     vertical-align: center;
   }
   #textarea_2 {
-    width:355px;
+    width:100%;
     resize: none;
     float: left;
     clear: left;
     vertical-align: center;
   }
   #compteur_lignes {
-    width:355px;
+    width:99%;
     text-align:right;
     resize: none;
     float: left;
@@ -109,13 +110,18 @@
     vertical-align: center;
   }
   #import_div {
-    width:360px;
+    height:100%;
+    width:100%;
   }
   #link_stream_copy_past{
+
+    padding: 0px;
+    margin-bottom: 0px;
+
     position: relative;
-    left:8px;
-    width:339px;
-    height:444px;
+    top:0px;
+    width:360px;
+    height:100%;
     resize: none;
   }
   #bouton_generator_export{
@@ -125,8 +131,10 @@
     display:none;
   }
   #bouton_pasted_export{
-    position: relative;
+    z-index: -10;
+    position: absolute;
     left:234px;
+    display:none;
   }
   #tests_div {
     width:360px;
@@ -190,17 +198,23 @@
 
 
   <body>
-  <div id="main_div">
-    <div class="tab">
+  <div class="tab">
       <button class="tablinks" title="Generates a link-stream (based on the rollernet experience) depending on some parameters" onclick="openTab('generator_div')">Generator</button>
       <button class="tablinks" title="Enables you to paste your personnal link-stream" onclick="openTab('import_div')">Import</button>
       <button class="tablinks" title="Enables you to chose between some link-streams we already generated" onclick="openTab('tests_div')">Tests</button>
       <button class="tablinks" title="Processes the kernel algorithm on the actual link-stream" onclick="process_alert_message();openTab('algorithm_div')">Process</button>
     </div>
+  <div id="main_div">
+    
 
     <div id="generator_div" class="tabcontent">
       <button id="bouton_generator_export" title="Export the link-stream above" onclick="export_generated_txt_link_stream()">&#8593;</button>
-      <canvas id="canvas_1" title="link stream canvas" width="360" height="360" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }"></canvas>
+      <canvas id="canvas_1" title="link stream canvas" width="360" height="360" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }">
+        
+      </canvas>
+
+      <textarea id="compteur_lignes" cols="50"  rows="1" readonly=""></textarea>
+
       <div class="tab">
         <button class="tablinks" title="Pauses the link-stream generation and the animation" onclick="pause_loop()">&#10074;&#10074; &#9658; </button>
         <button class="tablinks" title="Restarts the link-stream generation and the animation with new paramaters" onclick="launch()">&#8634;</button>
@@ -208,7 +222,6 @@
         <button class="tablinks" title="Makes process go slower" onclick="slower()">&#171;</button>
         <button class="tablinks" title="Makes process go faster" onclick="faster()">&#187;</button>
       </div>
-      <textarea id="compteur_lignes" cols="50"  rows="1"></textarea>
       <!--textarea id="textarea_1" title="Edges of the original link stream (the one shown in the canvas)" cols="50" rows="3"></textarea>
       <textarea id="textarea_2" title="The meta-edges of the original link stream (the one shown in the canvas)" cols="50" rows="3" ></textarea-->
       <form id="parameters">
