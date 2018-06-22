@@ -4,7 +4,8 @@
   <style>
   body {
     position:relative;
-    top:30px;
+    top:50px;
+    left:30px;
     background-color: #aaa;
   }
   .alert {
@@ -56,9 +57,9 @@
     border-top: none;
   }
   #main_div{
-    background-color: #fff;
+    background-color: #f00;
     width:320px;
-    height:461px;
+    height:420px;
   }
   #generator_div {
     width:320px;
@@ -81,8 +82,6 @@
     font-size:20;
   }
   #canvas_1 {
-    width:320px;
-    height:400px;
     float: left;
     clear: left;
     vertical-align: center;
@@ -159,7 +158,7 @@
     position: relative;
     top:30px;
     width:68px;
-    height:332px;
+    height:272px;
     left: 6px;
     right: 5px;
     display: none;
@@ -171,7 +170,7 @@
     position: relative;
     top:30px;
     width:68px;
-    height:332px;
+    height:272px;
     left: 5px;
     right: 5px;
     display: none;
@@ -183,7 +182,7 @@
     position: relative;
     top:30px;
     width:68px;
-    height:332px;
+    height:272px;
     left: 5px;
     right: 5px;
     display: none;
@@ -195,7 +194,7 @@
     position: relative;
     top:30px;
     width:68px;
-    height:332px;
+    height:272px;
     left: 5px;
     right: 5px;
     display: none;
@@ -221,7 +220,7 @@
     
 
     <div id="generator_div" class="tabcontent">
-      <canvas id="canvas_1" title="link stream canvas" width="320" height="400" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }">
+      <canvas id="canvas_1" title="link stream canvas" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }">
         
       </canvas>
 
@@ -417,8 +416,8 @@
       rollernet_canvas = document.getElementById("canvas_1");
       rollernet_canvas.style.width = 320;
       rollernet_canvas.width = 320;
-      rollernet_canvas.height = 400;
-      rollernet_canvas.style.height = 400;
+      rollernet_canvas.height = 360;
+      rollernet_canvas.style.height = 360;
       ratio_width_height = 1;
       canvas_window = rollernet_canvas.getContext("2d");
       largeur = rollernet_canvas.width;
