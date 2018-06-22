@@ -4,9 +4,9 @@
   <style>
   body {
     position:relative;
-    top:50px;
-    left:30px;
-    background-color: #aaa;
+    background-color: #e8e8e8;
+    top:40px;
+    left:40px;
   }
   .alert {
     padding: 20px;
@@ -31,8 +31,7 @@
       position:relative;
       top:0px;
       left:0px;
-      width:319px;
-      height: 40px;
+      width:100%;
       overflow: hidden;
       border: 1px solid #ccc;
       background-color: #f1f1f1;
@@ -42,8 +41,9 @@
     float: left;
     border: none;
     outline: none;
+    font:"arial";
+    font-size:40px;
     cursor: pointer;
-    padding: 14px 16px;
     transition: 0.3s;
   }
   .tab button:hover {
@@ -57,9 +57,13 @@
     border-top: none;
   }
   #main_div{
+    position:relative;
+    top:0px;
+    left:0px;
+    bottom:0px;
+    right:0px;
     background-color: #fff;
-    width:320px;
-    height:420px;
+    display: table-cell;
   }
   #generator_div {
     width:320px;
@@ -106,6 +110,7 @@
     resize: none;
     float: left;
     clear: left;
+    font-size:40px;
     vertical-align: center;
   }
   #import_div {
@@ -114,11 +119,9 @@
   }
   #link_stream_copy_past{
 
-    padding: 0px;
-    margin-bottom: 0px;
 
     position: relative;
-    left:1%;
+    left:0%;
     width:98%;
     height:90%;
     resize: none;
@@ -210,14 +213,15 @@
 
 
   <body>
-  <div class="tab">
+  
+  <!--div id="main_div"-->
+    
+    <div class="tab" id="top_tabs" >
       <button class="tablinks" title="Generates a link-stream (based on the rollernet experience) depending on some parameters" onclick="openTab('generator_div')">Generator</button>
       <button class="tablinks" title="Enables you to paste your personnal link-stream" onclick="openTab('import_div')">Import</button>
       <button class="tablinks" title="Enables you to chose between some link-streams we already generated" onclick="openTab('tests_div')">Tests</button>
       <button class="tablinks" title="Processes the kernel algorithm on the actual link-stream" onclick="process_alert_message();openTab('algorithm_div')">Process</button>
     </div>
-  <div id="main_div">
-    
 
     <div id="generator_div" class="tabcontent">
       <canvas id="canvas_1" title="link stream canvas" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }">
@@ -226,7 +230,7 @@
 
       <textarea id="compteur_lignes" cols="50"  rows="1" readonly=""></textarea>
 
-      <div class="tab">
+      <div class="tab" id = "generator_tabs">
         <button class="tablinks" title="Pauses the link-stream generation and the animation" onclick="pause_loop()">&#10074;&#10074; &#9658; </button>
         <button class="tablinks" title="Restarts the link-stream generation and the animation with new paramaters" onclick="launch()">&#8634;</button>
         <button class="tablinks" title="Enables you to change the different parameters of the link-stream generator" onclick="display_or_not()">&#9881;</button>
@@ -241,7 +245,7 @@
           <label size="5">#Teams</br></label>
           <input id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="4" max="100" width="#Disks/Team" onchange="launch()" width="2">
           <label size="5">#Disks/Team</br></label>
-          <input id="gamma_value" type="number" title="The value of gamma" min="2" value="5" width="Gamma" onchange="launch()" width="5" >
+          <input id="gamma_value" type="number" title="The value of gamma" min="2" value="2" width="Gamma" onchange="launch()" width="5" >
           <label >Gamma</br></label>
           <input id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="6" max="100" width="Rayon" onchange="launch()" width="5" ><label>Rayon</br></label>               
           <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" width="Maximum Velocity" onchange="launch()" width="5">
@@ -253,7 +257,10 @@
 
     
       <div id="import_div" class="tabcontent">
-      <button id="bouton_pasted_export" title="Export the link-stream above" onclick="export_pasted_txt_link_stream()">&#8593;</button>
+        
+      <div class="tab" id ="tab_export">
+          <button id="bouton_pasted_export" title="Export the link-stream above" onclick="export_pasted_txt_link_stream()">&#8593;</button>
+        </div>
       <textarea id="link_stream_copy_past">
 0 4 0
 1 6 0
@@ -320,7 +327,7 @@
       <textarea id="kernel_gamma_link_stream_to_process" readonly>
       </textarea>
     </div>
-  </div>
+  <!--/div-->
     
 
   <script src="index.js"></script>
@@ -347,7 +354,6 @@
     var hauteur;
     var ratio_width_height;
     var main_div = document.getElementById("main_div");
-    main_div.style.transform = "scale(1.0)";
     var menu_deroulant = document.getElementById("parameters");
     var textarea_link_stream = document.getElementById("textarea_1");
     var textarea_gamma_aretes = document.getElementById("textarea_2");
@@ -358,6 +364,17 @@
     var textarea_gamma_link_stream_to_process = document.getElementById("gamma_link_stream_to_process");
     var textarea_greedy_gamma_link_stream_to_process = document.getElementById("greedy_gamma_link_stream_to_process");
     var textarea_kernel_gamma_link_stream_to_process = document.getElementById("kernel_gamma_link_stream_to_process");
+    var w = window.innerWidth
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
+
+    var h = window.innerHeight
+    || document.documentElement.clientHeight
+    || document.body.clientHeight;
+
+    document.getElementById("rayon_value").value = parseInt(Math.sqrt(h * w) / 40);
+    document.getElementById("max_veloc_value").value = parseInt(Math.sqrt(h * w) / 80);
+    document.getElementById("max_acc_value").value = parseInt(Math.sqrt(h * w) / 80) / 5;
 
     var txt_link_stream = "";
     var txt_link_stream_last_tick = "";
@@ -414,10 +431,32 @@
       nombre_lignes = 0;
       nombre_gamma_aretes = 0;
       rollernet_canvas = document.getElementById("canvas_1");
-      rollernet_canvas.style.width = 320;
-      rollernet_canvas.width = 320;
-      rollernet_canvas.height = 360;
-      rollernet_canvas.style.height = 360;
+
+      rollernet_canvas.height = parseInt(h - 250);
+      rollernet_canvas.style.height = parseInt(h - 250) + "px";
+   //   main_div.style.height = parseInt(h / 1.8) + 55 + "px";
+
+      rollernet_canvas.style.width = parseInt(w - 129) + "px";
+      rollernet_canvas.width = parseInt(w - 129)  + 2;
+    //  main_div.style.width = parseInt(w / 1.2) + "px";
+      textarea_compteur_lignes.style.width = parseInt(w - 129) - 3 + "px";
+    //  document.getElementById("bouton_pasted_export").style.left = Math.min(172,parseInt(w / 1.2 - 30) - 20) + "px";
+      
+      document.getElementById("generator_tabs").style.width = parseInt(w - 129) + "px";
+      document.getElementById("top_tabs").style.width = parseInt(w - 129) + "px";
+
+      
+     textarea_original_link_stream_to_process.style.width = parseInt(w / 16) / 1 + "px";
+     textarea_gamma_link_stream_to_process.style.width = parseInt(w / 16) / 1 + "px";
+     textarea_greedy_gamma_link_stream_to_process.style.width = parseInt(w / 16) / 1 + "px";
+     textarea_kernel_gamma_link_stream_to_process.style.width = parseInt(w / 16) / 1 + "px";
+
+     textarea_import.style.width = parseInt(w - 129) + "px";
+     textarea_import.style.height = parseInt(h - 129) + "px";
+
+
+      
+     //  ""
       ratio_width_height = 1;
       canvas_window = rollernet_canvas.getContext("2d");
       largeur = rollernet_canvas.width;
@@ -491,18 +530,42 @@
       txt_link_stream_last_tick = "";
       txt_gamma_link_stream_last_tick = "";
       for (var i = 0; i < nombre_equipes; i++){
-        for (var j = i + 1; j < nombre_equipes; j++){
+        for (var j = i; j < nombre_equipes; j++){
           var collision_equipe_i_j = false;
 
           for (var ii = 0; ii < nombre_joueurs_par_equipe; ii++){
             for (var jj = 0; jj < nombre_joueurs_par_equipe; jj++){
               var dist_j0_j_1 = dist(equipes[i][ii].x, equipes[i][ii].y, equipes[j][jj].x, equipes[j][jj].y);
-              if (dist_j0_j_1 < equipes[i][ii].rayon + equipes[j][jj].rayon){
-                var nouvelle_collision = [equipes[i][ii], equipes[j][jj]];
-                collision_equipe_i_j = true;
-                collisions_array.push([equipes[i][ii], equipes[j][jj]]);
+              if (!(i == j && ii == jj) && dist_j0_j_1 < equipes[i][ii].rayon + equipes[j][jj].rayon){
+                if (i != j){
+                  var nouvelle_collision = [equipes[i][ii], equipes[j][jj]];
+                  collision_equipe_i_j = true;
+                  collisions_array.push([equipes[i][ii], equipes[j][jj]]);
                 txt_link_stream_last_tick += i + " " + j + " " + tick + "\n";
                 nombre_lignes++;
+                }
+                //permet de les faire s'atirer
+                
+              //  equipes[i][ii].dx *= 0.98;
+              //  equipes[i][ii].dy *= 0.98;
+              //  equipes[j][jj].dx *= 0.98;
+              //  equipes[j][jj].dy *= 0.98;
+                
+
+                //permet de les empêcher de se rentrer dedans
+                
+                equipes[i][ii].dx = (equipes[i][ii].x - equipes[j][jj].x) / rayon * 1.5;
+                equipes[i][ii].dy = (equipes[i][ii].y - equipes[j][jj].y) / rayon * 1.5;
+                equipes[j][jj].dx = (equipes[j][jj].x - equipes[i][ii].x) / rayon * 1.5;
+                equipes[j][jj].dy = (equipes[j][jj].y - equipes[i][ii].y) / rayon * 1.5;
+
+                //permet de les faire se suivre
+
+              //  equipes[i][ii].dx = -(equipes[i][ii].x - equipes[j][jj].x) / rayon * 1;
+              //  equipes[i][ii].dy = -(equipes[i][ii].y - equipes[j][jj].y) / rayon * 1;
+              //  equipes[j][jj].dx = (equipes[j][jj].x - equipes[i][ii].x) / rayon * 1;
+              //  equipes[j][jj].dy = (equipes[j][jj].y - equipes[i][ii].y) / rayon * 1;
+                
                 break;
               }
             }
@@ -563,6 +626,8 @@
       }
       roller.x += roller.dx;
       roller.y += roller.dy;
+      //Pour être dans un tor
+      
       if (roller.x < 0){
         roller.x = largeur - 1;
       }
@@ -575,6 +640,21 @@
       if (roller.y >= hauteur){
         roller.y = 0;
       }
+      /*
+      //Pour être dans un plan fermé
+      if (roller.x >= largeur){
+        roller.x = largeur - 1;
+      }
+      if (roller.x < 0){
+        roller.x = 0;
+      }
+      if (roller.y < 0){
+        roller.y = 0;
+      }
+      if (roller.y >= hauteur){
+        roller.y = hauteur - 1;
+      }
+      */
     };
     var dist = function (x_1, y_1, x_2, y_2){
       return Math.sqrt(dist_squared(x_1, y_1, x_2, y_2));
@@ -623,7 +703,7 @@
       }
       else{
         menu_deroulant.style.visibility = "visible";
-        bouton_generator_export.style.display = 'none';
+     //   bouton_generator_export.style.display = 'none';
       }
       if (!pause){
         pause = true;
@@ -635,14 +715,14 @@
       if (!pause){
         textarea_original_link_stream_to_process.value = "";
         menu_deroulant.style.visibility = 'hidden';
-        bouton_generator_export.style.display = 'none';
+     //   bouton_generator_export.style.display = 'none';
       }
       if (pause){
         if (txt_link_stream.length = ""){
-          bouton_generator_export.style.display = 'none';
+     //     bouton_generator_export.style.display = 'none';
         }
         else{
-          bouton_generator_export.style.display = 'table-cell';
+      //    bouton_generator_export.style.display = 'table-cell';
         }
         /*
         textarea_link_stream.value = txt_link_stream;
