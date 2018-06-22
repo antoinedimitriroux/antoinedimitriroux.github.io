@@ -2,14 +2,8 @@
 <html>
   <head>
   <style>
-  html body {
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-  }
   body {
-    background-color: #c0c0c0;
-    font-family: arial;
+    background-color: #aaa;
   }
   .alert {
     padding: 20px;
@@ -31,7 +25,10 @@
       color: black;
   }
   .tab {
-      width:359px;
+      position:relative;
+      top:0px;
+      left:0px;
+      width:319px;
       height: 40px;
       overflow: hidden;
       border: 1px solid #ccc;
@@ -57,12 +54,12 @@
     border-top: none;
   }
   #main_div{
-    background-color: #f00;
-    width:360px;
-    height:480px;
+    background-color: #fff;
+    width:320px;
+    height:530px;
   }
   #generator_div {
-    width:360px;
+    width:320px;
     height:100%;
     position: absolute;
     display: table-cell;
@@ -79,10 +76,11 @@
     visibility: hidden;
     border: 1px solid #ccc;
     background-color:#fff;
+    font-size:20;
   }
   #canvas_1 {
-    width:360px;
-    height:360px;
+    width:320px;
+    height:470px;
     float: left;
     clear: left;
     vertical-align: center;
@@ -102,7 +100,7 @@
     vertical-align: center;
   }
   #compteur_lignes {
-    width:99%;
+    width:98%;
     text-align:right;
     resize: none;
     float: left;
@@ -119,25 +117,29 @@
     margin-bottom: 0px;
 
     position: relative;
-    top:0px;
-    width:360px;
+    width:100%;
     height:100%;
     resize: none;
   }
   #bouton_generator_export{
+    border: 1px solid #ccc;
     z-index: 10;
-    position: absolute;
+    position: relative;
+    top:18px;
     left:234px;
-    display:none;
+    display:table-cell;
   }
   #bouton_pasted_export{
-    z-index: -10;
-    position: absolute;
-    left:234px;
-    display:none;
+    border: 1px solid #ccc;
+    z-index: 10;
+    position: relative;
+    top:8px;
+    left:260px;
+    display:table-cell;
+
   }
   #tests_div {
-    width:360px;
+    width:320px;
     position: absolute;
   }
   #compteur_edges{
@@ -147,48 +149,56 @@
     height:10px;
   }
   #algorithm_div{
-    width:360px;
+    width:320px;
     position: relative;
   }
   #original_link_stream_to_process{
     position: relative;
     top:30px;
-    width:78px;
+    width:68px;
     height:432px;
     left: 6px;
     right: 5px;
     display: none;
     resize:horizontal;
+    border: 1px solid #ccc;
+    overflow-y: scroll; 
   }
   #gamma_link_stream_to_process{
     position: relative;
     top:30px;
-    width:78px;
+    width:68px;
     height:432px;
     left: 5px;
     right: 5px;
     display: none;
     resize:horizontal;
+    border: 1px solid #ccc;
+    overflow-y: scroll; 
   }
   #greedy_gamma_link_stream_to_process {
     position: relative;
     top:30px;
-    width:78px;
+    width:68px;
     height:432px;
     left: 5px;
     right: 5px;
     display: none;
     resize:horizontal;
+    border: 1px solid #ccc;
+    overflow-y: scroll; 
   }
   #kernel_gamma_link_stream_to_process{
     position: relative;
     top:30px;
-    width:78px;
+    width:68px;
     height:432px;
     left: 5px;
     right: 5px;
     display: none;
     resize:horizontal;
+    border: 1px solid #ccc;
+    overflow-y: scroll; 
   }
   </style>
 
@@ -208,8 +218,7 @@
     
 
     <div id="generator_div" class="tabcontent">
-      <button id="bouton_generator_export" title="Export the link-stream above" onclick="export_generated_txt_link_stream()">&#8593;</button>
-      <canvas id="canvas_1" title="link stream canvas" width="360" height="360" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }">
+      <canvas id="canvas_1" title="link stream canvas" width="320" height="320" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }">
         
       </canvas>
 
@@ -221,80 +230,73 @@
         <button class="tablinks" title="Enables you to change the different parameters of the link-stream generator" onclick="display_or_not()">&#9881;</button>
         <button class="tablinks" title="Makes process go slower" onclick="slower()">&#171;</button>
         <button class="tablinks" title="Makes process go faster" onclick="faster()">&#187;</button>
+        <button title="Export the link-stream above" onclick="export_generated_txt_link_stream()" >&#8593;</button>
       </div>
       <!--textarea id="textarea_1" title="Edges of the original link stream (the one shown in the canvas)" cols="50" rows="3"></textarea>
       <textarea id="textarea_2" title="The meta-edges of the original link stream (the one shown in the canvas)" cols="50" rows="3" ></textarea-->
       <form id="parameters">
-        <font size="2">
           <input id="teams_value" type="number" title="The number of teams" value="8" min="3" max="100" width="#Teams" onchange="launch()" width="5">
-          <label>#Teams</br></label>
-          <input id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="4" max="100" width="#Disks/Team" onchange="launch()" width="5">
-          <label>#Disks/Team</br></label>
-          <input id="gamma_value" type="number" title="The value of gamma" min="2" value="5" width="Gamma" onchange="launch()" width="5">
-          <label>Gamma</br></label>
-          <input id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="6" max="100" width="Rayon" onchange="launch()" width="5"><label>Rayon</br></label>               
+          <label size="5">#Teams</br></label>
+          <input id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="4" max="100" width="#Disks/Team" onchange="launch()" width="2">
+          <label size="5">#Disks/Team</br></label>
+          <input id="gamma_value" type="number" title="The value of gamma" min="2" value="5" width="Gamma" onchange="launch()" width="5" >
+          <label >Gamma</br></label>
+          <input id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="6" max="100" width="Rayon" onchange="launch()" width="5" ><label>Rayon</br></label>               
           <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" width="Maximum Velocity" onchange="launch()" width="5">
           <label>Max velocity</br></label>    
           <input id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" width="" onchange="launch()" width="5">
-          <label>Max acceleration</br></label>
-        </font>
+          <label">Max acceleration</br></label>
       </form>
     </div>
 
     
-    <div id="import_div" class="tabcontent">
+      <div id="import_div" class="tabcontent">
       <button id="bouton_pasted_export" title="Export the link-stream above" onclick="export_pasted_txt_link_stream()">&#8593;</button>
       <textarea id="link_stream_copy_past">
+0 4 0
+1 6 0
+2 5 0
+2 7 0
 0 1 1
+1 6 1
 3 4 1
 0 1 2
+1 6 2
 3 4 2
+4 5 2
 6 7 2
 0 1 3
+0 5 3
+1 2 3
+1 6 3
 3 4 3
+4 5 3
 6 7 3
 0 1 4
+0 5 4
+1 2 4
+1 6 4
 3 4 4
 6 7 4
 0 1 5
+0 5 5
+1 2 5
+1 6 5
 3 4 5
 6 7 5
+0 5 6
+1 2 6
+1 6 6
+2 3 6
 3 4 6
 0 1 7
+0 5 7
+1 6 7
+2 3 7
 4 5 7
 6 7 7
 0 1 8
-4 5 8
-5 6 8
-6 7 8
-0 1 9
-4 5 9
-5 6 9
-6 7 9
-5 6 9
-4 5 10
-5 6 10
-6 7 10
-4 5 11
-6 7 11
-3 4 25
-3 4 26
-2 3 27
-3 4 27
-4 5 27
-2 3 28
-4 5 28
-2 3 29
-3 4 29
-4 5 29
-3 4 30
-2 3 31
-3 4 31
-4 5 31
-2 3 32
-4 5 32
-2 3 33
-4 5 33
+0 5 8
       </textarea>
     </div>
     <div id="tests_div" class="tabcontent"></div>
@@ -341,6 +343,9 @@
     var canvas_window;
     var largeur;
     var hauteur;
+    var ratio_width_height;
+    var main_div = document.getElementById("main_div");
+    main_div.style.transform = "scale(1.0)";
     var menu_deroulant = document.getElementById("parameters");
     var textarea_link_stream = document.getElementById("textarea_1");
     var textarea_gamma_aretes = document.getElementById("textarea_2");
@@ -407,6 +412,11 @@
       nombre_lignes = 0;
       nombre_gamma_aretes = 0;
       rollernet_canvas = document.getElementById("canvas_1");
+      rollernet_canvas.style.width = 320;
+      rollernet_canvas.width = 320;
+      rollernet_canvas.height = 470;
+      rollernet_canvas.style.height = 470;
+      ratio_width_height = 1;
       canvas_window = rollernet_canvas.getContext("2d");
       largeur = rollernet_canvas.width;
       hauteur = rollernet_canvas.height;
@@ -514,7 +524,7 @@
     }
     var draw_roller = function(roller){
       canvas_window.fillStyle = roller.couleur;
-      drawEllipseByCenter(canvas_window,roller.x,roller.y,rayon*2,rayon*2);
+      drawEllipseByCenter(canvas_window,roller.x,roller.y,rayon*2,rayon*2*ratio_width_height);
    //   canvas_window.strokeText(roller.numero+"",roller.x,roller.y);
     }
     var draw_collisions = function(collisions_array, new_gamma_collisions){
