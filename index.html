@@ -187,6 +187,49 @@
     border: 1px solid #ccc;
     overflow-y: scroll; 
     font-size:30px;
+  } 
+  #canvas_2 {
+    position: relative;
+    width:17vw;
+    height:80vh;
+    float:left;
+    display: none;
+    resize:horizontal;
+    border: 1px solid #ccc;
+    overflow-y: scroll; 
+    font-size:30px;
+  }
+  #original_link_stream_edges_counter{
+    border: 1px solid #ccc;
+    z-index: 10;
+    width:17vw;
+    float:left;
+    text-align:center;
+
+  }
+  #gamma_link_stream_edges_counter{
+    border: 1px solid #ccc;
+    z-index: 10;
+    width:17vw;
+    float:left;
+    text-align:center;
+    
+  }
+  #approx_link_stream_edges_counter{
+    border: 1px solid #ccc;
+    z-index: 10;
+    width:17vw;
+    float:left;
+    text-align:center;
+    
+  }
+  #kernel_link_stream_edges_counter{
+    border: 1px solid #ccc;
+    z-index: 10;
+    width:17vw;
+    float:left;
+    text-align:center;
+    
   }
   </style>
 
@@ -237,7 +280,7 @@
           <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" width="Maximum Velocity" onchange="launch()" width="5">
           <label>Max velocity</br></label>    
           <input id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" width="" onchange="launch()" width="5">
-          <label">Max acceleration</br></label>   
+          <label>Max acceleration</br></label>   
           <input id="repulsion_value" type="number" step="0.0001" title="Repulsion value" min="0.0000" value="0.2000" max="1" width="" onchange="launch()" width="5">
           <label">Repulsion</br></label>    
           <input id="attirance_value" type="number" step="0.0001" title="Attirance value" min="0.0000" value="0.0000" max="1" width="" onchange="launch()" width="5">
@@ -307,12 +350,16 @@
         or chose between some link-streams in the "tests" one.</br></br>
         Come back when it's done! :)
       </div>
+      <label id="original_link_stream_edges_counter">11111111</br></label>  
+      <label id="gamma_link_stream_edges_counter">22222222</br></label>  
+      <label id="approx_link_stream_edges_counter">33333333</br></label> 
+      <label id="kernel_link_stream_edges_counter">44444444</br></label> 
       <textarea id="original_link_stream_to_process" title="the original link stream" readonly>
-      </textarea>
+      </textarea>  
       <textarea id="gamma_link_stream_to_process" title="the gamma link stream" readonly>
-      </textarea>
+      </textarea> 
       <textarea id="greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" readonly>
-      </textarea>
+      </textarea> 
       <textarea id="kernel_gamma_link_stream_to_process" title="the kernel of the optimal temporal matching" readonly>
       </textarea>
     </div>
@@ -415,6 +462,7 @@
       nombre_lignes = 0;
       nombre_gamma_aretes = 0;
       rollernet_canvas = document.getElementById("canvas_1");
+      var rollernet_canvas_2 = document.getElementById("canvas_2");
       
       rollernet_canvas.height = rollernet_canvas.getBoundingClientRect().bottom - rollernet_canvas.getBoundingClientRect().top;
       rollernet_canvas.width = rollernet_canvas.getBoundingClientRect().right - rollernet_canvas.getBoundingClientRect().left;
@@ -735,15 +783,21 @@
           openTab("import_div");
         }
         else{
-          
+
           var original_link_stream = clean_original_link_stream_txt(txt_link_stream);
           var gamma_link_stream = original_to_gamma_link_stream(original_link_stream,gamma);
           var two_approx_link_stream = gamma_to_2approx_link_stream(gamma_link_stream);
           var kernel_link_stream = approx_to_kernel(two_approx_link_stream);
+          /*
           original_link_stream.list_edges.sort(sort_edges_by_time);
           gamma_link_stream.list_edges.sort(sort_edges_by_time);
           two_approx_link_stream.list_edges.sort(sort_edges_by_time);
           kernel_link_stream.list_edges.sort(sort_edges_by_time);
+          */
+          document.getElementById("original_link_stream_edges_counter").innerHTML = original_link_stream.list_edges.length + " edges";
+          document.getElementById("gamma_link_stream_edges_counter").innerHTML = gamma_link_stream.list_edges.length + " edges";
+          document.getElementById("approx_link_stream_edges_counter").innerHTML = two_approx_link_stream.list_edges.length + " edges";
+          document.getElementById("kernel_link_stream_edges_counter").innerHTML = kernel_link_stream.list_edges.length + " edges";
 
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length; i++){
@@ -897,7 +951,7 @@
         for (var i = list_edges_gamma_copy.length-1; i>= 0; i--){
           if (!compatible_edges(edge,list_edges_gamma_copy[i])){
             approx_link_stream.list_incompatibles.push(list_edges_gamma_copy[i]);
-            list_edges_gamma_copy.splice(i,1);
+            list_edges_gamma_copy.slice(i,1);
           }
         }
       }
