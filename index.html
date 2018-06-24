@@ -735,11 +735,16 @@
           openTab("import_div");
         }
         else{
+          
           var original_link_stream = clean_original_link_stream_txt(txt_link_stream);
           var gamma_link_stream = original_to_gamma_link_stream(original_link_stream,gamma);
           var two_approx_link_stream = gamma_to_2approx_link_stream(gamma_link_stream);
           var kernel_link_stream = approx_to_kernel(two_approx_link_stream);
           original_link_stream.list_edges.sort(sort_edges_by_time);
+          gamma_link_stream.list_edges.sort(sort_edges_by_time);
+          two_approx_link_stream.list_edges.sort(sort_edges_by_time);
+          kernel_link_stream.list_edges.sort(sort_edges_by_time);
+
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length; i++){
             txt_original_link_stream +=   original_link_stream.list_edges[i][0] + " " +
@@ -753,7 +758,7 @@
                                       gamma_link_stream.list_edges[i][2] + "\n";
           }
           var txt_two_approx_link_stream = "";
-          two_approx_link_stream.list_edges.sort(sort_edges_by_time);
+        //  two_approx_link_stream.list_edges.sort(sort_edges_by_time);
           for (var i = 0; i < two_approx_link_stream.list_edges.length; i++){
             txt_two_approx_link_stream +=   two_approx_link_stream.list_edges[i][0] + " " +
                                             two_approx_link_stream.list_edges[i][1] + " " + 
@@ -877,7 +882,6 @@
         }
         gamma_link_stream.array_edges[u][v].push(gamma_link_stream.list_edges[i]);
       }
-    //  gamma_link_stream.list_edges.sort(sort_edges_by_time);
       return gamma_link_stream;
     }
     function gamma_to_2approx_link_stream(gamma_link_stream){
@@ -886,17 +890,17 @@
                                   teams:gamma_link_stream.teams,
                                   t_min:gamma_link_stream.t_min,
                                   t_max:gamma_link_stream.t_max};
-      while (gamma_link_stream.list_edges.length > 0){
-        var edge = gamma_link_stream.list_edges.shift();
+      var list_edges_gamma_copy = gamma_link_stream.list_edges.slice(0,gamma_link_stream.list_edges.length);
+      while (list_edges_gamma_copy.length > 0){
+        var edge = list_edges_gamma_copy.shift();
         approx_link_stream.list_edges.push(edge);
-        for (var i = gamma_link_stream.list_edges.length-1; i>= 0; i--){
-          if (!compatible_edges(edge,gamma_link_stream.list_edges[i])){
-            approx_link_stream.list_incompatibles.push(gamma_link_stream.list_edges[i]);
-            gamma_link_stream.list_edges.splice(i,1);
+        for (var i = list_edges_gamma_copy.length-1; i>= 0; i--){
+          if (!compatible_edges(edge,list_edges_gamma_copy[i])){
+            approx_link_stream.list_incompatibles.push(list_edges_gamma_copy[i]);
+            list_edges_gamma_copy.splice(i,1);
           }
         }
       }
-      approx_link_stream.list_edges.sort(sort_edges_by_time);
       return approx_link_stream;
     }
     function approx_to_kernel(approx_link_stream){
@@ -919,7 +923,6 @@
           }
         }
       }
-      kernel_link_stream.list_edges.sort(sort_edges_by_time);
       return kernel_link_stream;
     }
     function compatible_edges_strong(edge_1, edge_2){
