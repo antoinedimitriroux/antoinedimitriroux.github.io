@@ -5,21 +5,27 @@
   body {
     position:relative;
     background-color: #e8e8e8;
-    top:40px;
-    left:40px;
+    left:1vw;
+    top:1vh;
+    width:100vw;
+    height: 100vh;
   }
   .alert {
-    padding: 20px;
-    margin-bottom: 15px;
     background-color: #f44336; /* Red */
     color: white;
+    position:absolute;
+    top:20vh;
+    left:20vw;
+    width:60vw;
+    height:60vh;
+    font-size:3vw;
   }
   .closebtn {
       margin-left: 15px;
       color: white;
       font-weight: bold;
       float: right;
-      font-size: 22px;
+      font-size: 5vw;
       line-height: 20px;
       cursor: pointer;
       transition: 0.3s;
@@ -28,21 +34,20 @@
       color: black;
   }
   .tab {
-      position:relative;
-      top:0px;
-      left:0px;
-      width:100%;
+      width:97vw;
+      height:8vh;
       overflow: hidden;
       border: 1px solid #ccc;
       background-color: #f1f1f1;
   }
   .tab button {
+    height:8vh;
     background-color: inherit;
     float: left;
     border: none;
     outline: none;
     font:"arial";
-    font-size:40px;
+    font-size:3vw;
     cursor: pointer;
     transition: 0.3s;
   }
@@ -57,17 +62,14 @@
     border-top: none;
   }
   #main_div{
-    position:relative;
-    top:0px;
-    left:0px;
-    bottom:0px;
-    right:0px;
+    width:97vw;
+    height:100vh;
     background-color: #fff;
-    display: table-cell;
+    display: flex;
   }
   #generator_div {
-    width:320px;
-    height:100%;
+    width:97vw;
+    height:100vh;
     position: absolute;
     display: table-cell;
   }
@@ -76,36 +78,24 @@
   #parameters {
     z-index:10;
     position: relative;
-    left:177px;
-    bottom:176px;
+    left:0vw;
+    bottom:50vh;
     vertical-align: center;
     display: table-cell;
     visibility: hidden;
     border: 1px solid #ccc;
     background-color:#fff;
-    font-size:20;
+    font-size:3vw;
   }
   #canvas_1 {
-    float: left;
-    clear: left;
-    vertical-align: center;
-  }
-  #textarea_1 {
-    width:100%;
-    resize: none;
-    float: left;
-    clear: left;
-    vertical-align: center;
-  }
-  #textarea_2 {
-    width:100%;
-    resize: none;
+    width:97vw;
+    height:70vh;
     float: left;
     clear: left;
     vertical-align: center;
   }
   #compteur_lignes {
-    width:98%;
+    width:96.5vw;
     text-align:right;
     resize: none;
     float: left;
@@ -114,19 +104,17 @@
     vertical-align: center;
   }
   #import_div {
-    height:100%;
-    width:100%;
+    height:100vh;
+    width:100vw;
   }
   #link_stream_copy_past{
-
-
-    position: relative;
-    left:0%;
-    width:98%;
-    height:90%;
+    width:96.5vw;
+    height:75vh;
     resize: none;
+    font-size:2vw;
   }
   #bouton_generator_export{
+    width:80vh;
     border: 1px solid #ccc;
     z-index: 10;
     position: relative;
@@ -137,11 +125,10 @@
   #bouton_pasted_export{
     border: 1px solid #ccc;
     z-index: 10;
-    position: relative;
-    top:8px;
-    left:260px;
+    position:absolute;
+    top:13vh;
+    left:36vw;
     display:table-cell;
-
   }
   #tests_div {
     width:320px;
@@ -154,56 +141,51 @@
     height:10px;
   }
   #algorithm_div{
-    width:320px;
+    width:80vw;
     position: relative;
   }
   #original_link_stream_to_process{
     position: relative;
-    top:30px;
-    width:68px;
-    height:272px;
-    left: 6px;
-    right: 5px;
+    width:17vw;
+    height:80vh;
     display: none;
     resize:horizontal;
     border: 1px solid #ccc;
     overflow-y: scroll; 
+    font-size:30px;
   }
   #gamma_link_stream_to_process{
     position: relative;
-    top:30px;
-    width:68px;
-    height:272px;
-    left: 5px;
-    right: 5px;
+    width:17vw;
+    height:80vh;
+    float:left;
     display: none;
     resize:horizontal;
     border: 1px solid #ccc;
     overflow-y: scroll; 
+    font-size:30px;
   }
   #greedy_gamma_link_stream_to_process {
     position: relative;
-    top:30px;
-    width:68px;
-    height:272px;
-    left: 5px;
-    right: 5px;
+    width:17vw;
+    height:80vh;
+    float:left;
     display: none;
     resize:horizontal;
     border: 1px solid #ccc;
     overflow-y: scroll; 
+    font-size:30px;
   }
   #kernel_gamma_link_stream_to_process{
     position: relative;
-    top:30px;
-    width:68px;
-    height:272px;
-    left: 5px;
-    right: 5px;
+    width:17vw;
+    height:80vh;
+    float:left;
     display: none;
     resize:horizontal;
     border: 1px solid #ccc;
     overflow-y: scroll; 
+    font-size:30px;
   }
   </style>
 
@@ -214,7 +196,7 @@
 
   <body>
   
-  <!--div id="main_div"-->
+  
     
     <div class="tab" id="top_tabs" >
       <button class="tablinks" title="Generates a link-stream (based on the rollernet experience) depending on some parameters" onclick="openTab('generator_div')">Generator</button>
@@ -223,6 +205,9 @@
       <button class="tablinks" title="Processes the kernel algorithm on the actual link-stream" onclick="process_alert_message();openTab('algorithm_div')">Process</button>
     </div>
 
+
+
+    <!--div id="main_div"-->
     <div id="generator_div" class="tabcontent">
       <canvas id="canvas_1" title="link stream canvas" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model-options="{ updateOn: 'blur' }">
         
@@ -236,7 +221,7 @@
         <button class="tablinks" title="Enables you to change the different parameters of the link-stream generator" onclick="display_or_not()">&#9881;</button>
         <button class="tablinks" title="Makes process go slower" onclick="slower()">&#171;</button>
         <button class="tablinks" title="Makes process go faster" onclick="faster()">&#187;</button>
-        <button title="Export the link-stream above" onclick="export_generated_txt_link_stream()" >&#8593;</button>
+        <button title="Export the link-stream above" onclick="export_generated_txt_link_stream()" position="relative" right="0vw">&#8593;</button>
       </div>
       <!--textarea id="textarea_1" title="Edges of the original link stream (the one shown in the canvas)" cols="50" rows="3"></textarea>
       <textarea id="textarea_2" title="The meta-edges of the original link stream (the one shown in the canvas)" cols="50" rows="3" ></textarea-->
@@ -251,10 +236,13 @@
           <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" width="Maximum Velocity" onchange="launch()" width="5">
           <label>Max velocity</br></label>    
           <input id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" width="" onchange="launch()" width="5">
-          <label">Max acceleration</br></label>
+          <label">Max acceleration</br></label>   
+          <input id="repulsion_value" type="number" step="0.0001" title="Repulsion value" min="0.0000" value="0.2000" max="1" width="" onchange="launch()" width="5">
+          <label">Repulsion</br></label>    
+          <input id="attirance_value" type="number" step="0.0001" title="Attirance value" min="0.0000" value="0.0000" max="1" width="" onchange="launch()" width="5">
+          <label">Attirance</br></label> 
       </form>
     </div>
-
     
       <div id="import_div" class="tabcontent">
         
@@ -308,7 +296,7 @@
 0 5 8
       </textarea>
     </div>
-    <div id="tests_div" class="tabcontent"></div>
+    <div id="tests_div"></div>
     <div id="algorithm_div" class="tabcontent">
       <div id = "no_link_stream_alert_message" class="alert">
         <span class="closebtn" onclick="process_alert_message()">&times;</span> 
@@ -318,23 +306,19 @@
         or chose between some link-streams in the "tests" one.</br></br>
         Come back when it's done! :)
       </div>
-      <textarea id="original_link_stream_to_process" readonly>
+      <textarea id="original_link_stream_to_process" title="the original link stream" readonly>
       </textarea>
-      <textarea id="gamma_link_stream_to_process" readonly>
+      <textarea id="gamma_link_stream_to_process" title="the gamma link stream" readonly>
       </textarea>
-      <textarea id="greedy_gamma_link_stream_to_process" readonly>
+      <textarea id="greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" readonly>
       </textarea>
-      <textarea id="kernel_gamma_link_stream_to_process" readonly>
+      <textarea id="kernel_gamma_link_stream_to_process" title="the kernel of the optimal temporal matching" readonly>
       </textarea>
     </div>
   <!--/div-->
     
-
   <script src="index.js"></script>
-
   <script type="text/javascript">
-
-
     var gamma;
     var nombre_equipes;
     var nombre_joueurs_par_equipe;
@@ -342,12 +326,13 @@
     var vitesse_max;
     var acceleration_max;
     var equipes = [];
+    var repulsion;
+    var attirance;
     var couleurs_equipes = [];
     var gamma_collisions = [];
     var gamma_array = [];
     var nombre_lignes;
     var nombre_gamma_aretes;
-
     var rollernet_canvas;
     var canvas_window;
     var largeur;
@@ -367,27 +352,28 @@
     var w = window.innerWidth
     || document.documentElement.clientWidth
     || document.body.clientWidth;
-
     var h = window.innerHeight
     || document.documentElement.clientHeight
     || document.body.clientHeight;
-
     document.getElementById("rayon_value").value = parseInt(Math.sqrt(h * w) / 40);
     document.getElementById("max_veloc_value").value = parseInt(Math.sqrt(h * w) / 80);
     document.getElementById("max_acc_value").value = parseInt(Math.sqrt(h * w) / 80) / 5;
-
     var txt_link_stream = "";
     var txt_link_stream_last_tick = "";
     var txt_gamma_link_stream = "";
     var txt_gamma_link_stream_last_tick = "";
     var SQRT_2 = Math.sqrt(2);
-
     var wait_time_ms = 30;
     var tick = 0;
     var d = new Date();
     var time = d.getTime();
-
     var pause = true;
+
+    window.onresize = launch;
+
+
+
+
 
     function launch(){
     //  pause = false;
@@ -406,6 +392,8 @@
       if (document.getElementById("rayon_value").value > 0){rayon = parseFloat(document.getElementById("rayon_value").value);}
       if (document.getElementById("max_veloc_value").value > 0){vitesse_max = parseFloat(document.getElementById("max_veloc_value").value);}
       if (document.getElementById("max_acc_value").value > 0){acceleration_max = parseFloat(document.getElementById("max_acc_value").value);}
+      if (document.getElementById("repulsion_value").value > 0){repulsion = parseFloat(document.getElementById("repulsion_value").value);}
+      if (document.getElementById("attirance_value").value > 0){attirance = parseFloat(document.getElementById("attirance_value").value);}
       init();
       clear_canvas();
       for (var i = 0; i < nombre_equipes; i++){
@@ -415,12 +403,7 @@
       }
       refreshText();
     }
-
-
-
     
-
-
     var init = function(){
       equipes = [];
       couleurs_equipes = [];
@@ -431,38 +414,30 @@
       nombre_lignes = 0;
       nombre_gamma_aretes = 0;
       rollernet_canvas = document.getElementById("canvas_1");
-
-      rollernet_canvas.height = parseInt(h - 250);
-      rollernet_canvas.style.height = parseInt(h - 250) + "px";
-   //   main_div.style.height = parseInt(h / 1.8) + 55 + "px";
-
-      rollernet_canvas.style.width = parseInt(w - 129) + "px";
-      rollernet_canvas.width = parseInt(w - 129)  + 2;
+      
+      rollernet_canvas.height = rollernet_canvas.getBoundingClientRect().bottom - rollernet_canvas.getBoundingClientRect().top;
+      rollernet_canvas.width = rollernet_canvas.getBoundingClientRect().right - rollernet_canvas.getBoundingClientRect().left;
     //  main_div.style.width = parseInt(w / 1.2) + "px";
+    /*
       textarea_compteur_lignes.style.width = parseInt(w - 129) - 3 + "px";
     //  document.getElementById("bouton_pasted_export").style.left = Math.min(172,parseInt(w / 1.2 - 30) - 20) + "px";
       
       document.getElementById("generator_tabs").style.width = parseInt(w - 129) + "px";
       document.getElementById("top_tabs").style.width = parseInt(w - 129) + "px";
-
       
      textarea_original_link_stream_to_process.style.width = parseInt(w / 16) / 1 + "px";
      textarea_gamma_link_stream_to_process.style.width = parseInt(w / 16) / 1 + "px";
      textarea_greedy_gamma_link_stream_to_process.style.width = parseInt(w / 16) / 1 + "px";
      textarea_kernel_gamma_link_stream_to_process.style.width = parseInt(w / 16) / 1 + "px";
-
      textarea_import.style.width = parseInt(w - 129) + "px";
      textarea_import.style.height = parseInt(h - 129) + "px";
-
-
-      
+      */
      //  ""
       ratio_width_height = 1;
       canvas_window = rollernet_canvas.getContext("2d");
       largeur = rollernet_canvas.width;
       hauteur = rollernet_canvas.height;
       SQRT_2 = Math.sqrt(2);
-
       textarea_original_link_stream_to_process.value = "";
       textarea_original_link_stream_to_process.style.display = 'none';
       textarea_gamma_link_stream_to_process.value = "";
@@ -478,7 +453,6 @@
                                     parseInt(Math.random() * 256) + ',' + 
                                     parseInt(Math.random() * 256) + ',' +
                                     '0.5)';
-
             for (var j = 0; j < nombre_joueurs_par_equipe; j++){
               var x = rollernet_canvas.width * Math.random();
               var y = rollernet_canvas.height * Math.random();
@@ -520,11 +494,9 @@
         }
         setTimeout(function() {requestAnimationFrame(loop)}, wait_time_ms);
     }
-
     var stop_loop = function(){
       loop_stoped = true;
     }
-
     var collisions = function(){
       var collisions_array = [];
       txt_link_stream_last_tick = "";
@@ -532,7 +504,6 @@
       for (var i = 0; i < nombre_equipes; i++){
         for (var j = i; j < nombre_equipes; j++){
           var collision_equipe_i_j = false;
-
           for (var ii = 0; ii < nombre_joueurs_par_equipe; ii++){
             for (var jj = 0; jj < nombre_joueurs_par_equipe; jj++){
               var dist_j0_j_1 = dist(equipes[i][ii].x, equipes[i][ii].y, equipes[j][jj].x, equipes[j][jj].y);
@@ -544,28 +515,33 @@
                 txt_link_stream_last_tick += i + " " + j + " " + tick + "\n";
                 nombre_lignes++;
                 }
-                //permet de les faire s'atirer
-                
-              //  equipes[i][ii].dx *= 0.98;
-              //  equipes[i][ii].dy *= 0.98;
-              //  equipes[j][jj].dx *= 0.98;
-              //  equipes[j][jj].dy *= 0.98;
-                
+
 
                 //permet de les empêcher de se rentrer dedans
+                equipes[i][ii].dx = (equipes[i][ii].x - equipes[j][jj].x) / rayon * 2;
+                equipes[i][ii].dy = (equipes[i][ii].y - equipes[j][jj].y) / rayon * 2;
+                equipes[j][jj].dx = (equipes[j][jj].x - equipes[i][ii].x) / rayon * 2;
+                equipes[j][jj].dy = (equipes[j][jj].y - equipes[i][ii].y) / rayon * 2;
+
+
+                /*
+                //permet de les faire s'atirer
                 
-                equipes[i][ii].dx = (equipes[i][ii].x - equipes[j][jj].x) / rayon * 1.5;
-                equipes[i][ii].dy = (equipes[i][ii].y - equipes[j][jj].y) / rayon * 1.5;
-                equipes[j][jj].dx = (equipes[j][jj].x - equipes[i][ii].x) / rayon * 1.5;
-                equipes[j][jj].dy = (equipes[j][jj].y - equipes[i][ii].y) / rayon * 1.5;
+                equipes[i][ii].dx *= 1 - attirance;
+                equipes[i][ii].dy *= 1 - attirance;
+                equipes[j][jj].dx *= 1 - attirance;
+                equipes[j][jj].dy *= 1 - attirance;
 
+
+
+                
+                
                 //permet de les faire se suivre
-
               //  equipes[i][ii].dx = -(equipes[i][ii].x - equipes[j][jj].x) / rayon * 1;
               //  equipes[i][ii].dy = -(equipes[i][ii].y - equipes[j][jj].y) / rayon * 1;
               //  equipes[j][jj].dx = (equipes[j][jj].x - equipes[i][ii].x) / rayon * 1;
               //  equipes[j][jj].dy = (equipes[j][jj].y - equipes[i][ii].y) / rayon * 1;
-                
+                */
                 break;
               }
             }
@@ -665,7 +641,6 @@
     function drawEllipseByCenter(ctx, cx, cy, w, h) {
       drawEllipse(ctx, cx - w/2.0, cy - h/2.0, w, h);
     }
-
     function drawEllipse(ctx, x, y, w, h) {
       var kappa = .5522848,
           ox = (w / 2) * kappa, // control point offset horizontal
@@ -674,7 +649,6 @@
           ye = y + h,           // y-end
           xm = x + w / 2,       // x-middle
           ym = y + h / 2;       // y-middle
-
       ctx.beginPath();
       ctx.moveTo(x, ym);
       ctx.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
@@ -685,7 +659,6 @@
       ctx.strokeStyle = 0x000000;
       ctx.stroke();
     }
-
     function refreshText() {
       //  textarea_link_stream.value = txt_link_stream;
       //  textarea_link_stream.value = txt_link_stream_last_tick;
@@ -695,8 +668,6 @@
       //  textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
         textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " edges   " + nombre_gamma_aretes + " gamma-edges";
     }
-
-
     function display_or_not(){
       if (menu_deroulant.style.visibility == "visible"){
         menu_deroulant.style.visibility = "hidden";
@@ -709,7 +680,6 @@
         pause = true;
       }
     }
-
     function pause_loop(){
       pause = !pause;
       if (!pause){
@@ -732,7 +702,6 @@
         */
       }
      }
-
     function slower(){
       wait_time_ms *= 1.3;
     }
@@ -765,60 +734,36 @@
           openTab("import_div");
         }
         else{
-
           var original_link_stream = clean_original_link_stream_txt(txt_link_stream);
           var gamma_link_stream = original_to_gamma_link_stream(original_link_stream,gamma);
           var two_approx_link_stream = gamma_to_2approx_link_stream(gamma_link_stream);
           var kernel_link_stream = approx_to_kernel(two_approx_link_stream);
-
           original_link_stream.list_edges.sort(sort_edges_by_time);
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length; i++){
             txt_original_link_stream +=   original_link_stream.list_edges[i][0] + " " +
                                           original_link_stream.list_edges[i][1] + " " + 
                                           original_link_stream.list_edges[i][2] + "\n";
-            if (i < original_link_stream.list_edges.length - 1 &&
-              (original_link_stream.list_edges[i][2]/10) < 
-              (original_link_stream.list_edges[i+1][2]/10)){
-        //      txt_original_link_stream += "-------\n";
-            }
           }
-          gamma_link_stream.list_edges.sort(sort_edges_by_time);
+        //  gamma_link_stream.list_edges.sort(sort_edges_by_time);
           for (var i = 0; i < gamma_link_stream.list_edges.length; i++){
             txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][0] + " " +
                                       gamma_link_stream.list_edges[i][1] + " " + 
                                       gamma_link_stream.list_edges[i][2] + "\n";
-            if (i < gamma_link_stream.list_edges.length - 1 &&
-              (gamma_link_stream.list_edges[i][2]/10) < 
-              (gamma_link_stream.list_edges[i+1][2]/10)){
-        //      txt_gamma_link_stream += "-------\n";
-            }
           }
-
           var txt_two_approx_link_stream = "";
+          two_approx_link_stream.list_edges.sort(sort_edges_by_time);
           for (var i = 0; i < two_approx_link_stream.list_edges.length; i++){
             txt_two_approx_link_stream +=   two_approx_link_stream.list_edges[i][0] + " " +
                                             two_approx_link_stream.list_edges[i][1] + " " + 
                                             two_approx_link_stream.list_edges[i][2] + "\n";
-            if (i < two_approx_link_stream.list_edges.length - 1 &&
-              (two_approx_link_stream.list_edges[i][2]/10) < 
-              (two_approx_link_stream.list_edges[i+1][2]/10)){
-          //   txt_two_approx_link_stream += "-------\n";
-            }
           }
-
           var txt_kernel_link_stream = "";
           for (var i = 0; i < kernel_link_stream.list_edges.length; i++){
             txt_kernel_link_stream +=   kernel_link_stream.list_edges[i][0] + " " +
                                         kernel_link_stream.list_edges[i][1] + " " + 
                                         kernel_link_stream.list_edges[i][2] + "\n";
-            if (i < kernel_link_stream.list_edges.length - 1 &&
-              (kernel_link_stream.list_edges[i][2]/10) < 
-              (kernel_link_stream.list_edges[i+1][2]/10)){
-        //      txt_kernel_link_stream += "-------\n";
-            }
           }
-
           textarea_original_link_stream_to_process.value = txt_original_link_stream;
           textarea_original_link_stream_to_process.style.display = 'table-cell';
           textarea_gamma_link_stream_to_process.value = txt_gamma_link_stream;
@@ -838,15 +783,8 @@
     //  txt_link_stream = textarea_link_stream.value;
       openTab("algorithm_div")
     }
-
     loop();
     launch();
-
-
-
-
-
-
     function clean_original_link_stream_txt(txt){
       var original_link_stream = {  list_edges:[],
                                     array_edges:[],
@@ -890,7 +828,6 @@
           }
         }
       }
-
       original_link_stream.list_edges = list_edges;
       original_link_stream.array_edges = array_edges;
       original_link_stream.teams = teams;
@@ -939,11 +876,9 @@
         }
         gamma_link_stream.array_edges[u][v].push(gamma_link_stream.list_edges[i]);
       }
-
     //  gamma_link_stream.list_edges.sort(sort_edges_by_time);
       return gamma_link_stream;
     }
-
     function gamma_to_2approx_link_stream(gamma_link_stream){
       var approx_link_stream = {  list_edges:[],
                                   list_incompatibles:[],
@@ -962,9 +897,7 @@
       }
       approx_link_stream.list_edges.sort(sort_edges_by_time);
       return approx_link_stream;
-
     }
-
     function approx_to_kernel(approx_link_stream){
       var k = approx_link_stream.list_edges.length;
       var list_edges = approx_link_stream.list_edges;
@@ -973,7 +906,6 @@
                                   teams:approx_link_stream.teams,
                                   t_min:approx_link_stream.t_min,
                                   t_max:approx_link_stream.t_max};
-
       for (var i = 0; i < approx_link_stream.list_edges.length; i++){
         kernel_link_stream.list_edges.push(approx_link_stream.list_edges[i]);
         var incompatible_edges_counter = 0;
@@ -989,7 +921,6 @@
       kernel_link_stream.list_edges.sort(sort_edges_by_time);
       return kernel_link_stream;
     }
-
     function compatible_edges_strong(edge_1, edge_2){
       var u1 = parseInt(edge_1[0]), v1 = parseInt(edge_1[1]), deb1 = parseInt(edge_1[2]), end1 = parseInt(edge_1[3]);
       var u2 = parseInt(edge_2[0]), v2 = parseInt(edge_2[1]), deb2 = parseInt(edge_2[2]), end2 = parseInt(edge_2[3]);
@@ -1000,7 +931,6 @@
       }
       return true;
     }
-
     function compatible_edges(edge_1, edge_2){
       var u1 = parseInt(edge_1[0]), v1 = parseInt(edge_1[1]), deb1 = parseInt(edge_1[2]), end1 = parseInt(edge_1[3]);
       var u2 = parseInt(edge_2[0]), v2 = parseInt(edge_2[1]), deb2 = parseInt(edge_2[2]), end2 = parseInt(edge_2[3]);
@@ -1011,7 +941,6 @@
       }
       return true;
     }
-
     function sort_edges_by_time(a,b) {
       if (a[2] < b[2]) {return -1;}
       if (a[2] > b[2]) {return 1;}
@@ -1021,16 +950,6 @@
       if (a[1] > b[1]) {return 1;}
       return 0;
     }
-
-
-
-
-
-
   </script>
-
-
-
-
 </body>
 </html>
