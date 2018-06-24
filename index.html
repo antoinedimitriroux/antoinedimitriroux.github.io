@@ -78,7 +78,7 @@
   #parameters {
     z-index:10;
     position: relative;
-    left:0vw;
+    left:30vw;
     bottom:50vh;
     vertical-align: center;
     display: table-cell;
@@ -102,6 +102,7 @@
     clear: left;
     font-size:40px;
     vertical-align: center;
+    font-size:3vw;
   }
   #import_div {
     height:100vh;
@@ -512,8 +513,8 @@
                   var nouvelle_collision = [equipes[i][ii], equipes[j][jj]];
                   collision_equipe_i_j = true;
                   collisions_array.push([equipes[i][ii], equipes[j][jj]]);
-                txt_link_stream_last_tick += i + " " + j + " " + tick + "\n";
-                nombre_lignes++;
+                  txt_link_stream_last_tick += i + " " + j + " " + tick + "\n";
+                  nombre_lignes++;
                 }
 
 
@@ -666,7 +667,7 @@
       //  textarea_gamma_aretes.value = txt_gamma_link_stream;
       //  textarea_gamma_aretes.value = txt_gamma_link_stream_last_tick;
       //  textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
-        textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " edges   " + nombre_gamma_aretes + " gamma-edges";
+        textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " edges   " + nombre_gamma_aretes + " gamma-edges ";
     }
     function display_or_not(){
       if (menu_deroulant.style.visibility == "visible"){
