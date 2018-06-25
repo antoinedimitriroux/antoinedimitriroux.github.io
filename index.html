@@ -40,17 +40,19 @@
       min-width:300px;
       height:4vh;
       background-color: #ccc;
-      border: 3px solid #ccc;
+      border: 2px solid #ccc;
   }
   .tab button {
     height:4vh;
     background-color: inherit;
     float: left;
     border: 1px solid #000;
+    padding-right:0.6vw;
+    padding-left:0.6vw;
     font-weight: bold;
     outline: none;
     font-family: Arial, Helvetica, sans-serif;
-    font-size:3vh;
+    font-size:2.6vh;
     cursor: pointer;
     transition: 0.3s;
   }
@@ -80,15 +82,15 @@
   }
   #parameters {
     z-index:10;
-    position: relative;
+    position: absolute;
     left:0vw;
-    bottom:44vh;
+    bottom:30vh;
     vertical-align: center;
     display: table-cell;
     visibility: hidden;
     border: 1px solid #ccc;
     background-color:#fff;
-    font-size:3vh;
+    font-size:4.5vh;
     font-family: Arial, Helvetica, sans-serif;
   }
   #canvas_1 {
@@ -1712,16 +1714,16 @@
         if (composantes_pour_edge.length == 0){
           var nouvelle_composante = [edge];
           composantes_connexes.push(nouvelle_composante);
-          console.log("nouvelle");
+    //      console.log("nouvelle");
         }
         if (composantes_pour_edge.length == 1){
           composantes_connexes[composantes_pour_edge[0]].push(edge);
-          console.log("composante: " + composantes_pour_edge[0]);
+    //      console.log("composante: " + composantes_pour_edge[0]);
         }
         if (composantes_pour_edge.length > 1){
           var nouvelle_composante = [];
           nouvelle_composante.push(edge);
-         console.log("union: " + composantes_pour_edge);
+    //     console.log("union: " + composantes_pour_edge);
           for (var z = 0; z < composantes_pour_edge.length; z++){
             nouvelle_composante.concat(composantes_connexes[composantes_pour_edge[z]]);
             composantes_connexes.splice(composantes_pour_edge[z],1);
