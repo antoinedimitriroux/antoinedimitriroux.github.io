@@ -7,7 +7,7 @@
     position:relative;
     background-color: #e8e8e8;
     left:1vw;
-    top:7vh;
+    top:12vh;
     width:100vw;
     height: 100vh;
   }
@@ -86,7 +86,6 @@
     left:0vw;
     bottom:30vh;
     vertical-align: center;
-    display: table-cell;
     visibility: hidden;
     border: 1px solid #ccc;
     background-color:#fff;
@@ -261,25 +260,25 @@
       <!--textarea id="textarea_1" title="Edges of the original link stream (the one shown in the canvas)" cols="50" rows="3"></textarea>
       <textarea id="textarea_2" title="The meta-edges of the original link stream (the one shown in the canvas)" cols="50" rows="3" ></textarea-->
       <form id="parameters">
-          <input id="seed_value" type="number" title="The number of teams" step="0.0001" value="3746.0000" min="1" max="9999.9999" width="#Teams" onchange="launch()" width="5">
+          <input height="3vh" id="seed_value" type="number" title="The number of teams" step="0.0001" value="3746.0000" min="1" max="9999.9999" onchange="launch()" width="30vw">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">#Seed</br></label>
           <input id="teams_value" type="number" title="The number of teams" value="5" min="3" max="100" width="#Teams" onchange="launch()" width="5">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">#Teams</br></label>
-          <input id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="15" max="100" width="#Disks/Team" onchange="launch()" width="2">
+          <input id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="15" max="100" onchange="launch()" width="2">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">#Disks/Team</br></label>
           <input id="gamma_value" type="number" title="The value of gamma" min="2" value="10" width="Gamma" onchange="launch()" width="5" >
           <label font-size="3vw" font-family="font-family: Arial, Helvetica, sans-serif;">Gamma</br></label>
           <input id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="14" max="100" width="Rayon" onchange="launch()" width="5" >
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Rayon</br></label>               
-          <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" width="Maximum Velocity" onchange="launch()" width="5">
+          <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" onchange="launch()" width="5">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Max velocity</br></label>    
-          <input id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" width="" onchange="launch()" width="5">
+          <input id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" onchange="launch()">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Max acceleration</br></label>   
           <!--input id="repulsion_value" type="number" step="0.0001" title="Repulsion value" min="0.0000" value="0.2000" max="1" width="" onchange="launch()" width="5">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Repulsion</br></label>    
           <input id="attirance_value" type="number" step="0.0001" title="Attirance value" min="0.0000" value="0.0000" max="1" width="" onchange="launch()" width="5">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Attirance</br></label-->
-          <input id="check_box_contact" type="checkbox" onchange="launch()" >
+          <input id="check_box_contact" type="checkbox" onchange="launch()">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Enable contact</br></label>
       </form>
     </div>
