@@ -1,12 +1,13 @@
 <!doctype html>
 <html>
+
   <head>
   <style>
   body {
     position:relative;
     background-color: #e8e8e8;
     left:1vw;
-    top:1vh;
+    top:7vh;
     width:100vw;
     height: 100vh;
   }
@@ -35,19 +36,20 @@
   }
   .tab {
       width:97vw;
+      min-width:300px;
       height:8vh;
       overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #f1f1f1;
+      background-color: #ccc;
   }
   .tab button {
-    height:8vh;
+    height:6vh;
     background-color: inherit;
     float: left;
-    border: none;
+    border: 0.2vh solid #ccc;
     outline: none;
     font:"arial";
-    font-size:3vw;
+    float:left;
+    font-size:3vh;
     cursor: pointer;
     transition: 0.3s;
   }
@@ -78,14 +80,15 @@
   #parameters {
     z-index:10;
     position: relative;
-    left:30vw;
-    bottom:50vh;
+    left:0vw;
+    bottom:44vh;
     vertical-align: center;
     display: table-cell;
     visibility: hidden;
     border: 1px solid #ccc;
     background-color:#fff;
-    font-size:3vw;
+    font-size:3vh;
+    font-family: Arial, Helvetica, sans-serif;
   }
   #canvas_1 {
     width:97vw;
@@ -100,9 +103,8 @@
     resize: none;
     float: left;
     clear: left;
-    font-size:40px;
+    font-size:2vh;
     vertical-align: center;
-    font-size:3vw;
   }
   #import_div {
     height:100vh;
@@ -148,84 +150,74 @@
   #original_link_stream_to_process{
     position: relative;
     width:17vw;
-    height:80vh;
+    height:70vh;
+    float:left;
     display: none;
     resize:horizontal;
     border: 1px solid #ccc;
     overflow-y: scroll; 
-    font-size:30px;
+    font-size:3vw;
   }
   #gamma_link_stream_to_process{
     position: relative;
     width:17vw;
-    height:80vh;
+    height:70vh;
     float:left;
     display: none;
     resize:horizontal;
     border: 1px solid #ccc;
     overflow-y: scroll; 
-    font-size:30px;
+    font-size:3vw;
   }
   #greedy_gamma_link_stream_to_process {
     position: relative;
     width:17vw;
-    height:80vh;
+    height:70vh;
     float:left;
     display: none;
     resize:horizontal;
     border: 1px solid #ccc;
     overflow-y: scroll; 
-    font-size:30px;
+    font-size:3vw;
   }
   #kernel_gamma_link_stream_to_process{
     position: relative;
     width:17vw;
-    height:80vh;
+    height:70vh;
     float:left;
     display: none;
     resize:horizontal;
     border: 1px solid #ccc;
     overflow-y: scroll; 
-    font-size:30px;
-  } 
-  #canvas_2 {
-    position: relative;
-    width:17vw;
-    height:80vh;
-    float:left;
-    display: none;
-    resize:horizontal;
-    border: 1px solid #ccc;
-    overflow-y: scroll; 
-    font-size:30px;
+    font-size:3vw;
   }
   #original_link_stream_edges_counter{
     z-index: 10;
     width:17vw;
     float:left;
     text-align:center;
-
+    font-size:3vw;
   }
   #gamma_link_stream_edges_counter{
     z-index: 10;
     width:17vw;
     float:left;
     text-align:center;
-    
+    font-size:3vw;   
   }
   #approx_link_stream_edges_counter{
     z-index: 10;
     width:17vw;
     float:left;
     text-align:center;
-    
+    font-size:3vw;   
   }
   #kernel_link_stream_edges_counter{
     z-index: 10;
     width:17vw;
     float:left;
     text-align:center;
-    
+    font-size:3vw;
   }
   </style>
 
@@ -266,23 +258,28 @@
       <!--textarea id="textarea_1" title="Edges of the original link stream (the one shown in the canvas)" cols="50" rows="3"></textarea>
       <textarea id="textarea_2" title="The meta-edges of the original link stream (the one shown in the canvas)" cols="50" rows="3" ></textarea-->
       <form id="parameters">
-          <input id="teams_value" type="number" title="The number of teams" value="8" min="3" max="100" width="#Teams" onchange="launch()" width="5">
-          <label size="5">#Teams</br></label>
-          <input id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="4" max="100" width="#Disks/Team" onchange="launch()" width="2">
-          <label size="5">#Disks/Team</br></label>
-          <input id="gamma_value" type="number" title="The value of gamma" min="2" value="2" width="Gamma" onchange="launch()" width="5" >
-          <label >Gamma</br></label>
-          <input id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="6" max="100" width="Rayon" onchange="launch()" width="5" ><label>Rayon</br></label>               
+          <input id="seed_value" type="number" title="The number of teams" step="0.0001" value="3746.0000" min="1" max="9999.9999" width="#Teams" onchange="launch()" width="5">
+          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">#Seed</br></label>
+          <input id="teams_value" type="number" title="The number of teams" value="5" min="3" max="100" width="#Teams" onchange="launch()" width="5">
+          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">#Teams</br></label>
+          <input id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="15" max="100" width="#Disks/Team" onchange="launch()" width="2">
+          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">#Disks/Team</br></label>
+          <input id="gamma_value" type="number" title="The value of gamma" min="2" value="10" width="Gamma" onchange="launch()" width="5" >
+          <label font-size="3vw" font-family="font-family: Arial, Helvetica, sans-serif;">Gamma</br></label>
+          <input id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="14" max="100" width="Rayon" onchange="launch()" width="5" >
+          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Rayon</br></label>               
           <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" width="Maximum Velocity" onchange="launch()" width="5">
-          <label>Max velocity</br></label>    
+          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Max velocity</br></label>    
           <input id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" width="" onchange="launch()" width="5">
-          <label>Max acceleration</br></label>   
+          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Max acceleration</br></label>   
           <input id="repulsion_value" type="number" step="0.0001" title="Repulsion value" min="0.0000" value="0.2000" max="1" width="" onchange="launch()" width="5">
-          <label">Repulsion</br></label>    
+          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Repulsion</br></label>    
           <input id="attirance_value" type="number" step="0.0001" title="Attirance value" min="0.0000" value="0.0000" max="1" width="" onchange="launch()" width="5">
-          <label">Attirance</br></label> 
+          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Attirance</br></label> 
       </form>
     </div>
+
+    
     
       <div id="import_div" class="tabcontent">
         
@@ -290,52 +287,666 @@
           <button id="bouton_pasted_export" title="Export the link-stream above" onclick="export_pasted_txt_link_stream()">&#8593;</button>
         </div>
       <textarea id="link_stream_copy_past">
+0 1 0
+0 2 0
+0 3 0
 0 4 0
-1 6 0
-2 5 0
-2 7 0
+1 3 0
+1 4 0
+3 4 0
 0 1 1
-1 6 1
+0 2 1
+0 3 1
+0 4 1
+1 2 1
+1 3 1
+1 4 1
+2 3 1
 3 4 1
 0 1 2
-1 6 2
+0 2 2
+0 3 2
+0 4 2
+1 2 2
+1 3 2
+1 4 2
+2 3 2
 3 4 2
-4 5 2
-6 7 2
 0 1 3
-0 5 3
+0 2 3
+0 3 3
+0 4 3
 1 2 3
-1 6 3
+1 3 3
+1 4 3
+2 3 3
 3 4 3
-4 5 3
-6 7 3
 0 1 4
-0 5 4
+0 2 4
+0 3 4
+0 4 4
 1 2 4
-1 6 4
+1 3 4
+1 4 4
+2 3 4
+2 4 4
 3 4 4
-6 7 4
 0 1 5
-0 5 5
+0 2 5
+0 3 5
+0 4 5
 1 2 5
-1 6 5
+1 3 5
+1 4 5
+2 3 5
+2 4 5
 3 4 5
-6 7 5
-0 5 6
+0 2 6
+0 3 6
+0 4 6
 1 2 6
-1 6 6
+1 3 6
+1 4 6
 2 3 6
+2 4 6
 3 4 6
-0 1 7
-0 5 7
-1 6 7
+0 2 7
+0 3 7
+0 4 7
+1 2 7
+1 3 7
+1 4 7
 2 3 7
-4 5 7
-6 7 7
-0 1 8
-0 5 8
+2 4 7
+3 4 7
+0 2 8
+0 3 8
+0 4 8
+1 2 8
+1 3 8
+1 4 8
+2 3 8
+2 4 8
+3 4 8
+0 2 9
+0 3 9
+0 4 9
+1 2 9
+1 3 9
+1 4 9
+2 4 9
+3 4 9
+0 2 10
+0 3 10
+0 4 10
+1 2 10
+1 3 10
+1 4 10
+2 3 10
+2 4 10
+3 4 10
+0 2 11
+0 3 11
+0 4 11
+1 3 11
+1 4 11
+2 3 11
+2 4 11
+3 4 11
+0 1 12
+0 2 12
+0 3 12
+0 4 12
+1 3 12
+1 4 12
+2 3 12
+2 4 12
+3 4 12
+0 1 13
+0 2 13
+0 3 13
+0 4 13
+1 2 13
+1 3 13
+1 4 13
+2 3 13
+2 4 13
+3 4 13
+0 1 14
+0 2 14
+0 3 14
+0 4 14
+1 2 14
+1 3 14
+1 4 14
+2 3 14
+2 4 14
+3 4 14
+0 1 15
+0 2 15
+0 3 15
+0 4 15
+1 3 15
+1 4 15
+2 3 15
+2 4 15
+3 4 15
+0 1 16
+0 2 16
+0 3 16
+0 4 16
+1 3 16
+1 4 16
+2 4 16
+3 4 16
+0 1 17
+0 2 17
+0 3 17
+0 4 17
+1 2 17
+1 3 17
+1 4 17
+2 3 17
+2 4 17
+3 4 17
+0 1 18
+0 2 18
+0 3 18
+0 4 18
+1 2 18
+1 3 18
+1 4 18
+2 3 18
+2 4 18
+3 4 18
+0 1 19
+0 3 19
+0 4 19
+1 2 19
+1 3 19
+1 4 19
+2 3 19
+2 4 19
+3 4 19
+0 1 20
+0 2 20
+0 3 20
+0 4 20
+1 2 20
+1 3 20
+1 4 20
+2 3 20
+2 4 20
+3 4 20
+0 1 21
+0 2 21
+0 3 21
+0 4 21
+1 2 21
+1 3 21
+1 4 21
+2 3 21
+2 4 21
+3 4 21
+0 1 22
+0 2 22
+0 3 22
+0 4 22
+1 2 22
+1 3 22
+1 4 22
+2 3 22
+2 4 22
+3 4 22
+0 1 23
+0 2 23
+0 3 23
+0 4 23
+1 2 23
+1 3 23
+1 4 23
+2 3 23
+2 4 23
+3 4 23
+0 1 24
+0 2 24
+0 3 24
+0 4 24
+1 2 24
+1 3 24
+1 4 24
+2 3 24
+2 4 24
+3 4 24
+0 1 25
+0 2 25
+0 3 25
+0 4 25
+1 2 25
+1 3 25
+1 4 25
+2 3 25
+2 4 25
+3 4 25
+0 1 26
+0 2 26
+0 3 26
+0 4 26
+1 2 26
+1 3 26
+1 4 26
+2 3 26
+2 4 26
+3 4 26
+0 1 27
+0 2 27
+0 3 27
+0 4 27
+1 2 27
+1 3 27
+1 4 27
+2 3 27
+2 4 27
+3 4 27
+0 1 28
+0 2 28
+0 3 28
+0 4 28
+1 2 28
+1 3 28
+1 4 28
+2 3 28
+3 4 28
+0 1 29
+0 2 29
+0 3 29
+0 4 29
+1 2 29
+1 3 29
+1 4 29
+3 4 29
+0 1 30
+0 2 30
+0 3 30
+0 4 30
+1 2 30
+1 4 30
+2 3 30
+3 4 30
+0 2 31
+0 3 31
+0 4 31
+1 2 31
+1 4 31
+2 3 31
+3 4 31
+0 1 32
+0 2 32
+0 3 32
+0 4 32
+1 2 32
+1 3 32
+1 4 32
+2 3 32
+3 4 32
+0 1 33
+0 2 33
+0 3 33
+0 4 33
+1 2 33
+1 3 33
+1 4 33
+2 3 33
+2 4 33
+3 4 33
+0 1 34
+0 2 34
+0 3 34
+0 4 34
+1 2 34
+1 3 34
+1 4 34
+2 3 34
+2 4 34
+3 4 34
+0 1 35
+0 2 35
+0 3 35
+0 4 35
+1 2 35
+1 3 35
+1 4 35
+2 3 35
+2 4 35
+3 4 35
+0 1 36
+0 2 36
+0 3 36
+0 4 36
+1 2 36
+1 3 36
+1 4 36
+2 3 36
+2 4 36
+3 4 36
+0 2 37
+0 3 37
+0 4 37
+1 2 37
+1 3 37
+2 3 37
+2 4 37
+3 4 37
+0 1 38
+0 2 38
+0 3 38
+0 4 38
+1 2 38
+1 3 38
+2 3 38
+2 4 38
+3 4 38
+0 2 39
+0 3 39
+0 4 39
+1 2 39
+1 3 39
+2 3 39
+2 4 39
+3 4 39
+0 1 40
+0 2 40
+0 3 40
+0 4 40
+1 2 40
+1 3 40
+2 3 40
+2 4 40
+3 4 40
+0 1 41
+0 2 41
+0 3 41
+0 4 41
+1 2 41
+1 3 41
+2 3 41
+2 4 41
+3 4 41
+0 1 42
+0 2 42
+0 3 42
+0 4 42
+1 2 42
+1 3 42
+1 4 42
+2 4 42
+3 4 42
+0 1 43
+0 2 43
+0 3 43
+0 4 43
+1 2 43
+1 3 43
+1 4 43
+2 4 43
+3 4 43
+0 1 44
+0 2 44
+0 3 44
+0 4 44
+1 2 44
+1 4 44
+2 3 44
+2 4 44
+0 1 45
+0 2 45
+0 3 45
+0 4 45
+1 2 45
+1 3 45
+1 4 45
+2 3 45
+2 4 45
+0 1 46
+0 2 46
+0 3 46
+0 4 46
+1 2 46
+1 3 46
+1 4 46
+2 3 46
+2 4 46
+0 1 47
+0 2 47
+0 3 47
+0 4 47
+1 2 47
+1 3 47
+1 4 47
+2 3 47
+2 4 47
+3 4 47
+0 1 48
+0 2 48
+0 3 48
+0 4 48
+1 2 48
+1 3 48
+1 4 48
+2 3 48
+2 4 48
+3 4 48
+0 1 49
+0 2 49
+0 3 49
+0 4 49
+1 2 49
+1 3 49
+1 4 49
+2 3 49
+2 4 49
+3 4 49
+0 1 50
+0 2 50
+0 3 50
+0 4 50
+1 2 50
+1 3 50
+1 4 50
+2 3 50
+2 4 50
+3 4 50
+0 1 51
+0 2 51
+0 3 51
+0 4 51
+1 2 51
+1 3 51
+1 4 51
+2 3 51
+2 4 51
+3 4 51
+0 1 52
+0 2 52
+0 4 52
+1 2 52
+1 3 52
+1 4 52
+2 4 52
+0 1 53
+0 2 53
+0 4 53
+1 2 53
+1 4 53
+2 4 53
+3 4 53
+0 1 54
+0 2 54
+0 3 54
+0 4 54
+1 2 54
+1 4 54
+2 4 54
+3 4 54
+0 1 55
+0 2 55
+0 3 55
+0 4 55
+1 2 55
+1 4 55
+2 4 55
+3 4 55
+0 1 56
+0 2 56
+0 3 56
+0 4 56
+1 2 56
+1 4 56
+2 3 56
+3 4 56
+0 1 57
+0 2 57
+0 3 57
+0 4 57
+1 2 57
+1 3 57
+1 4 57
+2 3 57
+3 4 57
+0 1 58
+0 2 58
+0 3 58
+0 4 58
+1 2 58
+1 3 58
+1 4 58
+2 3 58
+2 4 58
+3 4 58
+0 1 59
+0 2 59
+0 3 59
+0 4 59
+1 2 59
+1 3 59
+1 4 59
+2 3 59
+2 4 59
+3 4 59
+0 1 60
+0 2 60
+0 3 60
+0 4 60
+1 2 60
+1 3 60
+1 4 60
+2 3 60
+2 4 60
+3 4 60
+0 1 61
+0 2 61
+0 3 61
+0 4 61
+1 2 61
+1 3 61
+1 4 61
+2 3 61
+2 4 61
+3 4 61
+0 1 62
+0 2 62
+0 3 62
+0 4 62
+1 2 62
+1 3 62
+1 4 62
+2 3 62
+2 4 62
+3 4 62
+0 1 63
+0 2 63
+0 3 63
+0 4 63
+1 2 63
+1 3 63
+1 4 63
+2 3 63
+2 4 63
+3 4 63
+0 1 64
+0 2 64
+0 4 64
+1 2 64
+1 3 64
+1 4 64
+2 3 64
+2 4 64
+3 4 64
+0 1 65
+0 2 65
+0 3 65
+0 4 65
+1 2 65
+1 3 65
+1 4 65
+2 3 65
+2 4 65
+3 4 65
+0 1 66
+0 2 66
+0 3 66
+0 4 66
+1 2 66
+1 3 66
+1 4 66
+2 3 66
+2 4 66
+3 4 66
+0 1 67
+0 2 67
+0 3 67
+0 4 67
+1 2 67
+1 3 67
+1 4 67
+2 3 67
+2 4 67
+3 4 67
+0 1 68
+0 2 68
+0 3 68
+0 4 68
+1 2 68
+1 3 68
+1 4 68
+2 3 68
+2 4 68
+3 4 68
+0 1 69
+0 2 69
+0 3 69
+0 4 69
+1 2 69
+1 3 69
+1 4 69
+2 3 69
+2 4 69
+3 4 69
+0 1 70
+0 2 70
+0 3 70
+0 4 70
+1 2 70
+1 3 70
+1 4 70
+2 3 70
+2 4 70
+3 4 70
+
       </textarea>
     </div>
+
+
     <div id="tests_div"></div>
     <div id="algorithm_div" class="tabcontent">
       <div id = "no_link_stream_alert_message" class="alert">
@@ -345,11 +956,11 @@
         paste your own one with the "import" tab,</br>
         or chose between some link-streams in the "tests" one.</br></br>
         Come back when it's done! :)
-      </div>
-      <label id="original_link_stream_edges_counter"></br></label>  
-      <label id="gamma_link_stream_edges_counter"></br></label>  
-      <label id="approx_link_stream_edges_counter"></br></label> 
-      <label id="kernel_link_stream_edges_counter"></br></label> 
+      </div> 
+      <label id="original_link_stream_edges_counter" font-size="6vh" font-family="Arial, Helvetica, sans-serif;" ></br></label> 
+      <label id="gamma_link_stream_edges_counter" font-size="6vh" font-family="Arial, Helvetica, sans-serif;"></br></label>  
+      <label id="approx_link_stream_edges_counter" font-size="6vh" font-family="Arial, Helvetica, sans-serif;"></br></label> 
+      <label id="kernel_link_stream_edges_counter" font-size="6vh" font-family="Arial, Helvetica, sans-serif;"></br></label> 
       <textarea id="original_link_stream_to_process" title="the original link stream" readonly>
       </textarea>  
       <textarea id="gamma_link_stream_to_process" title="the gamma link stream" readonly>
@@ -363,6 +974,14 @@
     
   <script src="index.js"></script>
   <script type="text/javascript">
+
+
+
+
+
+    var seed = 3746.0000;
+
+
     var gamma;
     var nombre_equipes;
     var nombre_joueurs_par_equipe;
@@ -430,6 +1049,8 @@
       txt_gamma_link_stream_last_tick = "";
       gamma_collisions = [];
       gamma_array = [];
+      if (document.getElementById("seed_value").value > 0){seed = parseInt(document.getElementById("seed_value").value);}
+      
       if (document.getElementById("gamma_value").value > 0){gamma = parseInt(document.getElementById("gamma_value").value);}
       if (document.getElementById("teams_value").value > 0){nombre_equipes = parseInt(document.getElementById("teams_value").value);}
       if (document.getElementById("disksteam_value").value > 0){nombre_joueurs_par_equipe = parseInt(document.getElementById("disksteam_value").value);}
@@ -494,15 +1115,15 @@
       for (var i = 0; i < nombre_equipes; i++){
             equipes[i] = [];
             couleurs_equipes[i] = 'rgba(' + 
-                                    parseInt(Math.random() * 256) + ',' + 
-                                    parseInt(Math.random() * 256) + ',' + 
-                                    parseInt(Math.random() * 256) + ',' +
+                                    parseInt(my_random() * 256) + ',' + 
+                                    parseInt(my_random() * 256) + ',' + 
+                                    parseInt(my_random() * 256) + ',' +
                                     '0.5)';
             for (var j = 0; j < nombre_joueurs_par_equipe; j++){
-              var x = rollernet_canvas.width * Math.random();
-              var y = rollernet_canvas.height * Math.random();
-              var dx = (SQRT_2 - Math.random() * 2 * SQRT_2) * vitesse_max;
-              var dy = (SQRT_2 - Math.random() * 2 * SQRT_2) * vitesse_max;
+              var x = rollernet_canvas.width * my_random();
+              var y = rollernet_canvas.height * my_random();
+              var dx = (SQRT_2 - my_random() * 2 * SQRT_2) * vitesse_max;
+              var dy = (SQRT_2 - my_random() * 2 * SQRT_2) * vitesse_max;
               var couleur = couleurs_equipes[i];
               var nouveau_roller = {equipe:i, numero:j, x:x, y:y, dx:dx, dy:dy, rayon:rayon, couleur:couleur};
               equipes[i][j] = nouveau_roller;
@@ -512,10 +1133,12 @@
               gamma_array[i][j] = 0;
             }
       }
+      /*
       console.log("gamma: " + gamma);
       console.log("nombre_equipes: " + nombre_equipes);
       console.log("nombre_joueurs_par_equipe: " + nombre_joueurs_par_equipe);
       console.log(" ");
+      */
     }
     var loop = function (){
         if (!pause){
@@ -561,7 +1184,7 @@
                   nombre_lignes++;
                 }
 
-
+                /*
                 //permet de les empêcher de se rentrer dedans
                 equipes[i][ii].dx = (equipes[i][ii].x - equipes[j][jj].x) / rayon * 2;
                 equipes[i][ii].dy = (equipes[i][ii].y - equipes[j][jj].y) / rayon * 2;
@@ -569,7 +1192,7 @@
                 equipes[j][jj].dy = (equipes[j][jj].y - equipes[i][ii].y) / rayon * 2;
 
 
-                /*
+                
                 //permet de les faire s'atirer
                 
                 equipes[i][ii].dx *= 1 - attirance;
@@ -635,8 +1258,8 @@
       canvas_window.fillRect( 0,0,largeur,hauteur);
   }
     var update_roller = function (roller) {
-      var acc_x = (Math.random() - 1. / 2.) * 2 * acceleration_max;
-      var acc_y = (Math.random() - 1. / 2.) * 2 * acceleration_max;
+      var acc_x = (my_random() - 1. / 2.) * 2 * acceleration_max;
+      var acc_y = (my_random() - 1. / 2.) * 2 * acceleration_max;
       var acc = dist(0,0,acc_x, acc_y);
       roller.dx += acc_x;
       roller.dy += acc_y;
@@ -782,18 +1405,29 @@
 
           var original_link_stream = clean_original_link_stream_txt(txt_link_stream);
           var gamma_link_stream = original_to_gamma_link_stream(original_link_stream,gamma);
+          var composantes_connexes = composantes_connexes_link_stream(gamma_link_stream);
+          /*
+          console.log("composantes connexes: " + composantes_connexes.length);
+          for (var i = 0; i < composantes_connexes.length; i++){
+            for (var j = 0; j < composantes_connexes[i].length; j++){
+              console.log(composantes_connexes[i][j]);
+            }
+            console.log("----------");
+          }
+          */
           var two_approx_link_stream = gamma_to_2approx_link_stream(gamma_link_stream);
           var kernel_link_stream = approx_to_kernel(two_approx_link_stream);
-          /*
+     //     var kernel_link_stream = improved_kernel(gamma_link_stream);
+          
           original_link_stream.list_edges.sort(sort_edges_by_time);
           gamma_link_stream.list_edges.sort(sort_edges_by_time);
           two_approx_link_stream.list_edges.sort(sort_edges_by_time);
           kernel_link_stream.list_edges.sort(sort_edges_by_time);
-          */
-          document.getElementById("original_link_stream_edges_counter").innerHTML = original_link_stream.list_edges.length + " edges";
-          document.getElementById("gamma_link_stream_edges_counter").innerHTML = gamma_link_stream.list_edges.length + " edges";
-          document.getElementById("approx_link_stream_edges_counter").innerHTML = two_approx_link_stream.list_edges.length + " edges";
-          document.getElementById("kernel_link_stream_edges_counter").innerHTML = kernel_link_stream.list_edges.length + " edges";
+          
+          document.getElementById("original_link_stream_edges_counter").innerHTML = "Original</br>" + original_link_stream.list_edges.length + " edges";
+          document.getElementById("gamma_link_stream_edges_counter").innerHTML = "Gamma</br>" + gamma_link_stream.list_edges.length + " edges";
+          document.getElementById("approx_link_stream_edges_counter").innerHTML = "2-approx</br>" + two_approx_link_stream.list_edges.length + " edges";
+          document.getElementById("kernel_link_stream_edges_counter").innerHTML = "Kernel</br>" + kernel_link_stream.list_edges.length + " edges";
 
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length; i++){
@@ -801,14 +1435,12 @@
                                           original_link_stream.list_edges[i][1] + " " + 
                                           original_link_stream.list_edges[i][2] + "\n";
           }
-        //  gamma_link_stream.list_edges.sort(sort_edges_by_time);
           for (var i = 0; i < gamma_link_stream.list_edges.length; i++){
             txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][0] + " " +
                                       gamma_link_stream.list_edges[i][1] + " " + 
                                       gamma_link_stream.list_edges[i][2] + "\n";
           }
           var txt_two_approx_link_stream = "";
-        //  two_approx_link_stream.list_edges.sort(sort_edges_by_time);
           for (var i = 0; i < two_approx_link_stream.list_edges.length; i++){
             txt_two_approx_link_stream +=   two_approx_link_stream.list_edges[i][0] + " " +
                                             two_approx_link_stream.list_edges[i][1] + " " + 
@@ -820,15 +1452,21 @@
                                         kernel_link_stream.list_edges[i][1] + " " + 
                                         kernel_link_stream.list_edges[i][2] + "\n";
           }
+          
+          document.getElementById("no_link_stream_alert_message").style.display='none';
+
           textarea_original_link_stream_to_process.value = txt_original_link_stream;
           textarea_original_link_stream_to_process.style.display = 'table-cell';
+          
           textarea_gamma_link_stream_to_process.value = txt_gamma_link_stream;
           textarea_gamma_link_stream_to_process.style.display = 'table-cell';
+          
           textarea_greedy_gamma_link_stream_to_process.value = txt_two_approx_link_stream;
           textarea_greedy_gamma_link_stream_to_process.style.display = 'table-cell';
+
           textarea_kernel_gamma_link_stream_to_process.value = txt_kernel_link_stream;
           textarea_kernel_gamma_link_stream_to_process.style.display = 'table-cell';
-          document.getElementById("no_link_stream_alert_message").style.display='none';
+          
         }
     }
     function export_pasted_txt_link_stream(){
@@ -864,7 +1502,9 @@
         if (!teams.includes(v)){teams.push(v);}
         if (array_edges[u] == null){array_edges[u] = [];}
         if (array_edges[u][v] == null){array_edges[u][v] = [];}
-        array_edges[u][v].push(parseInt(t));
+        if (!array_edges[u][v].includes(parseInt(t))){
+          array_edges[u][v].push(parseInt(t));
+        }
       }
       function sortNumber(a,b) {
         return a - b;
@@ -944,10 +1584,14 @@
       while (list_edges_gamma_copy.length > 0){
         var edge = list_edges_gamma_copy.shift();
         approx_link_stream.list_edges.push(edge);
-        for (var i = list_edges_gamma_copy.length-1; i>= 0; i--){
+        for (var i = list_edges_gamma_copy.length - 1; i >= 0; i--){
           if (!compatible_edges(edge,list_edges_gamma_copy[i])){
+        //    console.log("NON: " + edge + " <> " + list_edges_gamma_copy[i]);
             approx_link_stream.list_incompatibles.push(list_edges_gamma_copy[i]);
-            list_edges_gamma_copy.slice(i,1);
+            list_edges_gamma_copy.splice(i,1);
+          }
+          else{
+          //  console.log("OUI: " + edge + " <> " + list_edges_gamma_copy[i]);
           }
         }
       }
@@ -975,16 +1619,6 @@
       }
       return kernel_link_stream;
     }
-    function compatible_edges_strong(edge_1, edge_2){
-      var u1 = parseInt(edge_1[0]), v1 = parseInt(edge_1[1]), deb1 = parseInt(edge_1[2]), end1 = parseInt(edge_1[3]);
-      var u2 = parseInt(edge_2[0]), v2 = parseInt(edge_2[1]), deb2 = parseInt(edge_2[2]), end2 = parseInt(edge_2[3]);
-      if (u1 == u2 && v1 == v2){
-        if ((deb1 >= deb2 && deb1 <= end2) || (end1 >= deb2 && end1 <= end2)){
-          return false;
-        }
-      }
-      return true;
-    }
     function compatible_edges(edge_1, edge_2){
       var u1 = parseInt(edge_1[0]), v1 = parseInt(edge_1[1]), deb1 = parseInt(edge_1[2]), end1 = parseInt(edge_1[3]);
       var u2 = parseInt(edge_2[0]), v2 = parseInt(edge_2[1]), deb2 = parseInt(edge_2[2]), end2 = parseInt(edge_2[3]);
@@ -1004,6 +1638,104 @@
       if (a[1] > b[1]) {return 1;}
       return 0;
     }
+
+    function improved_kernel(gamma_link_stream){
+
+      var composantes_connexes = composantes_connexes_link_stream(gamma_link_stream);
+
+      var kernel_link_stream = {  list_edges:[],
+                                  teams:gamma_link_stream.teams,
+                                  t_min:gamma_link_stream.t_min,
+                                  t_max:gamma_link_stream.t_max};
+
+   //   console.log(gamma_link_stream.list_edges.length + " edges");
+      for (var z = 0; z < gamma_link_stream.list_edges.length; z++){
+   //     console.log(gamma_link_stream.list_edges[z]);
+      }
+
+   //   console.log(" ");
+   //   console.log(composantes_connexes.length + " composantes");
+      for (var z = 0; z < composantes_connexes.length; z++){
+
+        var link_stream_composante = {list_edges:[], teams:[], t_min:0, t_max:0};
+        link_stream_composante.list_edges = composantes_connexes[z];
+
+    //    console.log("composante #" + z + " > " + link_stream_composante.list_edges.length + " edges");
+        for (var zz = 0; zz < link_stream_composante.list_edges.length; zz++){console.log(link_stream_composante.list_edges[zz]);}
+
+        var approx_composante = gamma_to_2approx_link_stream(link_stream_composante);
+    //    console.log("approx #" + z + " > " + approx_composante.list_edges.length + " edges");
+        for (var zz = 0; zz < approx_composante.list_edges.length; zz++){console.log(approx_composante.list_edges[zz]);}
+
+        var kernel_composante = approx_to_kernel(approx_composante);
+    //    console.log("kernel #" + z + " > " + kernel_composante.list_edges.length + " edges");
+        for (var zz = 0; zz < kernel_composante.list_edges.length; zz++){console.log(kernel_composante.list_edges[zz]);}
+
+      //  kernel_link_stream.list_edges.concat(kernel_composante.list_edges);
+        for (var zz = 0; zz < kernel_composante.list_edges.length; zz++){kernel_link_stream.list_edges.push(kernel_composante.list_edges[zz]);}
+    //    console.log(" ");
+
+      }
+
+      return kernel_link_stream;
+
+    }
+
+
+    function composantes_connexes_link_stream(gamma_link_stream){
+      var approx_link_stream = {  list_edges:[],
+                                  list_incompatibles:[],
+                                  teams:gamma_link_stream.teams,
+                                  t_min:gamma_link_stream.t_min,
+                                  t_max:gamma_link_stream.t_max};
+      var list_edges_gamma_copy = gamma_link_stream.list_edges.slice(0,gamma_link_stream.list_edges.length);
+      var composantes_connexes = [];
+      while (list_edges_gamma_copy.length > 0){
+        var edge = list_edges_gamma_copy.shift();
+        console.log("edge: " + edge);
+        var composantes_pour_edge = [];
+        for (var j = composantes_connexes.length - 1; j >= 0; j--){
+          for (var z = 0; z < composantes_connexes[j].length; z++){
+            if (!compatible_edges(edge, composantes_connexes[j][z])){
+              composantes_pour_edge.push(j);
+              break;
+            }
+          }
+        }
+        if (composantes_pour_edge.length == 0){
+          var nouvelle_composante = [edge];
+          composantes_connexes.push(nouvelle_composante);
+          console.log("nouvelle");
+        }
+        if (composantes_pour_edge.length == 1){
+          composantes_connexes[composantes_pour_edge[0]].push(edge);
+          console.log("composante: " + composantes_pour_edge[0]);
+        }
+        if (composantes_pour_edge.length > 1){
+          var nouvelle_composante = [];
+          nouvelle_composante.push(edge);
+         console.log("union: " + composantes_pour_edge);
+          for (var z = 0; z < composantes_pour_edge.length; z++){
+            nouvelle_composante.concat(composantes_connexes[composantes_pour_edge[z]]);
+            composantes_connexes.splice(composantes_pour_edge[z],1);
+          }
+          composantes_connexes.push(nouvelle_composante);
+        }
+
+  //      console.log(" ");
+      }
+      return composantes_connexes;
+    }
+
+
+    function my_random() {
+        var x = Math.sin(seed++) * 10000;
+        return x - Math.floor(x);
+    }
+
+
+
+    
   </script>
 </body>
 </html>
