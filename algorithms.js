@@ -48,8 +48,6 @@ function clean_original_link_stream_txt(txt){
       original_link_stream.teams = teams;
       original_link_stream.t_min = t_min;
       original_link_stream.t_max = t_max;
-      console.log("original: ");
-      for (var i = 0; i < original_link_stream.list_edges.length; i++){console.log(original_link_stream.list_edges[i]);}
       return original_link_stream;
     }
     function original_to_gamma_link_stream(original, gamma){
@@ -93,9 +91,6 @@ function clean_original_link_stream_txt(txt){
         }
         gamma_link_stream.array_edges[u][v].push(gamma_link_stream.list_edges[i]);
       }
-      console.log(" ");
-      console.log("gamma: ");
-      for (var i = 0; i < gamma_link_stream.list_edges.length; i++){console.log(gamma_link_stream.list_edges[i]);}
       return gamma_link_stream;
     }
     function gamma_to_2approx_link_stream(gamma_link_stream){
@@ -115,9 +110,6 @@ function clean_original_link_stream_txt(txt){
           }
         }
       }
-      console.log(" ");
-      console.log("approx: ");
-      for (var i = 0; i < approx_link_stream.list_edges.length; i++){console.log(approx_link_stream.list_edges[i]);}
       return approx_link_stream;
     }
     function approx_to_kernel(approx_link_stream){
@@ -140,9 +132,6 @@ function clean_original_link_stream_txt(txt){
           }
         }
       }
-      console.log(" ");
-      console.log("kernel: ");
-      for (var i = 0; i < kernel_link_stream.list_edges.length; i++){console.log(kernel_link_stream.list_edges[i]);}
       return kernel_link_stream;
     }
     function compatible_edges(edge_1, edge_2){
@@ -178,13 +167,10 @@ function clean_original_link_stream_txt(txt){
         var link_stream_composante = {list_edges:[], teams:[], t_min:0, t_max:0};
         link_stream_composante.list_edges = composantes_connexes[z];
 
-        for (var zz = 0; zz < link_stream_composante.list_edges.length; zz++){console.log(link_stream_composante.list_edges[zz]);}
 
         var approx_composante = gamma_to_2approx_link_stream(link_stream_composante);
-        for (var zz = 0; zz < approx_composante.list_edges.length; zz++){console.log(approx_composante.list_edges[zz]);}
 
         var kernel_composante = approx_to_kernel(approx_composante);
-        for (var zz = 0; zz < kernel_composante.list_edges.length; zz++){console.log(kernel_composante.list_edges[zz]);}
         for (var zz = 0; zz < kernel_composante.list_edges.length; zz++){kernel_link_stream.list_edges.push(kernel_composante.list_edges[zz]);}
 
       }
