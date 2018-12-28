@@ -590,11 +590,11 @@
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Max acceleration</br></label>   
           <input class="input_parameters"  id="check_box_contact" type="checkbox" onchange="launch()">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Enable contact</br></label> 
-          <input class="input_parameters"  id="choix_predefini" type="range" value=0 min=0 max=2 onchange="setChoixPredefini();">
+          <input class="input_parameters"  id="choix_predefini" type="number" value=0 min=0 max=2 onchange="setChoixPredefini();">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Choose a set of parameters</br></label>
-          <input class="input_parameters"  id="multiplication_rayon_leader_value" type="range" min="2" value="12" max="64" onchange="setChoixPredefini();" display="none">
+          <input class="input_parameters"  id="multiplication_rayon_leader_value" type="number" min="2" value="12" max="64" onchange="setChoixPredefini();" display="none">
           <label font-size="6vw" id="multiplication_rayon_leader_label" font-family="font-family: Arial, Helvetica, sans-serif;" size="5" style.display="none">(Set = "leaders") Size of leaders</br></label>
-          <input class="input_parameters"  id="number_leader_value" type="range" step="1" min="1" value="2" max="12" onchange="setChoixPredefini();" display="none">
+          <input class="input_parameters"  id="number_leader_value" type="number" step="1" min="1" value="2" max="12" onchange="setChoixPredefini();" display="none">
           <label font-size="6vw" id="number_leader_label" font-family="font-family: Arial, Helvetica, sans-serif;" size="5" style.display="none">(Set = "leaders") Number of leaders</br></label>
 
       </form>
