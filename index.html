@@ -3,223 +3,511 @@
 
   <head>
   <style>
-  body {
-    position:relative;
-    background-color: #e8e8e8;
-    left:1vw;
-    top:12vh;
-    width:100vw;
-    height: 100vh;
-  }
-  .alert {
-    background-color: #f44336; /* Red */
-    color: white;
-    position:absolute;
-    top:10vh;
-    left:10vw;
-    width:80vw;
-    height:60vh;
-    font-size:3vh;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  .closebtn {
-      margin-left: 15px;
-      color: black;
-      font-weight: bold;
-      float: right;
-      font-size: 15vh;
-      line-height: 20px;
-      cursor: pointer;
-      transition: 0.2s;
-  }
-  .closebtn:hover {
-      color: green;
-  }
-  .tab {
-      width:97vw;
-      min-width:300px;
+  @media screen and (orientation:portrait) {
+    body {
+      position:relative;
+      background-color: #e8e8e8;
+      bottom:0vw;
+      left:0vw;
+      top:0vw;
+      right: 10vw;
+    }
+    .alert_txt_linkstream {
+      background-color: #f44336; /* Red */
+      color: white;
+      position:absolute;
+      top:30vw;
+      right:10vw;
+      width:70vw;
+      height:35vh;
+      font-size:3vw;
+      display: none;
+      user-select: none;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .alert_import {
+      background-color: #f44336; /* Red */
+      color: white;
+      position:absolute;
+      top:10vw;
+      left:10vw;
+      width:80vw;
+      height:60vh;
+      font-size:3vw;
+      user-select: none;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .closebtn {
+        margin-left: 1vw;
+        color: black;
+        font-weight: bold;
+        float: right;
+        font-size: 15vw;
+        line-height: 1vh;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .closebtn:hover {
+        color: green;
+    }
+    .tab {
+        width:96.35vw;
+        height:4vh;
+        top: 0vw;
+        bottom: 0vw;
+        background-color: #ccc;
+        border: 0vw solid #ccc;
+    }
+    .tab button {
+      background-color: inherit;
       height:4vh;
-      background-color: #ccc;
-      border: 2px solid #ccc;
+      width:15vw;
+      float: left;
+      padding-right:0.6vw;
+      padding-left:0.6vw;
+      font-weight: bold;
+      outline: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:2.6vw;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .tab button:hover {
+        background-color: #fed;
+    }
+    .tab button.active {
+        background-color: #dfe;
+    }
+    .tabcontent {
+      display: none;
+      border-top: none;
+    }
+    #main_div{
+      width:96vw;
+      height:100vh;
+      background-color: #fff;
+    }
+    #generator_div {
+      top: 0vw;
+      bottom: 0vw;
+      left: 0vw;
+      right: 0vw;
+      position: relative;
+      display: table-cell;
+    }
+    #button_charts{
+    }
+    #parameters {
+      z-index:10;
+      position: absolute;
+      left:0vw;
+      bottom:10vw;
+      vertical-align: center;
+      visibility: hidden;
+      border: 0.1vw solid #ccc;
+      background-color:#fff;
+      font-size:4vw;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .input_parameters{
+      font-size: 4vw;
+    }
+    #canvas_1 {
+      width:96vw;
+      height:85vh;
+      float: left;
+      clear: left;
+      vertical-align: center;
+      border: 0.1vw solid #ccc;
+    }
+    #compteur_lignes {
+      width:95vw;
+      text-align:right;
+      resize: none;
+      float: left;
+      clear: left;
+      font-size:2vw;
+      vertical-align: center;
+    }
+    #import_div {
+      height:90vh;
+      width:60vw;
+    }
+    #link_stream_copy_past{
+      width:95vw;
+      height:92vh;
+      resize: none;
+      font-size:4vw;
+    }
+    #bouton_generator_export{
+      width:80vh;
+      border: 1vw solid #ccc;
+      z-index: 10;
+      position: relative;
+      top:18vw;
+      left:234vw;
+      display:table-cell;
+    }
+    #bouton_help_export{
+      border: 0.1vw solid #ccc;
+      z-index: 10;
+      width: 6vw;
+      position:absolute;
+      top:12vh;
+      left:34vw;
+      height: 6vh;
+      border: 0.1vw solid #000;
+      display:table-cell;
+    }
+    #bouton_pasted_export{
+      border: 0.1vw solid #ccc;
+      z-index: 10;
+      width: 6vw;
+      position:absolute;
+      top:7vh;
+      left:34vw;
+      height: 6vh;
+      border: 0.1vw solid #000;
+      display:table-cell;
+    }
+    #tests_div {
+      width:80vw;
+      position: absolute;
+    }
+    #compteur_edges{
+      position: absolute;
+      height:10vh;
+      width: 96vw;
+    }
+    #algorithm_div{
+      width:80vw;
+      position: relative;
+    }
+    #original_link_stream_to_process{
+      position: relative;
+      width:17vw;
+      height:87vh;
+      float:left;
+      display: none;
+      resize:horizontal;
+      border: 1vw solid #ccc;
+      overflow-y: scroll; 
+      font-size:3vw;
+    }
+    #gamma_link_stream_to_process{
+      position: relative;
+      width:17vw;
+      height:87vh;
+      float:left;
+      display: none;
+      resize:horizontal;
+      border: 1vw solid #ccc;
+      overflow-y: scroll; 
+      font-size:3vw;
+    }
+    #greedy_gamma_link_stream_to_process {
+      position: relative;
+      width:17vw;
+      height:87vh;
+      float:left;
+      display: none;
+      resize:horizontal;
+      border: 1vw solid #ccc;
+      overflow-y: scroll; 
+      font-size:3vw;
+    }
+    #kernel_gamma_link_stream_to_process{
+      position: relative;
+      width:17vw;
+      height:87vh;
+      float:left;
+      display: none;
+      resize:horizontal;
+      border: 1vw solid #ccc;
+      overflow-y: scroll; 
+      font-size:3vw;
+    }
+    #original_link_stream_edges_counter{
+      z-index: 10;
+      width:17vw;
+      float:left;
+      text-align:center;
+      font-size:3vw;
+    }
+    #gamma_link_stream_edges_counter{
+      z-index: 10;
+      width:17vw;
+      float:left;
+      text-align:center;
+      font-size:3vw;   
+    }
+    #approx_link_stream_edges_counter{
+      z-index: 10;
+      width:17vw;
+      float:left;
+      text-align:center;
+      font-size:3vw;   
+    }
+    #kernel_link_stream_edges_counter{
+      z-index: 10;
+      width:17vw;
+      float:left;
+      text-align:center;
+      font-size:3vw;
+    }
   }
-  .tab button {
-    height:4vh;
-    background-color: inherit;
-    float: left;
-    border: 1px solid #000;
-    padding-right:0.6vw;
-    padding-left:0.6vw;
-    font-weight: bold;
-    outline: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:2.6vh;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .tab button:hover {
-      background-color: #fed;
-  }
-  .tab button.active {
-      background-color: #dfe;
-  }
-  .tabcontent {
-    display: none;
-    border-top: none;
-  }
-  #main_div{
-    width:97vw;
-    height:100vh;
-    background-color: #fff;
-    display: flex;
-  }
-  #generator_div {
-    width:97vw;
-    height:100vh;
-    position: absolute;
-    display: table-cell;
-  }
-  #button_charts{
-  }
-  #parameters {
-    z-index:10;
-    position: absolute;
-    left:0vw;
-    bottom:30vh;
-    vertical-align: center;
-    visibility: hidden;
-    border: 1px solid #ccc;
-    background-color:#fff;
-    font-size:4.5vh;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  #canvas_1 {
-    width:97vw;
-    height:70vh;
-    float: left;
-    clear: left;
-    vertical-align: center;
-  }
-  #compteur_lignes {
-    width:96.5vw;
-    text-align:right;
-    resize: none;
-    float: left;
-    clear: left;
-    font-size:2vh;
-    vertical-align: center;
-  }
-  #import_div {
-    height:100vh;
-    width:100vw;
-  }
-  #link_stream_copy_past{
-    width:96.5vw;
-    height:75vh;
-    resize: none;
-    font-size:2vw;
-  }
-  #bouton_generator_export{
-    width:80vh;
-    border: 1px solid #ccc;
-    z-index: 10;
-    position: relative;
-    top:18px;
-    left:234px;
-    display:table-cell;
-  }
-  #bouton_pasted_export{
-    border: 1px solid #ccc;
-    z-index: 10;
-    position:absolute;
-    top:13vh;
-    left:36vw;
-    display:table-cell;
-  }
-  #tests_div {
-    width:320px;
-    position: absolute;
-  }
-  #compteur_edges{
-    position: absolute;
-    top:8px;
-    left:8px
-    height:10px;
-  }
-  #algorithm_div{
-    width:80vw;
-    position: relative;
-  }
-  #original_link_stream_to_process{
-    position: relative;
-    width:17vw;
-    height:70vh;
-    float:left;
-    display: none;
-    resize:horizontal;
-    border: 1px solid #ccc;
-    overflow-y: scroll; 
-    font-size:3vw;
-  }
-  #gamma_link_stream_to_process{
-    position: relative;
-    width:17vw;
-    height:70vh;
-    float:left;
-    display: none;
-    resize:horizontal;
-    border: 1px solid #ccc;
-    overflow-y: scroll; 
-    font-size:3vw;
-  }
-  #greedy_gamma_link_stream_to_process {
-    position: relative;
-    width:17vw;
-    height:70vh;
-    float:left;
-    display: none;
-    resize:horizontal;
-    border: 1px solid #ccc;
-    overflow-y: scroll; 
-    font-size:3vw;
-  }
-  #kernel_gamma_link_stream_to_process{
-    position: relative;
-    width:17vw;
-    height:70vh;
-    float:left;
-    display: none;
-    resize:horizontal;
-    border: 1px solid #ccc;
-    overflow-y: scroll; 
-    font-size:3vw;
-  }
-  #original_link_stream_edges_counter{
-    z-index: 10;
-    width:17vw;
-    float:left;
-    text-align:center;
-    font-size:3vw;
-  }
-  #gamma_link_stream_edges_counter{
-    z-index: 10;
-    width:17vw;
-    float:left;
-    text-align:center;
-    font-size:3vw;   
-  }
-  #approx_link_stream_edges_counter{
-    z-index: 10;
-    width:17vw;
-    float:left;
-    text-align:center;
-    font-size:3vw;   
-  }
-  #kernel_link_stream_edges_counter{
-    z-index: 10;
-    width:17vw;
-    float:left;
-    text-align:center;
-    font-size:3vw;
+  @media screen and (orientation:landscape) {
+    body {
+      position:relative;
+      background-color: #e8e8e8;
+      bottom:0vw;
+      left:0vw;
+      top:0vw;
+      right: 10vw;
+    }
+    .alert_txt_linkstream {
+      background-color: #f44336; /* Red */
+      color: white;
+      position:absolute;
+      top:30vw;
+      right:10vw;
+      width:70vw;
+      height:35vh;
+      font-size:3vw;
+      display: none;
+      user-select: none;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .alert_import {
+      background-color: #f44336; /* Red */
+      color: white;
+      position:absolute;
+      top:10vw;
+      left:10vw;
+      width:80vw;
+      height:60vh;
+      font-size:3vw;
+      user-select: none;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .closebtn {
+        margin-left: 1vw;
+        color: black;
+        font-weight: bold;
+        float: right;
+        font-size: 15vw;
+        line-height: 1vh;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .closebtn:hover {
+        color: green;
+    }
+    .tab {
+        width:96.35vw;
+        height:4vh;
+        top: 0vw;
+        bottom: 0vw;
+        background-color: #ccc;
+        border: 0vw solid #ccc;
+    }
+    .tab button {
+      background-color: inherit;
+      height:4vh;
+      width:15vw;
+      float: left;
+      padding-right:0.6vw;
+      padding-left:0.6vw;
+      font-weight: bold;
+      outline: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:2.6vw;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .tab button:hover {
+        background-color: #fed;
+    }
+    .tab button.active {
+        background-color: #dfe;
+    }
+    .tabcontent {
+      display: none;
+      border-top: none;
+    }
+    #main_div{
+      width:96vw;
+      height:100vh;
+      background-color: #fff;
+    }
+    #generator_div {
+      top: 0vw;
+      bottom: 0vw;
+      left: 0vw;
+      right: 0vw;
+      position: relative;
+      display: table-cell;
+    }
+    #button_charts{
+    }
+    #parameters {
+      z-index:10;
+      position: absolute;
+      left:0vw;
+      bottom:10vw;
+      vertical-align: center;
+      visibility: hidden;
+      border: 0.1vw solid #ccc;
+      background-color:#fff;
+      font-size:4vw;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .input_parameters{
+      font-size: 4vw;
+    }
+    #canvas_1 {
+      width:96vw;
+      height:85vh;
+      float: left;
+      clear: left;
+      vertical-align: center;
+      border: 0.1vw solid #ccc;
+    }
+    #compteur_lignes {
+      width:95vw;
+      text-align:right;
+      resize: none;
+      float: left;
+      clear: left;
+      font-size:2vw;
+      vertical-align: center;
+    }
+    #import_div {
+      height:90vh;
+      width:60vw;
+    }
+    #link_stream_copy_past{
+      width:95vw;
+      height:92vh;
+      resize: none;
+      font-size:4vw;
+    }
+    #bouton_generator_export{
+      width:80vh;
+      border: 1vw solid #ccc;
+      z-index: 10;
+      position: relative;
+      top:18vw;
+      left:234vw;
+      display:table-cell;
+    }
+    #bouton_help_export{
+      border: 0.1vw solid #ccc;
+      z-index: 10;
+      width: 6vw;
+      position:absolute;
+      top:12vh;
+      left:34vw;
+      height: 6vh;
+      border: 0.1vw solid #000;
+      display:table-cell;
+    }
+    #bouton_pasted_export{
+      border: 0.1vw solid #ccc;
+      z-index: 10;
+      width: 6vw;
+      position:absolute;
+      top:7vh;
+      left:34vw;
+      height: 6vh;
+      border: 0.1vw solid #000;
+      display:table-cell;
+    }
+    #tests_div {
+      width:80vw;
+      position: absolute;
+    }
+    #compteur_edges{
+      position: absolute;
+      height:10vh;
+      width: 96vw;
+    }
+    #algorithm_div{
+      width:80vw;
+      position: relative;
+    }
+    #original_link_stream_to_process{
+      position: relative;
+      width:17vw;
+      height:87vh;
+      float:left;
+      display: none;
+      resize:horizontal;
+      border: 1vw solid #ccc;
+      overflow-y: scroll; 
+      font-size:3vw;
+    }
+    #gamma_link_stream_to_process{
+      position: relative;
+      width:17vw;
+      height:87vh;
+      float:left;
+      display: none;
+      resize:horizontal;
+      border: 1vw solid #ccc;
+      overflow-y: scroll; 
+      font-size:3vw;
+    }
+    #greedy_gamma_link_stream_to_process {
+      position: relative;
+      width:17vw;
+      height:87vh;
+      float:left;
+      display: none;
+      resize:horizontal;
+      border: 1vw solid #ccc;
+      overflow-y: scroll; 
+      font-size:3vw;
+    }
+    #kernel_gamma_link_stream_to_process{
+      position: relative;
+      width:17vw;
+      height:87vh;
+      float:left;
+      display: none;
+      resize:horizontal;
+      border: 1vw solid #ccc;
+      overflow-y: scroll; 
+      font-size:3vw;
+    }
+    #original_link_stream_edges_counter{
+      z-index: 10;
+      width:17vw;
+      float:left;
+      text-align:center;
+      font-size:3vw;
+    }
+    #gamma_link_stream_edges_counter{
+      z-index: 10;
+      width:17vw;
+      float:left;
+      text-align:center;
+      font-size:3vw;   
+    }
+    #approx_link_stream_edges_counter{
+      z-index: 10;
+      width:17vw;
+      float:left;
+      text-align:center;
+      font-size:3vw;   
+    }
+    #kernel_link_stream_edges_counter{
+      z-index: 10;
+      width:17vw;
+      float:left;
+      text-align:center;
+      font-size:3vw;
+    }
   }
   </style>
 
@@ -255,30 +543,34 @@
         <button class="tablinks" title="Enables you to change the different parameters of the link-stream generator" onclick="display_or_not()">&#9881; </button>
         <button class="tablinks" title="Makes process go slower" onclick="slower()">&#171;  </button>
         <button class="tablinks" title="Makes process go faster" onclick="faster()">&#187;  </button>
-        <button title="Export the link-stream above" onclick="export_generated_txt_link_stream()" position="relative" right="0vw">&#8593; </button>
+        <!--button title="Export the link-stream above" onclick="export_generated_txt_link_stream()" position="relative" right="0vw">&#8593; </button-->
+      </div>
+      <div class="tab" id ="tab_export">
+       <button class="bouton_pasted_export" title="Export the link-stream above" onclick="export_generated_txt_link_stream()">&#8593;</button>
+      
       </div>
       <!--textarea id="textarea_1" title="Edges of the original link stream (the one shown in the canvas)" cols="50" rows="3"></textarea>
       <textarea id="textarea_2" title="The meta-edges of the original link stream (the one shown in the canvas)" cols="50" rows="3" ></textarea-->
       <form id="parameters">
-          <input height="3vh" id="seed_value" type="number" title="The number of teams" step="0.0001" value="3746.0000" min="1" max="9999.9999" onchange="launch()" width="30vw">
+          <input class="input_parameters" id="seed_value" type="number" title="The number of teams" step="0.0001" value="3746.0000" min="1" max="9999.9999" onchange="launch()">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">#Seed</br></label>
-          <input id="teams_value" type="number" title="The number of teams" value="5" min="3" max="100" width="#Teams" onchange="launch()" width="5">
+          <input class="input_parameters"  id="teams_value" type="number" title="The number of teams" value="5" min="3" max="100" onchange="launch()">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">#Teams</br></label>
-          <input id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="15" max="100" onchange="launch()" width="2">
+          <input class="input_parameters"  id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="15" max="100" onchange="launch()">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">#Disks/Team</br></label>
-          <input id="gamma_value" type="number" title="The value of gamma" min="2" value="3" width="Gamma" onchange="launch()" width="5" >
+          <input class="input_parameters"  id="gamma_value" type="number" title="The value of gamma" min="2" value="3" width="Gamma" onchange="launch()">
           <label font-size="3vw" font-family="font-family: Arial, Helvetica, sans-serif;">Gamma</br></label>
-          <input id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="14" max="100" width="Rayon" onchange="launch()" width="5" >
+          <input class="input_parameters"  id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="14" max="100" onchange="launch()">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Rayon</br></label>               
-          <input id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" onchange="launch()" width="5">
+          <input class="input_parameters"  id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" onchange="launch()">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Max velocity</br></label>    
-          <input id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" onchange="launch()">
+          <input class="input_parameters"  id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" onchange="launch()">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Max acceleration</br></label>   
           <!--input id="repulsion_value" type="number" step="0.0001" title="Repulsion value" min="0.0000" value="0.2000" max="1" width="" onchange="launch()" width="5">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Repulsion</br></label>    
           <input id="attirance_value" type="number" step="0.0001" title="Attirance value" min="0.0000" value="0.0000" max="1" width="" onchange="launch()" width="5">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Attirance</br></label-->
-          <input id="check_box_contact" type="checkbox" onchange="launch()">
+          <input class="input_parameters"  id="check_box_contact" type="checkbox" onchange="launch()">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Enable contact</br></label>
       </form>
     </div>
@@ -286,10 +578,21 @@
     
     
       <div id="import_div" class="tabcontent">
-        
-      <div class="tab" id ="tab_export">
-          <button id="bouton_pasted_export" title="Export the link-stream above" onclick="export_pasted_txt_link_stream()">&#8593;</button>
-        </div>
+      <button id="bouton_pasted_export" title="Export the link-stream above" onclick="export_pasted_txt_link_stream()">&#8593;</button>
+      <button id="bouton_help_export" title="Explanations on how to import a link-stream" onclick="display_alert_txt_linkstream()">?</button>
+      <div id = "alert_txt_linkstream_div" class="alert_txt_linkstream">
+        <span class="closebtn" onclick="close_alert_txt_linkstream()" >&times;</span> 
+        This is where you can export your link-streams. They have to respect this formalism</br>
+        a b t_0</br>
+        a b t_1</br>
+        a c t_2</br>
+        b c t_2</br>
+        c d t_2</br>
+        c d t_3</br>
+        ...</br>
+        where a,b,c,d represent the labels of the edges and t_0,t_1,t_2... the time stamps of the edges.</br></br>
+        The edges don't have to be ordered by time.
+      </div> 
       <textarea id="link_stream_copy_past">
 0 1 0
 0 2 0
@@ -344,7 +647,7 @@
       </textarea>
     </div>
     <div id="algorithm_div" class="tabcontent">
-      <div id = "no_link_stream_alert_message" class="alert">
+      <div id = "no_link_stream_alert_message" class="alert_import">
         <span class="closebtn" onclick="process_alert_message()">&times;</span> 
         There is no link-stream to process kernel algorithm on.</br></br>
         You can generate one with the "Generator" tab,</br>
@@ -875,6 +1178,14 @@
     function export_generated_txt_link_stream(){
       openTab("algorithm_div")
     }
+    function close_alert_txt_linkstream(){
+      document.getElementById("alert_txt_linkstream_div").style.display='none';
+    }
+    function display_alert_txt_linkstream(){
+      document.getElementById("alert_txt_linkstream_div").style.display='table-cell';
+    }
+      
+      
     loop();
     launch();
     
