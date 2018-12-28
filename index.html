@@ -101,16 +101,15 @@
       z-index:10;
       position: absolute;
       left:0vw;
-      bottom:10vw;
-      vertical-align: center;
+      top:44vh;
       visibility: hidden;
       border: 0.1vw solid #ccc;
       background-color:#fff;
-      font-size:4vw;
+      font-size:3vh;
       font-family: Arial, Helvetica, sans-serif;
     }
     .input_parameters{
-      font-size: 4vw;
+      font-size: 3vh;
     }
     #canvas_1 {
       width:96vw;
@@ -256,6 +255,13 @@
       height: 5vh;
       float:left;
       text-align:center;
+      font-size:3vw;   
+    }
+    #gamma_value_explained{
+      z-index: 10;
+      width:16vw;
+      height: 5vh;
+      text-align:center;
       font-size:3vw;
     }
   }
@@ -357,16 +363,16 @@
       z-index:10;
       position: absolute;
       left:0vw;
-      bottom:10vw;
+      top:40vh;
       vertical-align: center;
       visibility: hidden;
       border: 0.1vw solid #ccc;
       background-color:#fff;
-      font-size:4vw;
+      font-size:2vw;
       font-family: Arial, Helvetica, sans-serif;
     }
     .input_parameters{
-      font-size: 4vw;
+      font-size: 2vw;
     }
     #canvas_1 {
       width:96vw;
@@ -512,6 +518,13 @@
       height: 5vh;
       float:left;
       text-align:center;
+      font-size:3vw;   
+    }
+    #gamma_value_explained{
+      z-index: 10;
+      width:16vw;
+      height: 5vh;
+      text-align:center;
       font-size:3vw;
     }
   }
@@ -655,6 +668,7 @@
       </textarea>
     </div>
     <div id="algorithm_div" class="tabcontent">
+      <label id="gamma_value_explained" font-size="6vh" font-family="Arial, Helvetica, sans-serif;"></label></label> 
       <div id = "no_link_stream_alert_message" class="alert_import">
         <span class="closebtn" onclick="process_alert_message()">&times;</span> 
         There is no link-stream to process kernel algorithm on.</br></br>
@@ -673,7 +687,7 @@
       <label id="original_link_stream_edges_counter" font-size="6vh" font-family="Arial, Helvetica, sans-serif;" ></br></label> 
       <label id="gamma_link_stream_edges_counter" font-size="6vh" font-family="Arial, Helvetica, sans-serif;"></br></label>  
       <label id="approx_link_stream_edges_counter" font-size="6vh" font-family="Arial, Helvetica, sans-serif;"></br></label> 
-      <label id="kernel_link_stream_edges_counter" font-size="6vh" font-family="Arial, Helvetica, sans-serif;"></br></label> 
+      <label id="kernel_link_stream_edges_counter" font-size="6vh" font-family="Arial, Helvetica, sans-serif;"></br></label>
     </div>
   <!--/div-->
 
@@ -1131,6 +1145,9 @@
           gamma_link_stream.list_edges.sort(sort_edges_by_time);
           var two_approx_link_stream = gamma_to_2approx_link_stream(gamma_link_stream);
           var kernel_link_stream = approx_to_kernel(two_approx_link_stream);
+
+          document.getElementById("gamma_value_explained").innerHTML = "Here, gamma = " + gamma + ". If you want to change this value, you can go in the Generator tab, then go in the paramaters (gear icon), and change it.</br></br>";
+
      //     var kernel_link_stream = improved_kernel(gamma_link_stream);
           /*
           original_link_stream.list_edges.sort(sort_edges_by_time);
