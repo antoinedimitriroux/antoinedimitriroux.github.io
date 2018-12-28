@@ -101,7 +101,7 @@
       z-index:10;
       position: absolute;
       left:0vw;
-      top:44vh;
+      top:34vh;
       visibility: hidden;
       border: 0.1vw solid #ccc;
       background-color:#fff;
@@ -363,7 +363,7 @@
       z-index:10;
       position: absolute;
       left:0vw;
-      top:40vh;
+      top:30vh;
       vertical-align: center;
       visibility: hidden;
       border: 0.1vw solid #ccc;
@@ -588,12 +588,15 @@
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Max velocity</br></label>    
           <input class="input_parameters"  id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" onchange="launch()">
           <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Max acceleration</br></label>   
-          <!--input id="repulsion_value" type="number" step="0.0001" title="Repulsion value" min="0.0000" value="0.2000" max="1" width="" onchange="launch()" width="5">
-          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Repulsion</br></label>    
-          <input id="attirance_value" type="number" step="0.0001" title="Attirance value" min="0.0000" value="0.0000" max="1" width="" onchange="launch()" width="5">
-          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Attirance</br></label-->
           <input class="input_parameters"  id="check_box_contact" type="checkbox" onchange="launch()">
-          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Enable contact</br></label>
+          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Enable contact</br></label> 
+          <input class="input_parameters"  id="choix_predefini" type="range" value=0 min=0 max=2 onchange="setChoixPredefini();">
+          <label font-size="6vw" font-family="font-family: Arial, Helvetica, sans-serif;" size="5">Choose a set of parameters</br></label>
+          <input class="input_parameters"  id="multiplication_rayon_leader_value" type="range" min="2" value="12" max="64" onchange="setChoixPredefini();" display="none">
+          <label font-size="6vw" id="multiplication_rayon_leader_label" font-family="font-family: Arial, Helvetica, sans-serif;" size="5" style.display="none">(Set = "leaders") Size of leaders</br></label>
+          <input class="input_parameters"  id="number_leader_value" type="range" step="1" min="1" value="2" max="12" onchange="setChoixPredefini();" display="none">
+          <label font-size="6vw" id="number_leader_label" font-family="font-family: Arial, Helvetica, sans-serif;" size="5" style.display="none">(Set = "leaders") Number of leaders</br></label>
+
       </form>
     </div>
 
@@ -710,13 +713,15 @@
 
 
     var computer_or_mobile = true;
+    var multiplication_rayon_leader = 16;
+    var nombre_de_leaders = 1;
     checkDeviceOs();
     if (computer_or_mobile){
       document.getElementById("canvas_1").style.height = "79vh";
     }
     var seed = 3746.0000;
 
-
+    var choix_predefini = 0;
     var gamma;
     var nombre_equipes;
     var nombre_joueurs_par_equipe;
@@ -785,6 +790,9 @@
       txt_gamma_link_stream_last_tick = "";
       gamma_collisions = [];
       gamma_array = [];
+
+      if (document.getElementById("number_leader_value").value > 0){nombre_de_leaders = document.getElementById("number_leader_value").value;}
+      if (document.getElementById("choix_predefini").value > 0){choix_predefini = document.getElementById("choix_predefini").value;}
       if (document.getElementById("seed_value").value > 0){seed = parseInt(document.getElementById("seed_value").value);}      
       if (document.getElementById("gamma_value").value > 0){gamma = parseInt(document.getElementById("gamma_value").value);}
       if (document.getElementById("teams_value").value > 0){nombre_equipes = parseInt(document.getElementById("teams_value").value);}
@@ -795,6 +803,7 @@
     //  if (document.getElementById("repulsion_value").value > 0){repulsion = parseFloat(document.getElementById("repulsion_value").value);}
     //  if (document.getElementById("attirance_value").value > 0){attirance = parseFloat(document.getElementById("attirance_value").value);}
       contacts = document.getElementById("check_box_contact").checked;
+      
       init();
       clear_canvas();
       for (var i = 0; i < nombre_equipes; i++){
@@ -847,6 +856,7 @@
       textarea_greedy_gamma_link_stream_to_process.style.display = 'none';
       textarea_kernel_gamma_link_stream_to_process.value = "";
       textarea_kernel_gamma_link_stream_to_process.style.display = 'none';
+      
       for (var i = 0; i < nombre_equipes; i++){
             equipes[i] = [];
             couleurs_equipes[i] = 'rgba(' + 
@@ -861,6 +871,14 @@
               var dy = (SQRT_2 - my_random() * 2 * SQRT_2) * vitesse_max;
               var couleur = couleurs_equipes[i];
               var nouveau_roller = {equipe:i, numero:j, x:x, y:y, dx:dx, dy:dy, rayon:rayon, couleur:couleur};
+              if (choix_predefini == 1){
+                nouveau_roller.rayon *= (i + 1) / nombre_equipes;
+              }
+              if (choix_predefini == 2){
+                if (i < nombre_de_leaders){
+                  nouveau_roller.rayon *= multiplication_rayon_leader;
+                }
+              }
               equipes[i][j] = nouveau_roller;
             }
             gamma_array[i] = [];
@@ -971,7 +989,7 @@
     }
     var draw_roller = function(roller){
       canvas_window.fillStyle = roller.couleur;
-      drawEllipseByCenter(canvas_window,roller.x,roller.y,rayon*2,rayon*2*ratio_width_height);
+      drawEllipseByCenter(canvas_window,roller.x,roller.y,roller.rayon*2,roller.rayon*2*ratio_width_height);
    //   canvas_window.strokeText(roller.numero+"",roller.x,roller.y);
     }
     var draw_collisions = function(collisions_array, new_gamma_collisions){
@@ -1147,7 +1165,7 @@
           var two_approx_link_stream = gamma_to_2approx_link_stream(gamma_link_stream);
           var kernel_link_stream = approx_to_kernel(two_approx_link_stream);
 
-          document.getElementById("gamma_value_explained").innerHTML = "Here, gamma = " + gamma + ". If you want to change this value, you can go in the Generator tab, then go in the paramaters (gear icon), and change it.";
+          document.getElementById("gamma_value_explained").innerHTML = "Here, gamma = " + gamma + ". If you want to change this value, you can go in the Generator tab, then go in the paramaters (gear icon).";
 
      //     var kernel_link_stream = improved_kernel(gamma_link_stream);
           /*
@@ -1213,6 +1231,52 @@
     }
     function display_alert_txt_linkstream(){
       document.getElementById("alert_txt_linkstream_div").style.display='table-cell';
+    }
+    function setChoixPredefini(){
+      choix_predefini = document.getElementById("choix_predefini").value
+      if (choix_predefini == 0){
+        nombre_equipes = 5;
+        nombre_joueurs_par_equipe = 15;
+        rayon = 20;
+        gamma = 3;
+        document.getElementById("gamma_value").value = 3;
+        document.getElementById("teams_value").value = 5;
+        document.getElementById("disksteam_value").value = 15;
+        document.getElementById("rayon_value").value = 20;
+      }
+      if (choix_predefini == 1){
+        nombre_equipes = 80;
+        nombre_joueurs_par_equipe = 1;
+        rayon = 30;
+        gamma = 5;
+        document.getElementById("gamma_value").value = 5;
+        document.getElementById("teams_value").value = 80;
+        document.getElementById("disksteam_value").value = 1;
+        document.getElementById("rayon_value").value = 10;
+      }
+      if (choix_predefini == 2){
+        nombre_equipes = 80;
+        nombre_joueurs_par_equipe = 1;
+        rayon = 10;
+        gamma = 10;
+        multiplication_rayon_leader = document.getElementById("multiplication_rayon_leader_value").value;
+        document.getElementById("gamma_value").value = 10;
+        document.getElementById("teams_value").value = 80;
+        document.getElementById("disksteam_value").value = 1;
+        document.getElementById("rayon_value").value = 10;
+
+        document.getElementById("multiplication_rayon_leader_value").style.display = "inline";
+        document.getElementById("multiplication_rayon_leader_label").style.display = "inline";
+        document.getElementById("number_leader_value").style.display = "inline";
+        document.getElementById("number_leader_label").style.display = "inline";
+      }
+      else{
+        document.getElementById("multiplication_rayon_leader_value").style.display = "none";
+        document.getElementById("multiplication_rayon_leader_label").style.display = "none";
+        document.getElementById("number_leader_value").style.display = "none";
+        document.getElementById("number_leader_label").style.display = "none";
+      }
+      launch();
     }
     function checkDeviceOs(){
   if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
