@@ -695,7 +695,11 @@
 
 
 
-
+    var computer_or_mobile = true;
+    checkDeviceOs();
+    if (computer_or_mobile){
+      document.getElementById("canvas_1").style.height = "79vh";
+    }
     var seed = 3746.0000;
 
 
@@ -1193,6 +1197,48 @@
     function display_alert_txt_linkstream(){
       document.getElementById("alert_txt_linkstream_div").style.display='table-cell';
     }
+    function checkDeviceOs(){
+  if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+    console.log("Device: computer");
+    computer_or_mobile = true;
+  }
+  else{
+    computer_or_mobile = false;
+  //  document.getElementById("blocker").removeChild(document.getElementById("groupe_de_boutons_haut_droit"));
+    if ((/Android/i).test(navigator.userAgent)){
+      os = "android";
+      console.log("Device: mobile (android)");
+    }
+    if ((/webOS/i).test(navigator.userAgent)){
+      os = "webOS";
+      console.log("Device: mobile (webOS)");
+    }
+    if ((/iPhone/i).test(navigator.userAgent)){
+      os = "iPhone";
+      console.log("Device: mobile (iPhone)");
+    }
+    if ((/iPad/i).test(navigator.userAgent)){
+      os = "iPad";
+      console.log("Device: mobile (iPad)");
+    }
+    if ((/iPod/i).test(navigator.userAgent)){
+      os = "iPod";
+      console.log("Device: mobile (iPod)");
+    }
+    if ((/IEMobile/i).test(navigator.userAgent)){
+      os = "IEMobile";
+      console.log("Device: mobile (BlackBerry)");
+    }
+    if ((/IEMobile/i).test(navigator.userAgent)){
+      os = "Android";
+      console.log("Device: mobile (IEMobile)");
+    }
+    if ((/Opera Mini/i).test(navigator.userAgent)){
+      os = "Opera Mini";
+      console.log("Device: mobile (Opera Mini)");
+    }
+  }
+}
       
       
     loop();
