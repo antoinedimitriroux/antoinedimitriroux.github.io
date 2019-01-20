@@ -120,7 +120,7 @@ function clean_original_link_stream_txt(txt){
     }
 
     function gamma_to_2approx_link_stream_MIN(gamma_link_stream,max_cpt){
-      var best_approx_link_stream = {  list_edges:[],
+      var worst_approx_link_stream = {  list_edges:[],
                                         list_incompatibles:[],
                                         teams:gamma_link_stream.teams,
                                         t_min:gamma_link_stream.t_min,
@@ -153,11 +153,11 @@ function clean_original_link_stream_txt(txt){
           }
         }
         if (approx_link_stream.list_incompatibles.length < counter){
-          best_approx_link_stream = approx_link_stream;
-          counter = best_approx_link_stream.list_incompatibles.length;
+          worst_approx_link_stream = approx_link_stream;
+          counter = worst_approx_link_stream.list_incompatibles.length;
         }
       }
-      return approx_link_stream;
+      return worst_approx_link_stream;
     }
 
     function gamma_to_2approx_link_stream_MAX(gamma_link_stream,max_cpt){
@@ -198,7 +198,7 @@ function clean_original_link_stream_txt(txt){
           best_approx_link_stream = approx_link_stream;
         }
       }
-      return approx_link_stream;
+      return best_approx_link_stream;
     }
 
     function approx_to_kernel(approx_link_stream){
