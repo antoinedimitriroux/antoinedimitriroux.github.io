@@ -955,7 +955,7 @@
             gamma_array[i][j]++;
             if (gamma_array[i][j] >= gamma){
               gamma_collisions.push([i,j,tick-gamma+1]);
-              txt_gamma_link_stream_last_tick += i + " " + j + " " + (tick-gamma+1) + "\n";
+              txt_gamma_link_stream_last_tick += (tick-gamma+1) + " " + i + " " + j + "\n";
               nombre_gamma_aretes++;
             }
           }
