@@ -608,10 +608,10 @@
       <div id = "alert_txt_linkstream_div" class="alert_txt_linkstream">
         <span class="closebtn" onclick="close_alert_txt_linkstream()" >&times;</span> 
         This is where you can import your link-streams. They have to respect this formalism</br>
-        a b t_0</br>
-        a b t_1</br>
-        a c t_2</br>
-        b c t_2</br>
+        t_0 a b</br>
+        t_1 a b</br>
+        t_2 a c</br>
+        t_2 b c</br>
         ...</br>
         where a,b,c,d represent the labels of the edges and t_0,t_1,t_2... the time stamps of the edges.</br></br>
         The edges can be in total disorder (on time or labels dimensions).</br>
@@ -619,56 +619,56 @@
         If you want to change the gamma value, you can do it in the Generator tab, by clicking on the Gear icon.
       </div> 
       <textarea id="link_stream_copy_past">
-0 1 0
-0 2 0
-0 3 0
-0 4 0
-1 3 0
-1 4 0
-3 4 0
-0 1 1
-0 2 1
-0 3 1
-0 4 1
-1 2 1
-1 3 1
-1 4 1
-2 3 1
-3 4 1
-0 1 2
-0 2 2
-0 3 2
-0 4 2
-1 2 2
-1 3 2
-1 4 2
-2 3 2
-3 4 2
+0 0 1
+0 0 2
+0 0 3
+0 0 4
 0 1 3
-0 2 3
-0 3 3
-0 4 3
-1 2 3
-1 3 3
-1 4 3
-2 3 3
-3 4 3
 0 1 4
-0 2 4
 0 3 4
-0 4 4
-1 2 4
+1 0 1
+1 0 2
+1 0 3
+1 0 4
+1 1 2
+1 1 3
+1 1 4
+1 2 3
 1 3 4
-1 4 4
+2 0 1
+2 0 2
+2 0 3
+2 0 4
+2 1 2
+2 1 3
+2 1 4
+2 2 3
 2 3 4
-2 4 4
-3 4 4
-0 1 5
-0 2 5
-0 3 5
-0 4 5
-1 2 5
-1 3 5
+3 0 1
+3 0 2
+3 0 3
+3 0 4
+3 1 2
+3 1 3
+3 1 4
+3 2 3
+3 3 4
+4 0 1
+4 0 2
+4 0 3
+4 0 4
+4 1 2
+4 1 3
+4 1 4
+4 2 3
+4 2 4
+4 3 4
+5 0 1
+5 0 2
+5 0 3
+5 0 4
+5 1 2
+5 1 3
       </textarea>
     </div>
     <div id="algorithm_div" class="tabcontent">
@@ -921,7 +921,7 @@
                   var nouvelle_collision = [equipes[i][ii], equipes[j][jj]];
                   collision_equipe_i_j = true;
                   collisions_array.push([equipes[i][ii], equipes[j][jj]]);
-                  txt_link_stream_last_tick += i + " " + j + " " + tick + "\n";
+                  txt_link_stream_last_tick += tick + " " + i + " " + j + "\n";
                   nombre_lignes++;
                 }
                 if (contacts){
@@ -955,7 +955,7 @@
             gamma_array[i][j]++;
             if (gamma_array[i][j] >= gamma){
               gamma_collisions.push([i,j,tick-gamma+1]);
-              txt_gamma_link_stream_last_tick += i + " " + j + " " + (tick-gamma+1) + "\n";
+              txt_gamma_link_stream_last_tick += (tick-gamma+1) + " " + i + " " + j + "\n";
               nombre_gamma_aretes++;
             }
           }
@@ -1065,12 +1065,6 @@
       ctx.stroke();
     }
     function refreshText() {
-      //  textarea_link_stream.value = txt_link_stream;
-      //  textarea_link_stream.value = txt_link_stream_last_tick;
-      //  textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
-      //  textarea_gamma_aretes.value = txt_gamma_link_stream;
-      //  textarea_gamma_aretes.value = txt_gamma_link_stream_last_tick;
-      //  textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
         textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " edges   " + nombre_gamma_aretes + " gamma-edges ";
     }
     function display_or_not(){
@@ -1158,26 +1152,26 @@
           document.getElementById("kernel_link_stream_edges_counter").innerHTML = "Kernel</br>" + kernel_link_stream.list_edges.length + " edges";
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length; i++){
-            txt_original_link_stream +=   original_link_stream.list_edges[i][0] + " " +
-                                          original_link_stream.list_edges[i][1] + " " + 
-                                          original_link_stream.list_edges[i][2] + "\n";
+            txt_original_link_stream +=   original_link_stream.list_edges[i][2] + " " +
+                                          original_link_stream.list_edges[i][0] + " " + 
+                                          original_link_stream.list_edges[i][1] + "\n";
           }
           for (var i = 0; i < gamma_link_stream.list_edges.length; i++){
-            txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][0] + " " +
-                                      gamma_link_stream.list_edges[i][1] + " " + 
-                                      gamma_link_stream.list_edges[i][2] + "\n";
+            txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][2] + " " +
+                                      gamma_link_stream.list_edges[i][0] + " " + 
+                                      gamma_link_stream.list_edges[i][1] + "\n";
           }
           var txt_two_approx_link_stream = "";
           for (var i = 0; i < two_approx_link_stream.list_edges.length; i++){
-            txt_two_approx_link_stream +=   two_approx_link_stream.list_edges[i][0] + " " +
-                                            two_approx_link_stream.list_edges[i][1] + " " + 
-                                            two_approx_link_stream.list_edges[i][2] + "\n";
+            txt_two_approx_link_stream +=   two_approx_link_stream.list_edges[i][2] + " " +
+                                            two_approx_link_stream.list_edges[i][0] + " " + 
+                                            two_approx_link_stream.list_edges[i][1] + "\n";
           }
           var txt_kernel_link_stream = "";
           for (var i = 0; i < kernel_link_stream.list_edges.length; i++){
-            txt_kernel_link_stream +=   kernel_link_stream.list_edges[i][0] + " " +
-                                        kernel_link_stream.list_edges[i][1] + " " + 
-                                        kernel_link_stream.list_edges[i][2] + "\n";
+            txt_kernel_link_stream +=   kernel_link_stream.list_edges[i][2] + " " +
+                                        kernel_link_stream.list_edges[i][0] + " " + 
+                                        kernel_link_stream.list_edges[i][1] + "\n";
           }
           
           document.getElementById("no_link_stream_alert_message").style.display='none';
