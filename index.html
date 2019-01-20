@@ -606,16 +606,18 @@
       <button id="bouton_help_export" title="Explanations on how to import a link-stream" onclick="display_alert_txt_linkstream()">?</button>
       <div id = "alert_txt_linkstream_div" class="alert_txt_linkstream">
         <span class="closebtn" onclick="close_alert_txt_linkstream()" >&times;</span> 
-        This is where you can import your link-streams. They have to respect this formalism</br>
-        t_0 a b</br>
-        t_1 a b</br>
-        t_2 a c</br>
-        t_2 b c</br>
-        ...</br>
-        where a,b,c,d represent the labels of the edges and t_0,t_1,t_2... the time stamps of the edges.</br></br>
-        The edges can be in total disorder (on time or labels dimensions).</br>
-        You can replace the values already typed here, it is just example of a link-stream with 50 edges.</br></br>
-        If you want to change the gamma value, you can do it in the Generator tab, by clicking on the Gear icon.
+        <textarea>
+          This is where you can import your link-streams. They have to respect this formalism</br>
+          t_0 a b</br>
+          t_1 a b</br>
+          t_2 a c</br>
+          t_2 b c</br>
+          ...</br>
+          where a,b,c,d represent the labels of the edges and t_0,t_1,t_2... the time stamps of the edges.</br></br>
+          The edges can be in total disorder (on time or labels dimensions).</br>
+          You can replace the values already typed here, it is just example of a link-stream with 50 edges.</br></br>
+          If you want to change the gamma value, you can do it in the Generator tab, by clicking on the Gear icon.
+      </textarea>
       </div> 
       <textarea id="link_stream_copy_past">
 0 0 1
