@@ -31,7 +31,7 @@ function clean_original_link_stream_txt(txt){
       for (var u = 0; u < array_edges.length; u++){
           if (array_edges[u] != null){
           for (var v = 0; v < array_edges[u].length; v++){
-            if (array_edges[u][v] != null){
+            if (array_edges[u][v] != null && array_edges[u][v] != undefined){
               array_edges[u][v].sort(sortNumber);
               for (var t = 0; t < array_edges[u][v].length; t++){
                 var edge = [u,v,array_edges[u][v][t]];
