@@ -1259,7 +1259,11 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
     }
     
     function getLineNumber(textarea, indicator) {
-      console.log(textarea.value.substr(0, textarea.selectionStart).split("\n").length);
+      var lines_value = textarea.value.substr(0, textarea.selectionStart).split("\n");
+      var line_clicked_value = lines_value[lines_value.length-1];
+      var line_number = lines_value.length;
+      console.log("line_number: " + line_number);
+      console.log("line_value: " + line_clicked_value);
     }
 
 
