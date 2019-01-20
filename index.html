@@ -1305,6 +1305,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       console.log("t:" + t + " u:" + u + " v:" + v);
       
       var textarea_gamma_link_stream_to_process_value_split = textarea_gamma_link_stream_to_process.value.split("\n");
+      console.log("longueur: " + textarea_gamma_link_stream_to_process_value_split.length);
       
       for (var i = 0; i < textarea_gamma_link_stream_to_process_value_split.length; i++){
         console.log("i: " + i);
@@ -1326,7 +1327,6 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       for (var i = 0; i < textarea_gamma_link_stream_to_process_value_split.length; i++){
         textarea_gamma_link_stream_to_process_value_split.value += textarea_gamma_link_stream_to_process_value_split[i] + "\n";
       }
-      console.log("test");
       
       
     }
