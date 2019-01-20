@@ -701,6 +701,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         </textarea>
         <textarea id="gamma_link_stream_to_process" title="the gamma link stream" readonly>
         </textarea>
+        <input type="button" onclick="getline()" value="get line" />
         <textarea id="greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" readonly>
         </textarea>
         <textarea id="kernel_gamma_link_stream_to_process"title="the kernel of the optimal temporal matching" readonly>
@@ -1257,6 +1258,14 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       }
       launch();
     }
+    
+    function getline()
+    {
+    var t = $("#t")[0];
+    alert(t.value.substr(0, t.selectionStart).split("\n").length);
+    }
+
+
     function checkDeviceOs(){
   if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
     console.log("Device: computer");
