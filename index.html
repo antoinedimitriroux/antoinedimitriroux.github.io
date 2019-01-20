@@ -63,7 +63,7 @@
       background-color: #000000;
       color: #ffffff;
       height:6vh;
-      width:15vw;
+      width:15vh;
       float: left;
       padding-right:0.6vw;
       padding-left:0.6vw;
@@ -554,7 +554,6 @@
     <div class="tab" id="top_tabs" >
       <button class="tablinks" title="Generates a link-stream (based on the rollernet experience) depending on some parameters" onclick="openTab('generator_div')">Generator</button>
       <button class="tablinks" title="Enables you to paste your personnal link-stream" onclick="openTab('import_div')">Import</button>
-      <!--button class="tablinks" title="Enables you to chose between some link-streams we already generated" onclick="openTab('tests_div')">Tests</button-->
       <button class="tablinks" title="Processes the kernel algorithm on the actual link-stream" onclick="process_alert_message();openTab('algorithm_div')">Process</button>
     </div>
 
@@ -615,7 +614,6 @@
       <button id="bouton_pasted_export" title="Export the link-stream above" onclick="export_pasted_txt_link_stream()">&#8593;</button>
       <button id="bouton_help_export" title="Explanations on how to import a link-stream" onclick="display_alert_txt_linkstream()">?</button>
       <div>
-        <span class="closebtn" onclick="close_alert_txt_linkstream()" >&times;</span> 
         <textarea id = "alert_txt_linkstream_div" class="alert_txt_linkstream">
 This is where you can import your link-streams. They have to respect this formalism
           
