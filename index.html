@@ -1262,8 +1262,16 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       var lines_value = textarea.value.substr(0, textarea.selectionStart).split("\n");
       var line_clicked_value = lines_value[lines_value.length-1];
       var line_number = lines_value.length;
+      var t_u_v_txt = line_clicked_value.split(" ");
+      var t = parseInt(t_u_v_txt[0])
+      var u = parseInt(t_u_v_txt[1])
+      var v = parseInt(t_u_v_txt[2]);
       console.log("line_number: " + line_number);
       console.log("line_value: " + line_clicked_value);
+      console.log("t: " + t);
+      console.log("u: " + u);
+      console.log("v: " + v);
+      console.log(" ");
     }
 
 
