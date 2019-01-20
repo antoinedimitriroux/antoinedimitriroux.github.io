@@ -8,6 +8,10 @@
       font-family: Arial, Helvetica, sans-serif;
       font-color: #ffffff;
       background-color: #000000;
+      bottom:0vw;
+      left:0vw;
+      top:0vw;
+      right: 0vw;
     }
     .alert_txt_linkstream {
       background-color: #f44336; /* Red */
@@ -49,12 +53,12 @@
         color: green;
     }
     .tab {
-        width:100vw;
+        width:96.35vw;
         height:6vh;
         top: 0vw;
         bottom: 0vw;
-        left:0vw;
         background-color: #000000;
+        border: 0vw solid #cccccc;
         z-index:-2;
     }
     .tab button {
@@ -83,8 +87,8 @@
       border-top: none;
     }
     #main_div{
-      width:100vw;
-      height:100vh;
+      width:96vw;
+      height:96vh;
       background-color: #000000;
     }
     #generator_div {
@@ -92,8 +96,6 @@
       bottom: 0vw;
       left: 0vw;
       right: 0vw;
-      width:100vw;
-      height:100vh;
       position: relative;
       display: table-cell;
     }
@@ -114,7 +116,7 @@
       font-size: 3vh;
     }
     #canvas_1 {
-      width:100vw;
+      width:96vw;
       height:66vh;
       float: left;
       clear: left;
@@ -122,7 +124,7 @@
       border: 0.1vw solid #cccccc;
     }
     #compteur_lignes {
-      width:100vw;
+      width:95vw;
       text-align:right;
       resize: none;
       float: left;
@@ -132,11 +134,11 @@
     }
     #import_div {
       height:90vh;
-      width:100vw;
+      width:60vw;
       font-size: 1vw;
     }
     #link_stream_copy_past{
-      width:100vw;
+      width:95vw;
       height:90vh;
       resize: none;
       font-size:5vw;
@@ -175,64 +177,67 @@
       display:table-cell;
     }
     #tests_div {
-      width:100vw;
+      width:80vw;
       position: absolute;
       background-color: #000000;
     }
     #compteur_edges{
       position: absolute;
       height:10vh;
-      width: 100vw;
+      width: 96vw;
     }
     #algorithm_div{
       width:100vw;
       position: relative;
-      align:center;
       background-color: #000000;
     }
     #original_link_stream_to_process{
       position: relative;
-      width:22vw;
+      width:23vw;
       height:50vh;
       float:left;
       display: none;
       resize:none;
+      overflow-y: scroll; 
       font-size:3vw;
       background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #gamma_link_stream_to_process{
       position: relative;
-      width:22vw;
+      width:23vw;
       height:50vh;
       float:left;
       display: none;
       resize:none;
+      overflow-y: scroll; 
       font-size:3vw;
       background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #greedy_gamma_link_stream_to_process {
       position: relative;
-      width:22vw;
+      width:23vw;
       height:50vh;
       float:left;
       display: none;
       resize:none;
+      overflow-y: scroll; 
       font-size:3vw;
       background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #kernel_gamma_link_stream_to_process{
       position: relative;
-      width:22vw;
+      width:23vw;
       height:50vh;
       float:left;
       display: none;
       resize:none;
+      overflow-y: scroll; 
       font-size:3vw;
       background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #original_link_stream_edges_counter{
       z-index: 10;
-      width:30vw;
+      width:50vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -240,7 +245,7 @@
     }
     #gamma_link_stream_edges_counter{
       z-index: 10;
-      width:30vw;
+      width:25vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -248,7 +253,7 @@
     }
     #approx_link_stream_edges_counter{
       z-index: 10;
-      width:30vw;
+      width:25vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -256,7 +261,7 @@
     }
     #kernel_link_stream_edges_counter{
       z-index: 10;
-      width:30vw;
+      width:25vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -458,12 +463,11 @@
     #algorithm_div{
       width:100vw;
       position: relative;
-      align:center;
       background-color: #000000;
     }
     #original_link_stream_to_process{
       position: relative;
-      width:23vw;
+      width:20vw;
       height:55vh;
       float:left;
       display: none;
@@ -474,7 +478,7 @@
     }
     #gamma_link_stream_to_process{
       position: relative;
-      width:23vw;
+      width:20vw;
       height:55vh;
       float:left;
       display: none;
@@ -485,7 +489,7 @@
     }
     #greedy_gamma_link_stream_to_process {
       position: relative;
-      width:23vw;
+      width:20vw;
       height:55vh;
       float:left;
       display: none;
@@ -496,7 +500,7 @@
     }
     #kernel_gamma_link_stream_to_process{
       position: relative;
-      width:23vw;
+      width:20vw;
       height:55vh;
       float:left;
       display: none;
@@ -507,7 +511,7 @@
     }
     #original_link_stream_edges_counter{
       z-index: 10;
-      width:23vw;
+      width:16vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -515,7 +519,7 @@
     }
     #gamma_link_stream_edges_counter{
       z-index: 10;
-      width:23vw;
+      width:16vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -523,7 +527,7 @@
     }
     #approx_link_stream_edges_counter{
       z-index: 10;
-      width:23vw;
+      width:16vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -531,7 +535,7 @@
     }
     #kernel_link_stream_edges_counter{
       z-index: 10;
-      width:23vw;
+      width:16vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -1370,8 +1374,8 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
 }
       
       
-    loop();
-    launch();
+loop();
+launch();
     
     
   </script>
