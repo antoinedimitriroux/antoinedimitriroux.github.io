@@ -257,9 +257,10 @@ function clean_original_link_stream_txt(txt){
         link_stream_composante.list_edges = composantes_connexes[z];
 
 
-        var approx_composante = gamma_to_2approx_link_stream_MAX(link_stream_composante,100);
+        var approx_composante = gamma_to_2approx_link_stream_MAX(link_stream_composante,1);
 
         var kernel_composante = approx_to_kernel(approx_composante);
+
         for (var zz = 0; zz < kernel_composante.list_edges.length; zz++){kernel_link_stream.list_edges.push(kernel_composante.list_edges[zz]);}
 
       }
