@@ -1158,20 +1158,16 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           document.getElementById("kernel_link_stream_edges_counter").innerHTML = "Kernel</br>" + kernel_link_stream.list_edges.length + " edges";
           
           var txt_original_link_stream = "";
-          console.log("original_link_stream.list_edges.length: " + original_link_stream.list_edges.length);
           for (var i = 0; i < original_link_stream.list_edges.length; i++){
             txt_original_link_stream +=   original_link_stream.list_edges[i][2] + " " +
                                           original_link_stream.list_edges[i][0] + " " + 
                                           original_link_stream.list_edges[i][1] + "\n";
           }
           var txt_gamma_link_stream = "";
-          console.log("gamma_link_stream.list_edges.length: " + gamma_link_stream.list_edges.length);
           for (var i = 0; i < gamma_link_stream.list_edges.length; i++){
             txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][2] + " " +
                                       gamma_link_stream.list_edges[i][0] + " " + 
                                       gamma_link_stream.list_edges[i][1] + "\n";
-            console.log("gamma: " + i);
-            console.log(txt_gamma_link_stream);
           }
           var txt_two_approx_link_stream = "";
           for (var i = 0; i < two_approx_link_stream.list_edges.length; i++){
@@ -1277,13 +1273,6 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       var u = parseInt(t_u_v_txt[1]);
       var v = parseInt(t_u_v_txt[2]);
       
-      console.log("line_number: " + line_number);
-      console.log("line_value: " + line_clicked_value);
-      console.log("t: " + t);
-      console.log("u: " + u);
-      console.log("v: " + v);
-      console.log(" ");
-      
       var textarea_original_link_stream_to_process_value_split = textarea_original_link_stream_to_process.value.split("\n");
       for (var i = 0; i < textarea_original_link_stream_to_process_value_split.length; i++){
         textarea_original_link_stream_to_process_value_split[i] = textarea_original_link_stream_to_process_value_split[i].split("<")[0];
@@ -1292,7 +1281,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         var t_2 = t_u_v_txt_2[0];
         var u_2 = t_u_v_txt_2[1];
         var v_2 = t_u_v_txt_2[2];
-        if (u == u_2 && v == v_2 && t_2 - t > 0 && t_2 - t < gamma){
+        if (u == u_2 && v == v_2 && t_2 - t >= 0 && t_2 - t < gamma){
           textarea_original_link_stream_to_process_value_split[i] += " <";
         }
       }
