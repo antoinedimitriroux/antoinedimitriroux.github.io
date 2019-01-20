@@ -136,7 +136,7 @@ function clean_original_link_stream_txt(txt){
                                     t_min:gamma_link_stream.t_min,
                                     t_max:gamma_link_stream.t_max};
         var list_edges_gamma_copy = gamma_link_stream.list_edges.slice(0,gamma_link_stream.list_edges.length);
-        list_edges_gamma_copy.sort(sortNumber);
+        list_edges_gamma_copy.sort(shuffleNumber);
         approx_link_stream = {    list_edges:[],
                                   list_incompatibles:[],
                                   teams:gamma_link_stream.teams,
@@ -178,7 +178,7 @@ function clean_original_link_stream_txt(txt){
                                     t_min:gamma_link_stream.t_min,
                                     t_max:gamma_link_stream.t_max};
         var list_edges_gamma_copy = gamma_link_stream.list_edges.slice(0,gamma_link_stream.list_edges.length);
-        list_edges_gamma_copy.sort(sortNumber);
+        list_edges_gamma_copy.sort(shuffleNumber);
         approx_link_stream = {    list_edges:[],
                                   list_incompatibles:[],
                                   teams:gamma_link_stream.teams,
