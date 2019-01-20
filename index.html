@@ -1275,7 +1275,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       
       var textarea_original_link_stream_to_process_value_split = textarea_original_link_stream_to_process.value.split("\n");
       for (var i = 0; i < textarea_original_link_stream_to_process_value_split.length; i++){
-        textarea_original_link_stream_to_process_value_split[i] = textarea_original_link_stream_to_process_value_split[i].split("<")[0];
+        textarea_original_link_stream_to_process_value_split[i] = textarea_original_link_stream_to_process_value_split[i].split(" <")[0];
         var t_u_v_txt_2 = textarea_original_link_stream_to_process_value_split[i].split(" ");
         
         var t_2 = t_u_v_txt_2[0];
@@ -1307,7 +1307,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       var textarea_gamma_link_stream_to_process_value_split = textarea_gamma_link_stream_to_process.value.split("\n");
       
       for (var i = 0; i < textarea_gamma_link_stream_to_process_value_split.length; i++){
-        textarea_gamma_link_stream_to_process_value_split[i] = textarea_gamma_link_stream_to_process_value_split[i].split("!")[0];
+        textarea_gamma_link_stream_to_process_value_split[i] = textarea_gamma_link_stream_to_process_value_split[i].split(" !")[0];
         var t_u_v_txt_2 = textarea_gamma_link_stream_to_process_value_split[i].split(" ");
         
         var t_2 = t_u_v_txt_2[0];
@@ -1316,19 +1316,11 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         
         if ((u_2 == u || v_2 === v) && Math.abs(t_2 - t) < gamma){
           textarea_gamma_link_stream_to_process_value_split[i] += " !";
-          console.log("true: " + t + " " + u + " " + v);
-          console.log("true: " + t_2 + " " + u_2 + " " + v_2);
-          console.log(" ");
-        }
-        else{
-          console.log("false: " + t + " " + u + " " + v);
-          console.log("false: " + t_2 + " " + u_2 + " " + v_2);
-          console.log(" ");
         }
       }
-      textarea_gamma_link_stream_to_process_value_split.value = "";
+      textarea_gamma_link_stream_to_process.value = "";
       for (var i = 0; i < textarea_gamma_link_stream_to_process_value_split.length; i++){
-        textarea_gamma_link_stream_to_process_value_split.value += textarea_gamma_link_stream_to_process_value_split[i] + "\n";
+        textarea_gamma_link_stream_to_process.value += textarea_gamma_link_stream_to_process_value_split[i] + "\n";
       }
       
       
