@@ -145,12 +145,12 @@ function clean_original_link_stream_txt(txt){
       return true;
     }
     function sort_edges_by_time(a,b) {
-      if (a[2] < b[2]) {return -1;}
-      if (a[2] > b[2]) {return 1;}
       if (a[0] < b[0]) {return -1;}
       if (a[0] > b[0]) {return 1;}
       if (a[1] < b[1]) {return -1;}
       if (a[1] > b[1]) {return 1;}
+      if (a[2] < b[2]) {return -1;}
+      if (a[2] > b[2]) {return 1;}
       return 0;
     }
 
