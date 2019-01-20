@@ -684,6 +684,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
 5 1 3
       </textarea>
     </div>
+
     <div id="algorithm_div" class="tabcontent">
       <label id="gamma_value_explained" style="z-index:-1;font-size:4vw;color:#ffffff;"></label>
       <div id = "no_link_stream_alert_message" class="alert_import">
@@ -692,26 +693,31 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         You can generate one with the "Generator" tab,</br>
         or paste your own one with the "import" tab.</br></br>
         Come back when it's done! :)
-      </div> 
-      <textarea id="original_link_stream_to_process" title="the original link stream" readonly>
-      </textarea>
-      <textarea id="gamma_link_stream_to_process" title="the gamma link stream" readonly>
-      </textarea>  
-      <textarea id="greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" readonly>
-      </textarea> 
-      <textarea id="kernel_gamma_link_stream_to_process"title="the kernel of the optimal temporal matching" readonly>
-      </textarea>
-      </br>
-      <label id="original_link_stream_edges_counter" style="z-index:-1;font-size:4vw;color:#ffffff;
+      </div>
+      <div>
+        <textarea id="original_link_stream_to_process" title="the original link stream" readonly>
+        </textarea>
+        <label id="original_link_stream_edges_counter" style="z-index:-1;font-size:4vw;color:#ffffff;
+        width:16vw;" ></br></label> 
+      </div>
+      <div>
+        <textarea id="gamma_link_stream_to_process" title="the gamma link stream" readonly>
+        </textarea>
+        <label id="gamma_link_stream_edges_counter" style="z-index:-1;font-size:4vw;color:#ffffff;
+        width:16vw;" ></br></label> 
+      </div>
+      <div>
+        <textarea id="greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" readonly>
+        </textarea>
+        <label id="approx_link_stream_edges_counter" style="z-index:-1;font-size:4vw;color:#ffffff;
       width:16vw;" ></br></label> 
-      <label id="gamma_link_stream_edges_counter" style="z-index:-1;font-size:4vw;color:#ffffff;
-      width:16vw;" ></br></label> 
-      <label id="approx_link_stream_edges_counter" style="z-index:-1;font-size:4vw;color:#ffffff;
-      width:16vw;" ></br></label> 
-      <label id="kernel_link_stream_edges_counter" style="z-index:-1;font-size:4vw;color:#ffffff;
+      <div>
+        <textarea id="kernel_gamma_link_stream_to_process"title="the kernel of the optimal temporal matching" readonly>
+        </textarea>
+        <label id="kernel_link_stream_edges_counter" style="z-index:-1;font-size:4vw;color:#ffffff;
       width:16vw;" ></br></label>
+      </div>
     </div>
-  <!--/div-->
 
 
 
