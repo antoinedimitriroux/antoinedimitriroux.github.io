@@ -1316,6 +1316,10 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         
         if ((u_2 === u || v_2 === v) && Math.abs(t_2 - t) < gamma){
           textarea_gamma_link_stream_to_process_value_split[i] += " !";
+          console.log("true: " + t_2 + " " + u_2 + " " + v_2);
+        }
+        else{
+          console.log("false: " + t_2 + " " + u_2 + " " + v_2);
         }
       }
       textarea_gamma_link_stream_to_process_value_split.value = "";
