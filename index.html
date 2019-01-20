@@ -608,10 +608,10 @@
       <div id = "alert_txt_linkstream_div" class="alert_txt_linkstream">
         <span class="closebtn" onclick="close_alert_txt_linkstream()" >&times;</span> 
         This is where you can import your link-streams. They have to respect this formalism</br>
-        a b t_0</br>
-        a b t_1</br>
-        a c t_2</br>
-        b c t_2</br>
+        t_0 a b</br>
+        t_1 a b</br>
+        t_2 a c</br>
+        t_2 b c</br>
         ...</br>
         where a,b,c,d represent the labels of the edges and t_0,t_1,t_2... the time stamps of the edges.</br></br>
         The edges can be in total disorder (on time or labels dimensions).</br>
@@ -921,7 +921,7 @@
                   var nouvelle_collision = [equipes[i][ii], equipes[j][jj]];
                   collision_equipe_i_j = true;
                   collisions_array.push([equipes[i][ii], equipes[j][jj]]);
-                  txt_link_stream_last_tick += i + " " + j + " " + tick + "\n";
+                  txt_link_stream_last_tick += tick + " " + i + " " + j + "\n";
                   nombre_lignes++;
                 }
                 if (contacts){
@@ -955,7 +955,7 @@
             gamma_array[i][j]++;
             if (gamma_array[i][j] >= gamma){
               gamma_collisions.push([i,j,tick-gamma+1]);
-              txt_gamma_link_stream_last_tick += i + " " + j + " " + (tick-gamma+1) + "\n";
+              txt_gamma_link_stream_last_tick += (tick-gamma+1) + " " + i + " " + j + "\n";
               nombre_gamma_aretes++;
             }
           }
