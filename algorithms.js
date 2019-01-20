@@ -257,7 +257,7 @@ function clean_original_link_stream_txt(txt){
         link_stream_composante.list_edges = composantes_connexes[z];
 
 
-        var approx_composante = gamma_to_2approx_link_stream_MAX(link_stream_composante,1);
+        var approx_composante = gamma_to_2approx_link_stream(link_stream_composante);
 
         var kernel_composante = approx_to_kernel(approx_composante);
 
