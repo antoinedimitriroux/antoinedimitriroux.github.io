@@ -921,7 +921,7 @@
                   var nouvelle_collision = [equipes[i][ii], equipes[j][jj]];
                   collision_equipe_i_j = true;
                   collisions_array.push([equipes[i][ii], equipes[j][jj]]);
-                  txt_link_stream_last_tick += tick + " " + i + " " + j + "\n";
+                  txt_link_stream_last_tick += i + " " + j + " " + tick + "\n";
                   nombre_lignes++;
                 }
                 if (contacts){
@@ -955,7 +955,7 @@
             gamma_array[i][j]++;
             if (gamma_array[i][j] >= gamma){
               gamma_collisions.push([i,j,tick-gamma+1]);
-              txt_gamma_link_stream_last_tick += (tick-gamma+1) + " " + i + " " + j + "\n";
+              txt_gamma_link_stream_last_tick += i + " " + j + " " + (tick-gamma+1) + "\n";
               nombre_gamma_aretes++;
             }
           }
