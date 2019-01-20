@@ -12,9 +12,9 @@ function clean_original_link_stream_txt(txt){
       var parsed_link_stream = txt.split("\n");
       for (var i = 0; i < parsed_link_stream.length; i++){
         var edge_txt = parsed_link_stream[i].split(" ");
-        var u = parseInt(edge_txt[0]);
-        var v = parseInt(edge_txt[1]);
-        var t = parseInt(edge_txt[2]);
+        var t = parseInt(edge_txt[0]);
+        var u = parseInt(edge_txt[1]);
+        var v = parseInt(edge_txt[2]);
         if (t > t_max){t_max = t;}
         if (t < t_min){t_min = t;}
         if (!teams.includes(u)){teams.push(u);}
@@ -61,9 +61,9 @@ function clean_original_link_stream_txt(txt){
       var last_v = -1;
       var last_t = original.t_max;
       for (var i = 0; i < original.list_edges.length; i++){
-        var u = original.list_edges[i][0];
-        var v = original.list_edges[i][1];
-        var t = original.list_edges[i][2];
+        var t = original.list_edges[i][0];
+        var u = original.list_edges[i][1];
+        var v = original.list_edges[i][2];
         if (u == last_u && v == last_v && t == last_t + 1){
           gamma_counter++;
         }
