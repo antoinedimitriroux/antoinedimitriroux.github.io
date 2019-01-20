@@ -53,10 +53,11 @@
         color: green;
     }
     .tab {
-        width:96.35vw;
         height:6vh;
         top: 0vw;
         bottom: 0vw;
+        left:1.875vw;
+        right:1.875vw;
         background-color: #000000;
         border: 0vw solid #cccccc;
         z-index:-2;
@@ -87,16 +88,19 @@
       border-top: none;
     }
     #main_div{
-      width:96vw;
-      height:96vh;
+      position:relative;
+      top:0vw;
+      bottom:0vw;
+      left:0vw;
+      right:0vw;
       background-color: #000000;
     }
     #generator_div {
+      position: relative;
       top: 0vw;
       bottom: 0vw;
       left: 0vw;
       right: 0vw;
-      position: relative;
       display: table-cell;
     }
     #button_charts{
@@ -116,12 +120,11 @@
       font-size: 3vh;
     }
     #canvas_1 {
-      width:96vw;
-      height:66vh;
-      float: left;
-      clear: left;
-      vertical-align: center;
-      border: 0.1vw solid #cccccc;
+      position: relative;
+      top: 0vw;
+      bottom: 0vw;
+      left: 0vw;
+      right: 0vw;
     }
     #compteur_lignes {
       width:95vw;
@@ -134,11 +137,11 @@
     }
     #import_div {
       height:90vh;
-      width:60vw;
+      width:100vw;
       font-size: 1vw;
     }
     #link_stream_copy_past{
-      width:95vw;
+      width:100vw;
       height:90vh;
       resize: none;
       font-size:5vw;
