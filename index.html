@@ -604,7 +604,8 @@
       <div id="import_div" class="tabcontent">
       <button id="bouton_pasted_export" title="Export the link-stream above" onclick="export_pasted_txt_link_stream()">&#8593;</button>
       <button id="bouton_help_export" title="Explanations on how to import a link-stream" onclick="display_alert_txt_linkstream()">?</button>
-      <span class="closebtn" onclick="close_alert_txt_linkstream()" >&times;</span> 
+      <div>
+        <span class="closebtn" onclick="close_alert_txt_linkstream()" >&times;</span> 
         <textarea id = "alert_txt_linkstream_div" class="alert_txt_linkstream">
           This is where you can import your link-streams. They have to respect this formalism</br>
           t_0 a b
@@ -617,7 +618,8 @@
           The edges can be in total disorder (on time or labels dimensions).
           You can replace the values already typed here, it is just example of a link-stream with 50 edges.
           If you want to change the gamma value, you can do it in the Generator tab, by clicking on the Gear icon.
-      </textarea> 
+        </textarea> 
+      </div>
       <textarea id="link_stream_copy_past">
 0 0 1
 0 0 2
