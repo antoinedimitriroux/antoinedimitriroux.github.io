@@ -1287,11 +1287,14 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       var textarea_original_link_stream_to_process_value_split = textarea_original_link_stream_to_process.value.split("\n");
       for (var i = 0; i < textarea_original_link_stream_to_process_value_split.length; i++){
         var t_u_v_txt_2 = textarea_original_link_stream_to_process_value_split[i].split(" ");
+        if (t_u_v_txt_2[t_u_v_txt_2.length-1] == "<"){
+          t_u_v_txt_2 = t_u_v_txt_2.split("<")[0];
+        }
         var t_2 = t_u_v_txt_2[0];
         var u_2 = t_u_v_txt_2[1];
         var v_2 = t_u_v_txt_2[2];
-        if (u == u_2 && v == v_2 && Math.abs(t_2 - t) < gamma){
-          textarea_original_link_stream_to_process_value_split[i] += " <-";
+        if (u == u_2 && v == v_2 && t_2 - t > 0 && t_2 - t < gamma){
+          textarea_original_link_stream_to_process_value_split[i] += " <";
         }
       }
       textarea_original_link_stream_to_process.value = "";
