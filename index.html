@@ -714,6 +714,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
 
 
   <script type="text/javascript">
+    var affichage_message_alerte = false;
     var computer_or_mobile = true;
     var multiplication_rayon_leader = 16;
     var nombre_de_leaders = 1;
@@ -1213,7 +1214,13 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       document.getElementById("alert_txt_linkstream_div").style.display='none';
     }
     function display_alert_txt_linkstream(){
-      document.getElementById("alert_txt_linkstream_div").style.display='table-cell';
+      affichage_message_alerte = !affichage_message_alerte;
+      if (affichage_message_alerte){
+        document.getElementById("alert_txt_linkstream_div").style.display='table-cell';
+      }
+      else{
+        document.getElementById("alert_txt_linkstream_div").style.display='none';
+      }
     }
     function setChoixPredefini(){
       choix_predefini = document.getElementById("choix_predefini").value
