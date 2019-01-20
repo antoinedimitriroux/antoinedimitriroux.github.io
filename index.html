@@ -200,6 +200,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #gamma_link_stream_to_process{
       position: relative;
@@ -210,6 +211,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #greedy_gamma_link_stream_to_process {
       position: relative;
@@ -220,6 +222,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #kernel_gamma_link_stream_to_process{
       position: relative;
@@ -230,6 +233,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #original_link_stream_edges_counter{
       z-index: 10;
@@ -245,7 +249,7 @@
       height: 5vh;
       float:left;
       text-align:center;
-      font-size:3vw;   
+      font-size:3vw;
     }
     #approx_link_stream_edges_counter{
       z-index: 10;
@@ -271,6 +275,8 @@
       font-family: Arial, Helvetica, sans-serif;
       font-size:3vw;
     }
+    
+    
   }
   @media screen and (orientation:landscape) {
     body {
@@ -468,6 +474,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #gamma_link_stream_to_process{
       position: relative;
@@ -478,6 +485,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #greedy_gamma_link_stream_to_process {
       position: relative;
@@ -488,6 +496,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #kernel_gamma_link_stream_to_process{
       position: relative;
@@ -498,6 +507,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #original_link_stream_edges_counter{
       z-index: 10;
@@ -1263,15 +1273,19 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       var line_clicked_value = lines_value[lines_value.length-1];
       var line_number = lines_value.length;
       var t_u_v_txt = line_clicked_value.split(" ");
-      var t = parseInt(t_u_v_txt[0])
-      var u = parseInt(t_u_v_txt[1])
+      var t = parseInt(t_u_v_txt[0]);
+      var u = parseInt(t_u_v_txt[1]);
       var v = parseInt(t_u_v_txt[2]);
+      
       console.log("line_number: " + line_number);
       console.log("line_value: " + line_clicked_value);
       console.log("t: " + t);
       console.log("u: " + u);
       console.log("v: " + v);
       console.log(" ");
+      
+      //textarea_original_link_stream_to_process
+      
     }
 
 
