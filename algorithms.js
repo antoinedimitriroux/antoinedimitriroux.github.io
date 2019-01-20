@@ -61,9 +61,9 @@ function clean_original_link_stream_txt(txt){
       var last_v = -1;
       var last_t = original.t_max;
       for (var i = 0; i < original.list_edges.length; i++){
-        var t = original.list_edges[i][0];
-        var u = original.list_edges[i][1];
-        var v = original.list_edges[i][2];
+        var u = original.list_edges[i][0];
+        var v = original.list_edges[i][1];
+        var t = original.list_edges[i][2];
         if (u == last_u && v == last_v && t == last_t + 1){
           gamma_counter++;
         }
