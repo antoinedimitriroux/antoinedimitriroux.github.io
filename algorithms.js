@@ -12,19 +12,21 @@ function clean_original_link_stream_txt(txt){
       var parsed_link_stream = txt.split("\n");
       for (var i = 0; i < parsed_link_stream.length; i++){
         var edge_txt = parsed_link_stream[i].split(" ");
-        var t = parseInt(edge_txt[0]);
-        var edge_1 = parseInt(edge_txt[1]);
-        var edge_2 = parseInt(edge_txt[2]);
-        var u = Math.min(edge_1,edge_2);
-        var v = Math.max(edge_1,edge_2);
-        if (t > t_max){t_max = t;}
-        if (t < t_min){t_min = t;}
-        if (!teams.includes(u)){teams.push(u);}
-        if (!teams.includes(v)){teams.push(v);}
-        if (array_edges[u] == null){array_edges[u] = [];}
-        if (array_edges[u][v] == null){array_edges[u][v] = [];}
-        if (!array_edges[u][v].includes(parseInt(t))){
-          array_edges[u][v].push(parseInt(t));
+        if (edge_txt.length == 3){
+              var t = parseInt(edge_txt[0]);
+              var edge_1 = parseInt(edge_txt[1]);
+              var edge_2 = parseInt(edge_txt[2]);
+              var u = Math.min(edge_1,edge_2);
+              var v = Math.max(edge_1,edge_2);
+              if (t > t_max){t_max = t;}
+              if (t < t_min){t_min = t;}
+              if (!teams.includes(u)){teams.push(u);}
+              if (!teams.includes(v)){teams.push(v);}
+              if (array_edges[u] == null){array_edges[u] = [];}
+              if (array_edges[u][v] == null){array_edges[u][v] = [];}
+              if (!array_edges[u][v].includes(parseInt(t))){
+                array_edges[u][v].push(parseInt(t));
+              }
         }
       }
       function sortNumber(a,b) {
