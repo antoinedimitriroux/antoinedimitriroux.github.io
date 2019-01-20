@@ -708,10 +708,6 @@
 
 
   <script type="text/javascript">
-
-
-
-
     var computer_or_mobile = true;
     var multiplication_rayon_leader = 16;
     var nombre_de_leaders = 1;
@@ -720,7 +716,6 @@
       document.getElementById("canvas_1").style.height = "79vh";
     }
     var seed = 3746.0000;
-
     var choix_predefini = 0;
     var gamma;
     var nombre_equipes;
@@ -772,13 +767,7 @@
     var d = new Date();
     var time = d.getTime();
     var pause = true;
-
     window.onresize = launch;
-
-
-
-
-
     function launch(){
     //  pause = false;
       tick = 0;
@@ -790,7 +779,6 @@
       txt_gamma_link_stream_last_tick = "";
       gamma_collisions = [];
       gamma_array = [];
-
       if (document.getElementById("number_leader_value").value > 0){nombre_de_leaders = document.getElementById("number_leader_value").value;}
       if (document.getElementById("choix_predefini").value > 0){choix_predefini = document.getElementById("choix_predefini").value;}
       if (document.getElementById("seed_value").value > 0){seed = parseInt(document.getElementById("seed_value").value);}      
@@ -936,8 +924,6 @@
                   txt_link_stream_last_tick += tick + " " + i + " " + j + "\n";
                   nombre_lignes++;
                 }
-
-
                 if (contacts){
                   //permet de les empêcher de se rentrer dedans
                   equipes[i][ii].dx = (equipes[i][ii].x - equipes[j][jj].x) / rayon * 2;
@@ -953,14 +939,8 @@
           if (collision_equipe_i_j){
             gamma_array[i][j]++;
             if (gamma_array[i][j] >= gamma){
-              
-              console.log("bug");
-              console.log("bug");
-              console.log("bug");
-              console.log("bug");
-              gamma_collisions.push([tick-gamma+1,i,j]);
-              console.log("bug");
-            //  txt_gamma_link_stream_last_tick += (tick-gamma+1) + " " i + " " + j + "\n";
+              gamma_collisions.push([i,j,tick-gamma+1]);
+              txt_gamma_link_stream_last_tick += (tick-gamma+1) + " " + i + " " + j + "\n";
               nombre_gamma_aretes++;
             }
           }
@@ -1070,6 +1050,12 @@
       ctx.stroke();
     }
     function refreshText() {
+      //  textarea_link_stream.value = txt_link_stream;
+      //  textarea_link_stream.value = txt_link_stream_last_tick;
+      //  textarea_link_stream.scrollTop = textarea_link_stream.scrollHeight;
+      //  textarea_gamma_aretes.value = txt_gamma_link_stream;
+      //  textarea_gamma_aretes.value = txt_gamma_link_stream_last_tick;
+      //  textarea_gamma_aretes.scrollTop = textarea_gamma_aretes.scrollHeight;
         textarea_compteur_lignes.value = tick + " ticks   " + nombre_lignes + " edges   " + nombre_gamma_aretes + " gamma-edges ";
     }
     function display_or_not(){
@@ -1137,47 +1123,49 @@
           openTab("import_div");
         }
         else{
-
           var original_link_stream = clean_original_link_stream_txt(txt_link_stream);
           var gamma_link_stream = original_to_gamma_link_stream(original_link_stream,gamma);
           original_link_stream.list_edges.sort(sort_edges_by_time);
           gamma_link_stream.list_edges.sort(sort_edges_by_time);
           var two_approx_link_stream = gamma_to_2approx_link_stream(gamma_link_stream);
           var kernel_link_stream = approx_to_kernel(two_approx_link_stream);
-
           document.getElementById("gamma_value_explained").innerHTML = "Here, gamma = " + gamma + ". If you want to change this value, you can go in the Generator tab, then go in the paramaters (gear icon).";
-
+     //     var kernel_link_stream = improved_kernel(gamma_link_stream);
+          /*
+          original_link_stream.list_edges.sort(sort_edges_by_time);
+          gamma_link_stream.list_edges.sort(sort_edges_by_time);
+          two_approx_link_stream.list_edges.sort(sort_edges_by_time);
+          kernel_link_stream.list_edges.sort(sort_edges_by_time);
+          */
           document.getElementById("original_link_stream_edges_counter").innerHTML = "Original</br>" + original_link_stream.list_edges.length + " edges";
           document.getElementById("gamma_link_stream_edges_counter").innerHTML = "Gamma</br>" + gamma_link_stream.list_edges.length + " edges";
           document.getElementById("approx_link_stream_edges_counter").innerHTML = "2-approx</br>" + two_approx_link_stream.list_edges.length + " edges";
           document.getElementById("kernel_link_stream_edges_counter").innerHTML = "Kernel</br>" + kernel_link_stream.list_edges.length + " edges";
-
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length; i++){
-            txt_original_link_stream +=   original_link_stream.list_edges[i][2] + " " +
+            txt_original_link_stream +=   original_link_stream.list_edges[i][0] + " " +
                                           original_link_stream.list_edges[i][1] + " " + 
-                                          original_link_stream.list_edges[i][1] + "\n";
+                                          original_link_stream.list_edges[i][2] + "\n";
           }
           for (var i = 0; i < gamma_link_stream.list_edges.length; i++){
-            txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][2] + " " +
+            txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][0] + " " +
                                       gamma_link_stream.list_edges[i][1] + " " + 
-                                      gamma_link_stream.list_edges[i][1] + "\n";
+                                      gamma_link_stream.list_edges[i][2] + "\n";
           }
           var txt_two_approx_link_stream = "";
           for (var i = 0; i < two_approx_link_stream.list_edges.length; i++){
-            txt_two_approx_link_stream +=   two_approx_link_stream.list_edges[i][2] + " " +
-                                            two_approx_link_stream.list_edges[i][0] + " " + 
-                                            two_approx_link_stream.list_edges[i][1] + "\n";
+            txt_two_approx_link_stream +=   two_approx_link_stream.list_edges[i][0] + " " +
+                                            two_approx_link_stream.list_edges[i][1] + " " + 
+                                            two_approx_link_stream.list_edges[i][2] + "\n";
           }
           var txt_kernel_link_stream = "";
           for (var i = 0; i < kernel_link_stream.list_edges.length; i++){
-            txt_kernel_link_stream +=   kernel_link_stream.list_edges[i][2] + " " +
-                                        kernel_link_stream.list_edges[i][0] + " " + 
-                                        kernel_link_stream.list_edges[i][1] + "\n";
+            txt_kernel_link_stream +=   kernel_link_stream.list_edges[i][0] + " " +
+                                        kernel_link_stream.list_edges[i][1] + " " + 
+                                        kernel_link_stream.list_edges[i][2] + "\n";
           }
           
           document.getElementById("no_link_stream_alert_message").style.display='none';
-
           textarea_original_link_stream_to_process.value = txt_original_link_stream;
           textarea_original_link_stream_to_process.style.display = 'table-cell';
           
@@ -1186,7 +1174,6 @@
           
           textarea_greedy_gamma_link_stream_to_process.value = txt_two_approx_link_stream;
           textarea_greedy_gamma_link_stream_to_process.style.display = 'table-cell';
-
           textarea_kernel_gamma_link_stream_to_process.value = txt_kernel_link_stream;
           textarea_kernel_gamma_link_stream_to_process.style.display = 'table-cell';
           
@@ -1237,7 +1224,6 @@
         document.getElementById("teams_value").value = 80;
         document.getElementById("disksteam_value").value = 1;
         document.getElementById("rayon_value").value = 10;
-
         document.getElementById("multiplication_rayon_leader_value").style.display = "inline";
         document.getElementById("multiplication_rayon_leader_label").style.display = "inline";
         document.getElementById("number_leader_value").style.display = "inline";
@@ -1298,9 +1284,6 @@
     loop();
     launch();
     
-
-
-
     
   </script>
 </body>
