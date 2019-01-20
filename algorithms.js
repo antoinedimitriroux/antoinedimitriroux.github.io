@@ -12,9 +12,9 @@ function clean_original_link_stream_txt(txt){
       var parsed_link_stream = txt.split("\n");
       for (var i = 0; i < parsed_link_stream.length; i++){
         var edge_txt = parsed_link_stream[i].split(" ");
-        var t = parseInt(edge_txt[0]);
-        var u = parseInt(edge_txt[1]);
-        var v = parseInt(edge_txt[2]);
+        var u = parseInt(edge_txt[0]);
+        var v = parseInt(edge_txt[1]);
+        var t = parseInt(edge_txt[2]);
         if (t > t_max){t_max = t;}
         if (t < t_min){t_min = t;}
         if (!teams.includes(u)){teams.push(u);}
