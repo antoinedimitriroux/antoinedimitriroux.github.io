@@ -1218,9 +1218,11 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
     function display_alert_txt_linkstream(){
       affichage_message_alerte = !affichage_message_alerte;
       if (affichage_message_alerte){
+        document.getElementById("bouton_help_export").innerHTML = "X";
         document.getElementById("alert_txt_linkstream_div").style.display='table-cell';
       }
       else{
+        document.getElementById("bouton_help_export").innerHTML = "?";
         document.getElementById("alert_txt_linkstream_div").style.display='none';
       }
     }
