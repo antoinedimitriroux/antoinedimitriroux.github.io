@@ -1305,10 +1305,8 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       console.log("t:" + t + " u:" + u + " v:" + v);
       
       var textarea_gamma_link_stream_to_process_value_split = textarea_gamma_link_stream_to_process.value.split("\n");
-      console.log("longueur: " + textarea_gamma_link_stream_to_process_value_split.length);
       
       for (var i = 0; i < textarea_gamma_link_stream_to_process_value_split.length; i++){
-        console.log("i: " + i);
         textarea_gamma_link_stream_to_process_value_split[i] = textarea_gamma_link_stream_to_process_value_split[i].split("!")[0];
         var t_u_v_txt_2 = textarea_gamma_link_stream_to_process_value_split[i].split(" ");
         
@@ -1318,10 +1316,6 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         
         if ((u_2 === u || v_2 === v) && Math.abs(t_2 - t) < gamma){
           textarea_gamma_link_stream_to_process_value_split[i] += " !";
-         console.log("true: " + "t:" + t + " u:" + u + " v:" + v);
-        }
-        else{
-          console.log("false: " + "t:" + t + " u:" + u + " v:" + v);
         }
       }
       textarea_gamma_link_stream_to_process_value_split.value = "";
