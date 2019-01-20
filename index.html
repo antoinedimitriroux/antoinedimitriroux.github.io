@@ -1144,12 +1144,14 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           document.getElementById("gamma_link_stream_edges_counter").innerHTML = "Gamma</br>" + gamma_link_stream.list_edges.length + " edges";
           document.getElementById("approx_link_stream_edges_counter").innerHTML = "2-approx</br>" + two_approx_link_stream.list_edges.length + " edges";
           document.getElementById("kernel_link_stream_edges_counter").innerHTML = "Kernel</br>" + kernel_link_stream.list_edges.length + " edges";
+          
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length; i++){
             txt_original_link_stream +=   original_link_stream.list_edges[i][2] + " " +
                                           original_link_stream.list_edges[i][0] + " " + 
                                           original_link_stream.list_edges[i][1] + "\n";
           }
+          var txt_gamma_link_stream = "";
           for (var i = 0; i < gamma_link_stream.list_edges.length; i++){
             txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][2] + " " +
                                       gamma_link_stream.list_edges[i][0] + " " + 
