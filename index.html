@@ -921,7 +921,7 @@
                   var nouvelle_collision = [equipes[i][ii], equipes[j][jj]];
                   collision_equipe_i_j = true;
                   collisions_array.push([equipes[i][ii], equipes[j][jj]]);
-                  txt_link_stream_last_tick += i + " " + j + " " + tick + "\n";
+                  txt_link_stream_last_tick += tick + " " + i + " " + j + "\n";
                   nombre_lignes++;
                 }
                 if (contacts){
@@ -1158,26 +1158,26 @@
           document.getElementById("kernel_link_stream_edges_counter").innerHTML = "Kernel</br>" + kernel_link_stream.list_edges.length + " edges";
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length; i++){
-            txt_original_link_stream +=   original_link_stream.list_edges[i][0] + " " +
-                                          original_link_stream.list_edges[i][1] + " " + 
-                                          original_link_stream.list_edges[i][2] + "\n";
+            txt_original_link_stream +=   original_link_stream.list_edges[i][2] + " " +
+                                          original_link_stream.list_edges[i][0] + " " + 
+                                          original_link_stream.list_edges[i][1] + "\n";
           }
           for (var i = 0; i < gamma_link_stream.list_edges.length; i++){
-            txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][0] + " " +
-                                      gamma_link_stream.list_edges[i][1] + " " + 
-                                      gamma_link_stream.list_edges[i][2] + "\n";
+            txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][2] + " " +
+                                      gamma_link_stream.list_edges[i][0] + " " + 
+                                      gamma_link_stream.list_edges[i][1] + "\n";
           }
           var txt_two_approx_link_stream = "";
           for (var i = 0; i < two_approx_link_stream.list_edges.length; i++){
-            txt_two_approx_link_stream +=   two_approx_link_stream.list_edges[i][0] + " " +
-                                            two_approx_link_stream.list_edges[i][1] + " " + 
-                                            two_approx_link_stream.list_edges[i][2] + "\n";
+            txt_two_approx_link_stream +=   two_approx_link_stream.list_edges[i][2] + " " +
+                                            two_approx_link_stream.list_edges[i][0] + " " + 
+                                            two_approx_link_stream.list_edges[i][1] + "\n";
           }
           var txt_kernel_link_stream = "";
           for (var i = 0; i < kernel_link_stream.list_edges.length; i++){
-            txt_kernel_link_stream +=   kernel_link_stream.list_edges[i][0] + " " +
-                                        kernel_link_stream.list_edges[i][1] + " " + 
-                                        kernel_link_stream.list_edges[i][2] + "\n";
+            txt_kernel_link_stream +=   kernel_link_stream.list_edges[i][2] + " " +
+                                        kernel_link_stream.list_edges[i][0] + " " + 
+                                        kernel_link_stream.list_edges[i][1] + "\n";
           }
           
           document.getElementById("no_link_stream_alert_message").style.display='none';
