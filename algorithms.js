@@ -11,8 +11,9 @@ function clean_original_link_stream_txt(txt){
       var teams = [];
       var parsed_link_stream = txt.split("\n");
       for (var i = 0; i < parsed_link_stream.length; i++){
-        var edge_txt = parsed_link_stream[i].split(" ");
-        if (edge_txt.length == 3 && Number.isInteger(parseInt(edge_txt[0])) && Number.isInteger(parseInt(edge_txt[1])) && Number.isInteger(parseInt(edge_txt[2])){
+        if (parsed_link_stream[i] >= 6){
+            var edge_txt = parsed_link_stream[i].split(" ");
+            if (edge_txt.length == 3){
               var t = parseInt(edge_txt[0]);
               var edge_1 = parseInt(edge_txt[1]);
               var edge_2 = parseInt(edge_txt[2]);
@@ -27,6 +28,7 @@ function clean_original_link_stream_txt(txt){
               if (!array_edges[u][v].includes(parseInt(t))){
                 array_edges[u][v].push(parseInt(t));
               }
+          }
         }
       }
       function sortNumber(a,b) {
