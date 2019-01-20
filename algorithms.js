@@ -114,6 +114,93 @@ function clean_original_link_stream_txt(txt){
       }
       return approx_link_stream;
     }
+
+    function shuffleNumber(a,b) {
+        return Math.random() - 0.5;
+    }
+
+    function gamma_to_2approx_link_stream_MIN(gamma_link_stream,max_cpt){
+      var best_approx_link_stream = {  list_edges:[],
+                                        list_incompatibles:[],
+                                        teams:gamma_link_stream.teams,
+                                        t_min:gamma_link_stream.t_min,
+                                        t_max:gamma_link_stream.t_max};
+      
+      var counter = Infinity;
+      var cpt = 0;
+      while (cpt < cpt_max){
+        cpt++;
+        var approx_link_stream = {  list_edges:[],
+                                    list_incompatibles:[],
+                                    teams:gamma_link_stream.teams,
+                                    t_min:gamma_link_stream.t_min,
+                                    t_max:gamma_link_stream.t_max};
+        var list_edges_gamma_copy = gamma_link_stream.list_edges.slice(0,gamma_link_stream.list_edges.length);
+        list_edges_gamma_copy.sort(sortNumber);
+        approx_link_stream = {    list_edges:[],
+                                  list_incompatibles:[],
+                                  teams:gamma_link_stream.teams,
+                                  t_min:gamma_link_stream.t_min,
+                                  t_max:gamma_link_stream.t_max};
+        while (list_edges_gamma_copy.length > 0){
+          var edge = list_edges_gamma_copy.shift();
+          approx_link_stream.list_edges.push(edge);
+          for (var i = list_edges_gamma_copy.length - 1; i >= 0; i--){
+            if (!compatible_edges(edge,list_edges_gamma_copy[i])){
+              approx_link_stream.list_incompatibles.push(list_edges_gamma_copy[i]);
+              list_edges_gamma_copy.splice(i,1);
+            }
+          }
+        }
+        if (approx_link_stream.list_incompatibles.length < counter){
+          best_approx_link_stream = approx_link_stream;
+          counter = best_approx_link_stream.list_incompatibles.length;
+        }
+      }
+      return approx_link_stream;
+    }
+
+    function gamma_to_2approx_link_stream_MAX(gamma_link_stream,max_cpt){
+      var best_approx_link_stream = {  list_edges:[],
+                                        list_incompatibles:[],
+                                        teams:gamma_link_stream.teams,
+                                        t_min:gamma_link_stream.t_min,
+                                        t_max:gamma_link_stream.t_max};
+      
+
+      var counter = 0;
+      var cpt = 0;
+      while (cpt < cpt_max){
+        cpt++;
+        var approx_link_stream = {  list_edges:[],
+                                    list_incompatibles:[],
+                                    teams:gamma_link_stream.teams,
+                                    t_min:gamma_link_stream.t_min,
+                                    t_max:gamma_link_stream.t_max};
+        var list_edges_gamma_copy = gamma_link_stream.list_edges.slice(0,gamma_link_stream.list_edges.length);
+        list_edges_gamma_copy.sort(sortNumber);
+        approx_link_stream = {    list_edges:[],
+                                  list_incompatibles:[],
+                                  teams:gamma_link_stream.teams,
+                                  t_min:gamma_link_stream.t_min,
+                                  t_max:gamma_link_stream.t_max};
+        while (list_edges_gamma_copy.length > 0){
+          var edge = list_edges_gamma_copy.shift();
+          approx_link_stream.list_edges.push(edge);
+          for (var i = list_edges_gamma_copy.length - 1; i >= 0; i--){
+            if (!compatible_edges(edge,list_edges_gamma_copy[i])){
+              approx_link_stream.list_incompatibles.push(list_edges_gamma_copy[i]);
+              list_edges_gamma_copy.splice(i,1);
+            }
+          }
+        }
+        if (approx_link_stream.list_incompatibles.length > best_approx_link_stream.list_incompatibles.length){
+          best_approx_link_stream = approx_link_stream;
+        }
+      }
+      return approx_link_stream;
+    }
+
     function approx_to_kernel(approx_link_stream){
       var k = approx_link_stream.list_edges.length;
       var list_edges = approx_link_stream.list_edges;
@@ -170,7 +257,7 @@ function clean_original_link_stream_txt(txt){
         link_stream_composante.list_edges = composantes_connexes[z];
 
 
-        var approx_composante = gamma_to_2approx_link_stream(link_stream_composante);
+        var approx_composante = gamma_to_2approx_link_stream_MAX(link_stream_composante,100);
 
         var kernel_composante = approx_to_kernel(approx_composante);
         for (var zz = 0; zz < kernel_composante.list_edges.length; zz++){kernel_link_stream.list_edges.push(kernel_composante.list_edges[zz]);}
