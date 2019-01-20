@@ -53,11 +53,8 @@
         color: green;
     }
     .tab {
+        width:100%;
         height:6vh;
-        top: 0vw;
-        bottom: 0vw;
-        left:1.875vw;
-        right:1.875vw;
         background-color: #000000;
         border: 0vw solid #cccccc;
         z-index:-2;
@@ -88,19 +85,13 @@
       border-top: none;
     }
     #main_div{
-      position:relative;
-      top:0vw;
-      bottom:0vw;
-      left:0vw;
-      right:0vw;
+      width:100%;
+      height:100%;
       background-color: #000000;
     }
     #generator_div {
-      position: relative;
-      top: 0vw;
-      bottom: 0vw;
-      left: 0vw;
-      right: 0vw;
+      width:100%;
+      height:100%;
       display: table-cell;
     }
     #button_charts{
@@ -120,11 +111,8 @@
       font-size: 3vh;
     }
     #canvas_1 {
-      position: relative;
-      top: 0vw;
-      bottom: 0vw;
-      left: 0vw;
-      right: 0vw;
+      width:100%;
+      height:100%;
     }
     #compteur_lignes {
       width:95vw;
@@ -137,18 +125,18 @@
     }
     #import_div {
       height:90vh;
-      width:100vw;
+      width:100%;
       font-size: 1vw;
     }
     #link_stream_copy_past{
-      width:100vw;
+      width:100%;
       height:90vh;
       resize: none;
       font-size:5vw;
     }
     #bouton_generator_export{
-      width:80vh;
       border: 1vw solid #cccccc;
+      width:80vh;
       z-index: 10;
       position: relative;
       top:18vw;
@@ -180,17 +168,17 @@
       display:table-cell;
     }
     #tests_div {
-      width:80vw;
+      width:100%;
       position: absolute;
       background-color: #000000;
     }
     #compteur_edges{
       position: absolute;
       height:10vh;
-      width: 96vw;
+      width: 100%;
     }
     #algorithm_div{
-      width:100vw;
+      width:100%;
       position: relative;
       background-color: #000000;
     }
@@ -1377,8 +1365,8 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
 }
       
       
-loop();
-launch();
+    loop();
+    launch();
     
     
   </script>
