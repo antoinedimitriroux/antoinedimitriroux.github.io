@@ -6,7 +6,7 @@
   @media screen and (orientation:portrait) {
     body {
       font-family: Arial, Helvetica, sans-serif;
-      font-color: #aaaaaa;
+      font-color: #cccccc;
       background-color: #444444;
       bottom:0vw;
       left:0vw;
@@ -15,7 +15,7 @@
     }
     .alert_txt_linkstream {
       background-color: #f44336; /* Red */
-      color: white;
+      color: #cccccc;
       position:absolute;
       top:30vw;
       right:10vw;
@@ -29,7 +29,7 @@
     }
     .alert_import {
       background-color: #f44336; /* Red */
-      color: white;
+      color: #cccccc;
       position:absolute;
       top:10vw;
       left:10vw;
@@ -41,7 +41,7 @@
     }
     .closebtn {
         margin-left: 1vw;
-        color: black;
+        color: #444444;
         font-weight: bold;
         float: right;
         font-size: 15vw;
@@ -57,11 +57,14 @@
         height:6vh;
         top: 0vw;
         bottom: 0vw;
+        background-color: #444444;
+        border: 0vw solid #cccccc;
         z-index:-2;
     }
     .tab button {
+      background-color: #444444;
       min-width:12vw;
-      color: #aaaaaa;
+      color: #cccccc;
       height:6vh;
       float: left;
       padding-right:0.6vw;
@@ -86,6 +89,7 @@
     #main_div{
       width:96vw;
       height:96vh;
+      background-color: #444444;
     }
     #generator_div {
       top: 0vw;
@@ -93,6 +97,7 @@
       left: 0vw;
       right: 0vw;
       position: relative;
+      display: table-cell;
     }
     #button_charts{
     }
@@ -103,6 +108,7 @@
       top:0vh;
       visibility: hidden;
       border: 0.1vw solid #cccccc;
+      background-color:#444444;
       font-size:2vw;
       font-family: Arial, Helvetica, sans-serif;
     }
@@ -115,6 +121,7 @@
       float: left;
       clear: left;
       vertical-align: center;
+      border: 0.1vw solid #cccccc;
     }
     #compteur_lignes {
       width:95vw;
@@ -138,6 +145,7 @@
     }
     #bouton_generator_export{
       width:80vh;
+      border: 1vw solid #cccccc;
       z-index: 10;
       position: relative;
       top:18vw;
@@ -145,6 +153,7 @@
       display:table-cell;
     }
     #bouton_help_export{
+      border: 0.1vw solid #cccccc;
       z-index: 10;
       width: 6vw;
       position:absolute;
@@ -152,9 +161,11 @@
       top:12vh;
       left:34vw;
       height: 6vh;
+      border: 0.1vw solid #444444;
       display:table-cell;
     }
     #bouton_pasted_export{
+      border: 0.1vw solid #cccccc;
       z-index: 10;
       width: 6vw;
       position:absolute;
@@ -162,11 +173,13 @@
       top:7vh;
       left:34vw;
       height: 6vh;
+      border: 0.1vw solid #444444;
       display:table-cell;
     }
     #tests_div {
       width:80vw;
       position: absolute;
+      background-color: #444444;
     }
     #compteur_edges{
       position: absolute;
@@ -176,6 +189,7 @@
     #algorithm_div{
       width:100vw;
       position: relative;
+      background-color: #444444;
     }
     #original_link_stream_to_process{
       position: relative;
@@ -186,7 +200,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
-      background-color: #666666;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #gamma_link_stream_to_process{
       position: relative;
@@ -197,7 +211,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
-      background-color: #666666;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #greedy_gamma_link_stream_to_process {
       position: relative;
@@ -208,7 +222,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
-      background-color: #666666;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #kernel_gamma_link_stream_to_process{
       position: relative;
@@ -219,7 +233,7 @@
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
-      background-color: #666666;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #original_link_stream_edges_counter{
       z-index: 10;
@@ -267,9 +281,9 @@
   @media screen and (orientation:landscape) {
     body {
       font-family: Arial, Helvetica, sans-serif;
-      font-color: #ffffff;
+      font-color: #cccccc;
       position:relative;
-      background-color: #000000;
+      background-color: #444444;
       bottom:0vw;
       left:0vw;
       top:0vw;
@@ -277,7 +291,7 @@
     }
     .alert_txt_linkstream {
       background-color: #f44336; /* Red */
-      color: white;
+      color: #cccccc;
       position:absolute;
       top:22vh;
       right:30vw;
@@ -291,7 +305,7 @@
     }
     .alert_import {
       background-color: #f44336; /* Red */
-      color: white;
+      color: #cccccc;
       position:absolute;
       top:10vw;
       left:10vw;
@@ -303,7 +317,7 @@
     }
     .closebtn {
         margin-left: 1vw;
-        color: black;
+        color: #444444;
         font-weight: bold;
         float: right;
         font-size: 15vw;
@@ -319,13 +333,13 @@
         height:6vh;
         top: 0vw;
         bottom: 0vw;
-        background-color: #000000;
+        background-color: #444444;
         border: 0vw solid #cccccc;
         z-index:-2;
     }
     .tab button {
-      background-color: #000000;
-      color: #ffffff;
+      background-color: #444444;
+      color: #cccccc;
       height:6vh;
       float: left;
       padding-right:0.6vw;
@@ -350,7 +364,7 @@
     #main_div{
       width:96vw;
       height:96vh;
-      background-color: #000000;
+      background-color: #444444;
     }
     #generator_div {
       top: 0vw;
@@ -370,7 +384,7 @@
       vertical-align: center;
       visibility: hidden;
       border: 0.1vw solid #cccccc;
-      background-color:#000000;
+      background-color:#444444;
       font-size:2vw;
       font-family: Arial, Helvetica, sans-serif;
     }
@@ -439,7 +453,7 @@
     #tests_div {
       width:80vw;
       position: absolute;
-      background-color: #000000;
+      background-color: #444444;
     }
     #compteur_edges{
       position: absolute;
@@ -449,55 +463,55 @@
     #algorithm_div{
       width:100vw;
       position: relative;
-      background-color: #000000;
+      background-color: #444444;
     }
     #original_link_stream_to_process{
       position: relative;
-      width:25vw;
-      height:50vh;
+      width:20vw;
+      height:55vh;
       float:left;
       display: none;
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
-      background-color: #666666;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #gamma_link_stream_to_process{
       position: relative;
-      width:23vw;
-      height:50vh;
+      width:20vw;
+      height:55vh;
       float:left;
       display: none;
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
-      background-color: #666666;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #greedy_gamma_link_stream_to_process {
       position: relative;
-      width:23vw;
-      height:50vh;
+      width:20vw;
+      height:55vh;
       float:left;
       display: none;
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
-      background-color: #666666;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #kernel_gamma_link_stream_to_process{
       position: relative;
-      width:23vw;
-      height:50vh;
+      width:20vw;
+      height:55vh;
       float:left;
       display: none;
       resize:none;
       overflow-y: scroll; 
       font-size:3vw;
-      background-color: #666666;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
     #original_link_stream_edges_counter{
       z-index: 10;
-      width:23vw;
+      width:16vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -541,7 +555,7 @@
 
   <title>TEMPORAL MATCHING IN LINK STREAMS</title>
   <meta charset="utf-8" >
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#444444-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   </head>
 
@@ -582,27 +596,27 @@
       <textarea id="textarea_2" title="The meta-edges of the original link stream (the one shown in the canvas)" cols="50" rows="3" ></textarea-->
       <form id="parameters">
           <input style="width=25vw" class="input_parameters" id="seed_value" type="number" title="The number of teams" step="0.0001" value="3746.0000" min="1" max="9999.9999" onchange="launch()">
-          <label style="z-index:-1;font-size:3vw;color:#ffffff;">#Seed</br></label>
+          <label style="z-index:-1;font-size:3vw;color:#cccccc;">#Seed</br></label>
           <input style="width=25vw" class="input_parameters"  id="teams_value" type="number" title="The number of teams" value="5" min="3" max="100" onchange="launch()">
-          <label style="z-index:-1;font-size:3vw;color:#ffffff;">#Teams</br></label>
+          <label style="z-index:-1;font-size:3vw;color:#cccccc;">#Teams</br></label>
           <input style="width=25vw" class="input_parameters"  id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="15" max="100" onchange="launch()">
-          <label style="z-index:-1;font-size:3vw;color:#ffffff;">#Disks/Team</br></label>
+          <label style="z-index:-1;font-size:3vw;color:#cccccc;">#Disks/Team</br></label>
           <input style="width=25vw" class="input_parameters"  id="gamma_value" type="number" title="The value of gamma" min="2" value="3" width="Gamma" onchange="launch()">
-          <label style="z-index:-1;font-size:3vw;color:#ffffff;">Gamma</br></label>
+          <label style="z-index:-1;font-size:3vw;color:#cccccc;">Gamma</br></label>
           <input style="width=25vw" class="input_parameters"  id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="14" max="100" onchange="launch()">
-          <label style="z-index:-1;font-size:3vw;color:#ffffff;">Rayon</br></label>               
+          <label style="z-index:-1;font-size:3vw;color:#cccccc;">Rayon</br></label>               
           <input style="width=25vw" class="input_parameters"  id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" onchange="launch()">
-          <label style="z-index:-1;font-size:3vw;color:#ffffff;">Max velocity</br></label>    
+          <label style="z-index:-1;font-size:3vw;color:#cccccc;">Max velocity</br></label>    
           <input style="width=25vw" class="input_parameters"  id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" onchange="launch()">
-          <label style="z-index:-1;font-size:3vw;color:#ffffff;">Max acceleration</br></label>   
+          <label style="z-index:-1;font-size:3vw;color:#cccccc;">Max acceleration</br></label>   
           <input style="width=25vw" class="input_parameters"  id="check_box_contact" type="checkbox" onchange="launch()">
-          <label style="z-index:-1;font-size:3vw;color:#ffffff;">Enable contact</br></label> 
+          <label style="z-index:-1;font-size:3vw;color:#cccccc;">Enable contact</br></label> 
           <input style="width=25vw" class="input_parameters"  id="choix_predefini" type="number" value=0 min=0 max=2 onchange="setChoixPredefini();">
-          <label style="z-index:-1;font-size:3vw;color:#ffffff;">Choose a set of parameters</br></label>
+          <label style="z-index:-1;font-size:3vw;color:#cccccc;">Choose a set of parameters</br></label>
           <input style="width=25vw" class="input_parameters"  id="multiplication_rayon_leader_value" type="number" min="2" value="12" max="64" onchange="setChoixPredefini();" display="none">
-          <label id="multiplication_rayon_leader_label" style="z-index:-1;font-size:3vw;color:#ffffff;" style.display="none">(Set = "leaders") Size of leaders</br></label>
+          <label id="multiplication_rayon_leader_label" style="z-index:-1;font-size:3vw;color:#cccccc;" style.display="none">(Set = "leaders") Size of leaders</br></label>
           <input style="width=25vw" class="input_parameters"  id="number_leader_value" type="number" step="1" min="1" value="2" max="12" onchange="setChoixPredefini();" display="none">
-          <label id="number_leader_label" style="z-index:-1;font-size:3vw;color:#ffffff;" style.display="none">(Set = "leaders") Number of leaders</br></label>
+          <label id="number_leader_label" style="z-index:-1;font-size:3vw;color:#cccccc;" style.display="none">(Set = "leaders") Number of leaders</br></label>
 
       </form>
     </div>
@@ -685,7 +699,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
     </div>
 
     <div id="algorithm_div" class="tabcontent">
-      <label id="gamma_value_explained" style="z-index:-1;font-size:3vw;color:#ffffff;"></label>
+      <label id="gamma_value_explained" style="z-index:-1;font-size:3vw;color:#cccccc;"></label>
       <div id = "no_link_stream_alert_message" class="alert_import">
         <span class="closebtn" onclick="process_alert_message()">&times;</span> 
         There is no link-stream to process kernel algorithm on.</br></br>
@@ -702,13 +716,13 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         <textarea id="kernel_gamma_link_stream_to_process"title="the kernel of the optimal temporal matching" readonly>
         </textarea>
         </br>
-        <label id="original_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#ffffff;
+        <label id="original_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#cccccc;
         width:17vw;" ></br></label> 
-        <label id="gamma_link_stream_edges_counter" style="z-index:-1;font-size:3w;color:#ffffff;
+        <label id="gamma_link_stream_edges_counter" style="z-index:-1;font-size:3w;color:#cccccc;
         width:17vw;" ></br></label> 
-        <label id="approx_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#ffffff;
+        <label id="approx_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#cccccc;
       width:17vw;" ></br></label> 
-        <label id="kernel_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#ffffff;
+        <label id="kernel_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#cccccc;
       width:17vw;" ></br></label>
     </div>
 
@@ -1317,7 +1331,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
 
 
     function checkDeviceOs(){
-  if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+  if (!(/Android|webOS|iPhone|iPad|iPod|#444444Berry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
     console.log("Device: computer");
     computer_or_mobile = true;
   }
@@ -1346,7 +1360,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
     }
     if ((/IEMobile/i).test(navigator.userAgent)){
       os = "IEMobile";
-      console.log("Device: mobile (BlackBerry)");
+      console.log("Device: mobile (#444444Berry)");
     }
     if ((/IEMobile/i).test(navigator.userAgent)){
       os = "Android";
