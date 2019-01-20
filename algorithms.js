@@ -128,7 +128,7 @@ function clean_original_link_stream_txt(txt){
       
       var counter = Infinity;
       var cpt = 0;
-      while (cpt < cpt_max){
+      while (cpt < max_cpt){
         cpt++;
         var approx_link_stream = {  list_edges:[],
                                     list_incompatibles:[],
@@ -170,7 +170,7 @@ function clean_original_link_stream_txt(txt){
 
       var counter = 0;
       var cpt = 0;
-      while (cpt < cpt_max){
+      while (cpt < max_cpt){
         cpt++;
         var approx_link_stream = {  list_edges:[],
                                     list_incompatibles:[],
