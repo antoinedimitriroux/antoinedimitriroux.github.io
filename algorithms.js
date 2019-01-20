@@ -12,7 +12,7 @@ function clean_original_link_stream_txt(txt){
       var parsed_link_stream = txt.split("\n");
       for (var i = 0; i < parsed_link_stream.length; i++){
         var edge_txt = parsed_link_stream[i].split(" ");
-        if (edge_txt.length == 3 && Number.isInteger(edge_txt[0]) && Number.isInteger(edge_txt[1]) && Number.isInteger(edge_txt[2])){
+        if (edge_txt.length == 3 && Number.isInteger(parseInt(edge_txt[0])) && Number.isInteger(parseInt(edge_txt[1])) && Number.isInteger(parseInt(edge_txt[2])){
               var t = parseInt(edge_txt[0]);
               var edge_1 = parseInt(edge_txt[1]);
               var edge_2 = parseInt(edge_txt[2]);
