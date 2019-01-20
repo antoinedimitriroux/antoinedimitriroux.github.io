@@ -583,27 +583,27 @@
       <!--textarea id="textarea_1" title="Edges of the original link stream (the one shown in the canvas)" cols="50" rows="3"></textarea>
       <textarea id="textarea_2" title="The meta-edges of the original link stream (the one shown in the canvas)" cols="50" rows="3" ></textarea-->
       <form id="parameters">
-          <input width=25vw class="input_parameters" id="seed_value" type="number" title="The number of teams" step="0.0001" value="3746.0000" min="1" max="9999.9999" onchange="launch()">
+          <input style="width=25vw" class="input_parameters" id="seed_value" type="number" title="The number of teams" step="0.0001" value="3746.0000" min="1" max="9999.9999" onchange="launch()">
           <label style="z-index:-1;font-size:3vw;color:#ffffff;">#Seed</br></label>
-          <input width=25vw class="input_parameters"  id="teams_value" type="number" title="The number of teams" value="5" min="3" max="100" onchange="launch()">
+          <input style="width=25vw" class="input_parameters"  id="teams_value" type="number" title="The number of teams" value="5" min="3" max="100" onchange="launch()">
           <label style="z-index:-1;font-size:3vw;color:#ffffff;">#Teams</br></label>
-          <input width=25vw class="input_parameters"  id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="15" max="100" onchange="launch()">
+          <input style="width=25vw" class="input_parameters"  id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="15" max="100" onchange="launch()">
           <label style="z-index:-1;font-size:3vw;color:#ffffff;">#Disks/Team</br></label>
-          <input width=25vw class="input_parameters"  id="gamma_value" type="number" title="The value of gamma" min="2" value="3" width="Gamma" onchange="launch()">
+          <input style="width=25vw" class="input_parameters"  id="gamma_value" type="number" title="The value of gamma" min="2" value="3" width="Gamma" onchange="launch()">
           <label style="z-index:-1;font-size:3vw;color:#ffffff;">Gamma</br></label>
-          <input width=25vw class="input_parameters"  id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="14" max="100" onchange="launch()">
+          <input style="width=25vw" class="input_parameters"  id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="14" max="100" onchange="launch()">
           <label style="z-index:-1;font-size:3vw;color:#ffffff;">Rayon</br></label>               
-          <input width=25vw class="input_parameters"  id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" onchange="launch()">
+          <input style="width=25vw" class="input_parameters"  id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" onchange="launch()">
           <label style="z-index:-1;font-size:3vw;color:#ffffff;">Max velocity</br></label>    
-          <input width=25vw class="input_parameters"  id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" onchange="launch()">
+          <input style="width=25vw" class="input_parameters"  id="max_acc_value" type="number" step="0.01" title="The maximum acceleration of disks" min="0.01" value="0.5" max="100" onchange="launch()">
           <label style="z-index:-1;font-size:3vw;color:#ffffff;">Max acceleration</br></label>   
-          <input width=25vw class="input_parameters"  id="check_box_contact" type="checkbox" onchange="launch()">
+          <input style="width=25vw" class="input_parameters"  id="check_box_contact" type="checkbox" onchange="launch()">
           <label style="z-index:-1;font-size:3vw;color:#ffffff;">Enable contact</br></label> 
-          <input width=25vw class="input_parameters"  id="choix_predefini" type="number" value=0 min=0 max=2 onchange="setChoixPredefini();">
+          <input style="width=25vw" class="input_parameters"  id="choix_predefini" type="number" value=0 min=0 max=2 onchange="setChoixPredefini();">
           <label style="z-index:-1;font-size:3vw;color:#ffffff;">Choose a set of parameters</br></label>
-          <input width=25vw class="input_parameters"  id="multiplication_rayon_leader_value" type="number" min="2" value="12" max="64" onchange="setChoixPredefini();" display="none">
+          <input style="width=25vw" class="input_parameters"  id="multiplication_rayon_leader_value" type="number" min="2" value="12" max="64" onchange="setChoixPredefini();" display="none">
           <label id="multiplication_rayon_leader_label" style="z-index:-1;font-size:3vw;color:#ffffff;" style.display="none">(Set = "leaders") Size of leaders</br></label>
-          <input width=25vw class="input_parameters"  id="number_leader_value" type="number" step="1" min="1" value="2" max="12" onchange="setChoixPredefini();" display="none">
+          <input style="width=25vw" class="input_parameters"  id="number_leader_value" type="number" step="1" min="1" value="2" max="12" onchange="setChoixPredefini();" display="none">
           <label id="number_leader_label" style="z-index:-1;font-size:3vw;color:#ffffff;" style.display="none">(Set = "leaders") Number of leaders</br></label>
 
       </form>
