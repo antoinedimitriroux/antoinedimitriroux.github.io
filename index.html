@@ -1156,6 +1156,8 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
             txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][2] + " " +
                                       gamma_link_stream.list_edges[i][0] + " " + 
                                       gamma_link_stream.list_edges[i][1] + "\n";
+            console.log("gamma: " + i);
+            console.log(txt_gamma_link_stream);
           }
           var txt_two_approx_link_stream = "";
           for (var i = 0; i < two_approx_link_stream.list_edges.length; i++){
@@ -1179,6 +1181,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           
           textarea_greedy_gamma_link_stream_to_process.value = txt_two_approx_link_stream;
           textarea_greedy_gamma_link_stream_to_process.style.display = 'table-cell';
+          
           textarea_kernel_gamma_link_stream_to_process.value = txt_kernel_link_stream;
           textarea_kernel_gamma_link_stream_to_process.style.display = 'table-cell';
           
