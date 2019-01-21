@@ -1352,6 +1352,9 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
             
             
            var btn = document.createElement("BUTTON");
+           btn.innerHTML = gamma_link_stream.list_edges[i][2] + " " +
+                                      gamma_link_stream.list_edges[i][0] + " " + 
+                                      gamma_link_stream.list_edges[i][1];
             
             document.getElementById("gamma_link_stream_to_process").append(btn);
             
