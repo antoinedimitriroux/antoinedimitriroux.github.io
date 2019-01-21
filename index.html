@@ -191,6 +191,33 @@
       position: relative;
       background-color: #222222;
     }
+    
+    .vertical-menu
+    {
+      width: 200px; /* Set a width if you like */
+    }
+
+    .vertical-menu a
+    {
+      background-color: #eee; /* Grey background color */
+      color: black; /* Black text color */
+      display: block; /* Make the links appear below each other */
+      padding: 12px; /* Add some padding */
+      text-decoration: none; /* Remove underline from links */
+    }
+
+    .vertical-menu a:hover
+    {
+      background-color: #ccc; /* Dark grey background on mouse-over */
+    }
+
+    .vertical-menu a.active
+    {
+      background-color: #4CAF50; /* Add a green color to the "active/current" link */
+      color: white;
+    }
+
+
     #original_link_stream_to_process{
       position: relative;
       width:18vw;
@@ -807,7 +834,16 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         or paste your own one with the "import" tab.</br></br>
         Come back when it's done! :)
       </div>
-        <textarea id="original_link_stream_to_process" title="the original link stream" readonly>
+
+      <div class="vertical-menu">
+        <a href="#" id="original_link_stream_to_process" title="the original link stream"  class="active">Home</a>
+        <a href="#" id="gamma_link_stream_to_process" title="the gamma link stream" onkeydown="chercher_delta_arete_click(this);" onmousedown="this.onkeydown();" touchstart="chercher_delta_arete_click(this);"  >Link 1</a>
+        <a href="#" id="min_greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" onkeydown="chercher_gamma_arete_ok_nope(this);" onmousedown="this.onkeydown();" touchstart="chercher_gamma_arete_ok_nope(this);">Link 2</a>
+        <a href="#" id="max_greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" onkeydown="chercher_gamma_arete_ok_nope(this);" onmousedown="this.onkeydown();" touchstart="chercher_gamma_arete_ok_nope(this);">Link 3</a>
+        <a href="#" id="kernel_gamma_link_stream_to_process"title="the kernel of the optimal temporal matching">Link 4</a>
+        </br>
+      </div>
+        <!--textarea id="original_link_stream_to_process" title="the original link stream" readonly>
         </textarea>
         <textarea id="gamma_link_stream_to_process" title="the gamma link stream" onkeydown="chercher_delta_arete_click(this);" onmousedown="this.onkeydown();" touchstart="chercher_delta_arete_click(this);" readonly>
         </textarea>
@@ -827,7 +863,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         <label id="max_approx_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#cccccc;
       width:17vw;" ></br></label> 
         <label id="kernel_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#cccccc;
-      width:17vw;" ></br></label>
+      width:17vw;" ></br></label-->
     </div>
 
 
