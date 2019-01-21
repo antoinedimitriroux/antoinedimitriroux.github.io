@@ -869,7 +869,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
     </div>
 
     <div id="algorithm_div" class="tabcontent">
-      <label id="gamma_value_explained" style="z-index:-1;font-size:3vw;color:#cccccc;"></label>
+      <!--label id="gamma_value_explained" style="z-index:-1;font-size:3vw;color:#cccccc;"></label-->
       <div id = "no_link_stream_alert_message" class="alert_import">
         <span class="closebtn" onclick="process_alert_message()">&times;</span> 
         There is no link-stream to process kernel algorithm on.</br></br>
@@ -877,15 +877,17 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         or paste your own one with the "import" tab.</br></br>
         Come back when it's done! :)
       </div>
+      <div>
         <label id="original_link_stream_edges_counter" style="z-index:-1;font-size:3.3vw;color:#cccccc; width:16vw;" ></br></label> 
         <label id="gamma_link_stream_edges_counter" style="z-index:-1;font-size:3.3w;color:#cccccc;width:16vw;" ></br></label> 
         <label id="min_approx_link_stream_edges_counter" style="z-index:-1;font-size:3.3vw;color:#cccccc; width:16vw;" ></br></label> 
         <label id="max_approx_link_stream_edges_counter" style="z-index:-1;font-size:3.3vw;color:#cccccc; width:16vw;" ></br></label>
-        </br>
-        </br>
-        </br>
-        </br>
         <label id="kernel_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#cccccc;width:17vw;" ></br></label>
+      </div>  
+        </br>
+        </br>
+        </br>
+        </br>
         <div class="btn-group" href="#" id="original_link_stream_to_process" title="the original link stream">
         </div>
         <div class="btn-group" href="#" id="gamma_link_stream_to_process" title="the gamma link stream" onkeydown="chercher_delta_arete_click(this);" onmousedown="this.onkeydown();" touchstart="chercher_delta_arete_click(this);" >
