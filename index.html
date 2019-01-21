@@ -1166,7 +1166,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
                                           original_link_stream.list_edges[i][0] + " ";
             
               if (i < original_link_stream.list_edges.length - 1){
-                                          original_link_stream.list_edges[i][1] + "\n";
+                                          original_link_stream.list_edges[i][1] += "\n";
               }
           }
           var txt_gamma_link_stream = "";
@@ -1174,7 +1174,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
             txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][2] + " " +
                                       gamma_link_stream.list_edges[i][0] + " ";
               if (i < gamma_link_stream.list_edges.length - 1){
-                                      gamma_link_stream.list_edges[i][1] + "\n";
+                                      gamma_link_stream.list_edges[i][1] += "\n";
               }
           }
           var txt_two_approx_link_stream = "";
@@ -1182,7 +1182,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
             txt_two_approx_link_stream +=   two_approx_link_stream.list_edges[i][2] + " " +
                                             two_approx_link_stream.list_edges[i][0] + " ";
               if (i < two_approx_link_stream.list_edges.length - 1){
-                                            two_approx_link_stream.list_edges[i][1] + "\n";
+                                            two_approx_link_stream.list_edges[i][1] += "\n";
               }
           }
           var txt_kernel_link_stream = "";
@@ -1190,7 +1190,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
             txt_kernel_link_stream +=   kernel_link_stream.list_edges[i][2] + " " +
                                         kernel_link_stream.list_edges[i][0] + " "
               if (i < kernel_link_stream.list_edges.length - 1){
-                                        kernel_link_stream.list_edges[i][1] + "\n";
+                                        kernel_link_stream.list_edges[i][1] += "\n";
               }
           }
           
