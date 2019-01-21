@@ -1525,30 +1525,77 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length - 0; i++){
+            document.getElementById("original_link_stream_to_process")
+              .append("<button>"
+                      +
+                      original_link_stream.list_edges[i][2] + " " +
+                      original_link_stream.list_edges[i][0] + " " +
+                      original_link_stream.list_edges[i][1] 
+                      +
+                      "</button>");
+            
+                
             txt_original_link_stream +=   original_link_stream.list_edges[i][2] + " " +
                                           original_link_stream.list_edges[i][0] + " " +
                                           original_link_stream.list_edges[i][1] + "\n";
           }
           var txt_gamma_link_stream = "";
+          
+
+
+
+
           for (var i = 0; i < gamma_link_stream.list_edges.length - 0; i++){
+            document.getElementById("gamma_link_stream_to_process")
+              .append("<button>"
+                      +
+                      gamma_link_stream.list_edges[i][2] + " " +
+                      gamma_link_stream.list_edges[i][0] + " " +
+                      gamma_link_stream.list_edges[i][1] 
+                      +
+                      "</button>");
             txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][2] + " " +
                                       gamma_link_stream.list_edges[i][0] + " " + 
                                       gamma_link_stream.list_edges[i][1] + "\n";
           }
           var txt_min_two_approx_link_stream = "";
           for (var i = 0; i < min_two_approx_link_stream.list_edges.length - 0; i++){
+            document.getElementById("min_greedy_gamma_link_stream_to_process")
+              .append("<button>"
+                      +
+                      min_two_approx_link_stream.list_edges[i][2] + " " +
+                      min_two_approx_link_stream.list_edges[i][0] + " " +
+                      min_two_approx_link_stream.list_edges[i][1] 
+                      +
+                      "</button>");
             txt_min_two_approx_link_stream +=   min_two_approx_link_stream.list_edges[i][2] + " " +
                                             min_two_approx_link_stream.list_edges[i][0] + " " + 
                                             min_two_approx_link_stream.list_edges[i][1] + "\n";
           }
           var txt_max_two_approx_link_stream = "";
           for (var i = 0; i < max_two_approx_link_stream.list_edges.length - 0; i++){
+            document.getElementById("max_greedy_gamma_link_stream_to_process")
+              .append("<button>"
+                      +
+                      max_two_approx_link_stream.list_edges[i][2] + " " +
+                      max_two_approx_link_stream.list_edges[i][0] + " " +
+                      max_two_approx_link_stream.list_edges[i][1] 
+                      +
+                      "</button>");
             txt_max_two_approx_link_stream +=   max_two_approx_link_stream.list_edges[i][2] + " " +
                                             max_two_approx_link_stream.list_edges[i][0] + " " + 
                                             max_two_approx_link_stream.list_edges[i][1] + "\n";
           }
           var txt_kernel_link_stream = "";
           for (var i = 0; i < kernel_link_stream.list_edges.length - 0; i++){
+            document.getElementById("kernel_gamma_link_stream_to_process")
+              .append("<button>"
+                      +
+                      kernel_link_stream.list_edges[i][2] + " " +
+                      kernel_link_stream.list_edges[i][0] + " " +
+                      kernel_link_stream.list_edges[i][1] 
+                      +
+                      "</button>");
             txt_kernel_link_stream +=   kernel_link_stream.list_edges[i][2] + " " +
                                         kernel_link_stream.list_edges[i][0] + " " +
                                         kernel_link_stream.list_edges[i][1] + "\n";
