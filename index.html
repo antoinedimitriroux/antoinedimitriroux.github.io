@@ -193,7 +193,7 @@
     }
     #original_link_stream_to_process{
       position: relative;
-      width:23vw;
+      width:18vw;
       height:50vh;
       float:left;
       display: none;
@@ -204,7 +204,7 @@
     }
     #gamma_link_stream_to_process{
       position: relative;
-      width:23vw;
+      width:18vw;
       height:50vh;
       float:left;
       display: none;
@@ -215,7 +215,7 @@
     }
     #min_greedy_gamma_link_stream_to_process {
       position: relative;
-      width:23vw;
+      width:18vw;
       height:50vh;
       float:left;
       display: none;
@@ -226,7 +226,7 @@
     }
     #max_greedy_gamma_link_stream_to_process {
       position: relative;
-      width:23vw;
+      width:18vw;
       height:50vh;
       float:left;
       display: none;
@@ -237,7 +237,7 @@
     }
     #kernel_gamma_link_stream_to_process{
       position: relative;
-      width:23vw;
+      width:18vw;
       height:50vh;
       float:left;
       display: none;
@@ -248,7 +248,7 @@
     }
     #original_link_stream_edges_counter{
       z-index: 10;
-      width:50vw;
+      width:18vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -256,7 +256,7 @@
     }
     #gamma_link_stream_edges_counter{
       z-index: 10;
-      width:25vw;
+      width:18vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -264,7 +264,7 @@
     }
     #min_approx_link_stream_edges_counter{
       z-index: 10;
-      width:25vw;
+      width:18vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -272,7 +272,7 @@
     }
     #max_approx_link_stream_edges_counter{
       z-index: 10;
-      width:25vw;
+      width:18vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -280,7 +280,7 @@
     }
     #kernel_link_stream_edges_counter{
       z-index: 10;
-      width:25vw;
+      width:18vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -288,7 +288,7 @@
     }
     #gamma_value_explained{
       z-index: 10;
-      width:25vw;
+      width:18vw;
       height: 5vh;
       text-align:center;
       font-family: Arial, Helvetica, sans-serif;
@@ -486,7 +486,7 @@
     }
     #original_link_stream_to_process{
       position: relative;
-      width:23vw;
+      width:18vw;
       height:55vh;
       float:left;
       display: none;
@@ -497,7 +497,7 @@
     }
     #gamma_link_stream_to_process{
       position: relative;
-      width:23vw;
+      width:18vw;
       height:55vh;
       float:left;
       display: none;
@@ -508,7 +508,7 @@
     }
     #min_greedy_gamma_link_stream_to_process {
       position: relative;
-      width:23vw;
+      width:18vw;
       height:55vh;
       float:left;
       display: none;
@@ -519,7 +519,7 @@
     }
     #max_greedy_gamma_link_stream_to_process {
       position: relative;
-      width:23vw;
+      width:18vw;
       height:55vh;
       float:left;
       display: none;
@@ -530,7 +530,7 @@
     }
     #kernel_gamma_link_stream_to_process{
       position: relative;
-      width:23vw;
+      width:18vw;
       height:55vh;
       float:left;
       display: none;
@@ -541,7 +541,7 @@
     }
     #original_link_stream_edges_counter{
       z-index: 10;
-      width:23vw;
+      width:18vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -549,7 +549,7 @@
     }
     #gamma_link_stream_edges_counter{
       z-index: 10;
-      width:23vw;
+      width:18vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -557,7 +557,7 @@
     }
     #min_approx_link_stream_edges_counter{
       z-index: 10;
-      width:23vw;
+      width:18vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -565,7 +565,7 @@
     }
     #max_approx_link_stream_edges_counter{
       z-index: 10;
-      width:23vw;
+      width:18vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -573,7 +573,7 @@
     }
     #kernel_link_stream_edges_counter{
       z-index: 10;
-      width:23vw;
+      width:18vw;
       height: 5vh;
       float:left;
       text-align:center;
@@ -1203,8 +1203,8 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           
           document.getElementById("original_link_stream_edges_counter").innerHTML = "Original</br>" + original_link_stream.list_edges.length + " edges";
           document.getElementById("gamma_link_stream_edges_counter").innerHTML = "Gamma</br>" + gamma_link_stream.list_edges.length + " edges";
-          document.getElementById("min_approx_link_stream_edges_counter").innerHTML = "2-approx</br>" + min_two_approx_link_stream.list_edges.length + " edges";
-          document.getElementById("max_approx_link_stream_edges_counter").innerHTML = "2-approx</br>" + max_two_approx_link_stream.list_edges.length + " edges";
+          document.getElementById("min_approx_link_stream_edges_counter").innerHTML = "Best</br>2-approx</br>" + min_two_approx_link_stream.list_edges.length + " edges";
+          document.getElementById("max_approx_link_stream_edges_counter").innerHTML = "Worst</br>2-approx</br>" + max_two_approx_link_stream.list_edges.length + " edges";
           document.getElementById("kernel_link_stream_edges_counter").innerHTML = "Kernel</br>" + kernel_link_stream.list_edges.length + " edges";
           
           var txt_original_link_stream = "";
