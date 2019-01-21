@@ -213,7 +213,18 @@
       font-size:3vw;
       background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
-    #greedy_gamma_link_stream_to_process {
+    #min_greedy_gamma_link_stream_to_process {
+      position: relative;
+      width:23vw;
+      height:50vh;
+      float:left;
+      display: none;
+      resize:none;
+      overflow-y: scroll; 
+      font-size:3vw;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
+    }
+    #max_greedy_gamma_link_stream_to_process {
       position: relative;
       width:23vw;
       height:50vh;
@@ -251,7 +262,15 @@
       text-align:center;
       font-size:3vw;
     }
-    #approx_link_stream_edges_counter{
+    #min_approx_link_stream_edges_counter{
+      z-index: 10;
+      width:25vw;
+      height: 5vh;
+      float:left;
+      text-align:center;
+      font-size:3vw;   
+    }
+    #max_approx_link_stream_edges_counter{
       z-index: 10;
       width:25vw;
       height: 5vh;
@@ -487,7 +506,18 @@
       font-size:3vw;
       background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
     }
-    #greedy_gamma_link_stream_to_process {
+    #min_greedy_gamma_link_stream_to_process {
+      position: relative;
+      width:23vw;
+      height:55vh;
+      float:left;
+      display: none;
+      resize:none;
+      overflow-y: scroll; 
+      font-size:3vw;
+      background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
+    }
+    #max_greedy_gamma_link_stream_to_process {
       position: relative;
       width:23vw;
       height:55vh;
@@ -525,7 +555,15 @@
       text-align:center;
       font-size:3vw;   
     }
-    #approx_link_stream_edges_counter{
+    #min_approx_link_stream_edges_counter{
+      z-index: 10;
+      width:23vw;
+      height: 5vh;
+      float:left;
+      text-align:center;
+      font-size:3vw;   
+    }
+    #max_approx_link_stream_edges_counter{
       z-index: 10;
       width:23vw;
       height: 5vh;
@@ -711,7 +749,9 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         </textarea>
         <textarea id="gamma_link_stream_to_process" title="the gamma link stream" onkeydown="chercher_delta_arete_click(this);" onmousedown="this.onkeydown();" touchstart="chercher_delta_arete_click(this);" readonly>
         </textarea>
-        <textarea id="greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" onkeydown="chercher_gamma_arete_ok_nope(this);" onmousedown="this.onkeydown();" touchstart="chercher_gamma_arete_ok_nope(this);" readonly>
+        <textarea id="min_greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" onkeydown="chercher_gamma_arete_ok_nope(this);" onmousedown="this.onkeydown();" touchstart="chercher_gamma_arete_ok_nope(this);" readonly>
+        </textarea>
+        <textarea id="max_greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" onkeydown="chercher_gamma_arete_ok_nope(this);" onmousedown="this.onkeydown();" touchstart="chercher_gamma_arete_ok_nope(this);" readonly>
         </textarea>
         <textarea id="kernel_gamma_link_stream_to_process"title="the kernel of the optimal temporal matching" readonly>
         </textarea>
@@ -720,7 +760,9 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         width:17vw;" ></br></label> 
         <label id="gamma_link_stream_edges_counter" style="z-index:-1;font-size:3w;color:#cccccc;
         width:17vw;" ></br></label> 
-        <label id="approx_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#cccccc;
+        <label id="min_approx_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#cccccc;
+      width:17vw;" ></br></label> 
+        <label id="max_approx_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#cccccc;
       width:17vw;" ></br></label> 
         <label id="kernel_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#cccccc;
       width:17vw;" ></br></label>
@@ -1144,20 +1186,22 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           var gamma_link_stream = original_to_gamma_link_stream(original_link_stream,gamma);
           
          // var two_approx_link_stream = gamma_to_2approx_link_stream_MAX(gamma_link_stream,100);
-          var two_approx_link_stream = gamma_to_2approx_link_stream_MAX(gamma_link_stream,100);
-         // var two_approx_link_stream = gamma_to_2approx_link_stream_MIN(gamma_link_stream,100);
-          var kernel_link_stream = approx_to_kernel(two_approx_link_stream);
+          var min_two_approx_link_stream = gamma_to_2approx_link_stream_MIN(gamma_link_stream,100);
+          var max_two_approx_link_stream = gamma_to_2approx_link_stream_MAX(gamma_link_stream,100);
+          var kernel_link_stream = approx_to_kernel(min_two_approx_link_stream);
           
           original_link_stream.list_edges.sort(sort_edges_by_time);
           gamma_link_stream.list_edges.sort(sort_edges_by_time);
-          two_approx_link_stream.list_edges.sort(sort_edges_by_time);
+          min_two_approx_link_stream.list_edges.sort(sort_edges_by_time);
+          max_two_approx_link_stream.list_edges.sort(sort_edges_by_time);
           kernel_link_stream.list_edges.sort(sort_edges_by_time);
           
           document.getElementById("gamma_value_explained").innerHTML = "Gamma = " + gamma + ".</br>If you want to change this value,</br>you can go in the Generator tab,</br>then go in the paramaters (gear icon).</br>";
           
           document.getElementById("original_link_stream_edges_counter").innerHTML = "Original</br>" + original_link_stream.list_edges.length + " edges";
           document.getElementById("gamma_link_stream_edges_counter").innerHTML = "Gamma</br>" + gamma_link_stream.list_edges.length + " edges";
-          document.getElementById("approx_link_stream_edges_counter").innerHTML = "2-approx</br>" + two_approx_link_stream.list_edges.length + " edges";
+          document.getElementById("min_approx_link_stream_edges_counter").innerHTML = "2-approx</br>" + min_two_approx_link_stream.list_edges.length + " edges";
+          document.getElementById("max_approx_link_stream_edges_counter").innerHTML = "2-approx</br>" + max_two_approx_link_stream.list_edges.length + " edges";
           document.getElementById("kernel_link_stream_edges_counter").innerHTML = "Kernel</br>" + kernel_link_stream.list_edges.length + " edges";
           
           var txt_original_link_stream = "";
@@ -1172,11 +1216,17 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
                                       gamma_link_stream.list_edges[i][0] + " " + 
                                       gamma_link_stream.list_edges[i][1] + "\n";
           }
-          var txt_two_approx_link_stream = "";
-          for (var i = 0; i < two_approx_link_stream.list_edges.length - 0; i++){
-            txt_two_approx_link_stream +=   two_approx_link_stream.list_edges[i][2] + " " +
-                                            two_approx_link_stream.list_edges[i][0] + " " + 
-                                            two_approx_link_stream.list_edges[i][1] + "\n";
+          var txt_min_two_approx_link_stream = "";
+          for (var i = 0; i < min_two_approx_link_stream.list_edges.length - 0; i++){
+            txt_min_two_approx_link_stream +=   min_two_approx_link_stream.list_edges[i][2] + " " +
+                                            min_two_approx_link_stream.list_edges[i][0] + " " + 
+                                            min_two_approx_link_stream.list_edges[i][1] + "\n";
+          }
+          var txt_max_two_approx_link_stream = "";
+          for (var i = 0; i < max_two_approx_link_stream.list_edges.length - 0; i++){
+            txt_max_two_approx_link_stream +=   max_two_approx_link_stream.list_edges[i][2] + " " +
+                                            max_two_approx_link_stream.list_edges[i][0] + " " + 
+                                            max_two_approx_link_stream.list_edges[i][1] + "\n";
           }
           var txt_kernel_link_stream = "";
           for (var i = 0; i < kernel_link_stream.list_edges.length - 0; i++){
@@ -1192,8 +1242,11 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           textarea_gamma_link_stream_to_process.value = txt_gamma_link_stream;
           textarea_gamma_link_stream_to_process.style.display = 'table-cell';
           
-          textarea_greedy_gamma_link_stream_to_process.value = txt_two_approx_link_stream;
-          textarea_greedy_gamma_link_stream_to_process.style.display = 'table-cell';
+          textarea_min_greedy_gamma_link_stream_to_process.value = txt_min_two_approx_link_stream;
+          textarea_min_greedy_gamma_link_stream_to_process.style.display = 'table-cell';
+          
+          textarea_max_greedy_gamma_link_stream_to_process.value = txt_max_two_approx_link_stream;
+          textarea_max_greedy_gamma_link_stream_to_process.style.display = 'table-cell';
           
           textarea_kernel_gamma_link_stream_to_process.value = txt_kernel_link_stream;
           textarea_kernel_gamma_link_stream_to_process.style.display = 'table-cell';
