@@ -1326,7 +1326,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length - 0; i++){
-            var btn = document.createElement("INPUT");
+            var btn = document.createElement("BUTTON");
             btn.name =original_link_stream.list_edges[i][2] + " " +
                                           original_link_stream.list_edges[i][0] + " " +
                                           original_link_stream.list_edges[i][1];
@@ -1339,10 +1339,6 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
                                           original_link_stream.list_edges[i][1] + "\n";
           }
           var txt_gamma_link_stream = "";
-          
-
-
-
 
           for (var i = 0; i < gamma_link_stream.list_edges.length - 0; i++){
             
@@ -1351,7 +1347,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
                             gamma_link_stream.list_edges[i][0] + " " +
                             gamma_link_stream.list_edges[i][1];
             
-            var btn = document.createElement("INPUT");
+            var btn = document.createElement("BUTTON");
             btn.type = "radio";
             
             document.getElementById("gamma_link_stream_to_process").append(label);
@@ -1363,7 +1359,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           }
           var txt_min_two_approx_link_stream = "";
           for (var i = 0; i < min_two_approx_link_stream.list_edges.length - 0; i++){
-            var btn = document.createElement("INPUT");
+            var btn = document.createElement("BUTTON");
             btn.name =min_two_approx_link_stream.list_edges[i][2] + " " +
                                             min_two_approx_link_stream.list_edges[i][0] + " " + 
                                             min_two_approx_link_stream.list_edges[i][1];
@@ -1375,7 +1371,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           }
           var txt_max_two_approx_link_stream = "";
           for (var i = 0; i < max_two_approx_link_stream.list_edges.length - 0; i++){
-            var btn = document.createElement("INPUT");
+            var btn = document.createElement("BUTTON");
             btn.name =max_two_approx_link_stream.list_edges[i][2] + " " +
                                             max_two_approx_link_stream.list_edges[i][0] + " " + 
                                             max_two_approx_link_stream.list_edges[i][1];
@@ -1387,7 +1383,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           }
           var txt_kernel_link_stream = "";
           for (var i = 0; i < kernel_link_stream.list_edges.length - 0; i++){
-            var btn = document.createElement("INPUT");
+            var btn = document.createElement("BUTTON");
             btn.name =kernel_link_stream.list_edges[i][2] + " " +
                                         kernel_link_stream.list_edges[i][0] + " " +
                                         kernel_link_stream.list_edges[i][1];
