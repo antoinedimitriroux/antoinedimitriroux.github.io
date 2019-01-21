@@ -1345,10 +1345,16 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
 
 
           for (var i = 0; i < gamma_link_stream.list_edges.length - 0; i++){
-            var btn = document.createElement("INPUT");
-            btn.name = gamma_link_stream.list_edges[i][2] + " " +
+            
+            var label = document.createElement("LABEL");
+            label.innerHTML = gamma_link_stream.list_edges[i][2] + " " +
                             gamma_link_stream.list_edges[i][0] + " " +
                             gamma_link_stream.list_edges[i][1];
+            
+            var btn = document.createElement("INPUT");
+            btn.type = "radio";
+            
+            document.getElementById("gamma_link_stream_to_process").append(label);
             document.getElementById("gamma_link_stream_to_process").append(btn);
             
             txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][2] + " " +
