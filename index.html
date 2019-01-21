@@ -207,6 +207,8 @@
     {
       background-color: #4CAF50; /* Green background */
       border: 0.1vw solid green; /* Green border */
+      width:10vw;
+      height:6vw;
       color: white; /* White text */
       height:1vw;
       margin: .4rem;
@@ -1336,7 +1338,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
             
            var btn = document.createElement("BUTTON");
             
-            btn.name =original_link_stream.list_edges[i][2] + " " +
+            btn.innerHTML = original_link_stream.list_edges[i][2] + " " +
                                           original_link_stream.list_edges[i][0] + " " +
                                           original_link_stream.list_edges[i][1];
             
@@ -1364,7 +1366,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
             document.getElementById("gamma_link_stream_to_process").append(label);
             document.getElementById("gamma_link_stream_to_process").append(btn);
             
-            txt_gamma_link_stream +=  gamma_link_stream.list_edges[i][2] + " " +
+            txt_gamma_link_stream.innerHTML +=  gamma_link_stream.list_edges[i][2] + " " +
                                       gamma_link_stream.list_edges[i][0] + " " + 
                                       gamma_link_stream.list_edges[i][1] + "\n";
           }
@@ -1377,7 +1379,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
            
            var btn = document.createElement("BUTTON");
             
-            btn.name =min_two_approx_link_stream.list_edges[i][2] + " " +
+            btn.innerHTML =min_two_approx_link_stream.list_edges[i][2] + " " +
                                             min_two_approx_link_stream.list_edges[i][0] + " " + 
                                             min_two_approx_link_stream.list_edges[i][1];
             
@@ -1396,7 +1398,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
                               max_two_approx_link_stream.list_edges[i][1];
             
            var btn = document.createElement("BUTTON");
-            btn.name =max_two_approx_link_stream.list_edges[i][2] + " " +
+            btn.innerHTML =max_two_approx_link_stream.list_edges[i][2] + " " +
                                             max_two_approx_link_stream.list_edges[i][0] + " " + 
                                             max_two_approx_link_stream.list_edges[i][1];
             
@@ -1415,7 +1417,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
                               kernel_link_stream.list_edges[i][1];
             
            var btn = document.createElement("BUTTON");
-            btn.name =kernel_link_stream.list_edges[i][2] + " " +
+            btn.innerHTML = kernel_link_stream.list_edges[i][2] + " " +
                                         kernel_link_stream.list_edges[i][0] + " " +
                                         kernel_link_stream.list_edges[i][1];
             
