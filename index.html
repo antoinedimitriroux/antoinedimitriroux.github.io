@@ -61,6 +61,39 @@
         border: 0vw solid #cccccc;
         z-index:-2;
     }
+    
+    .tab label {
+      background-color: #222222;
+      min-width:12vw;
+      color: #cccccc;
+      height:6vh;
+      float: left;
+      padding-right:0.6vw;
+      padding-left:0.6vw;
+      font-weight: bold;
+      outline: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:2.5vh;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    .tab input {
+      background-color: #222222;
+      min-width:12vw;
+      color: #cccccc;
+      height:6vh;
+      float: left;
+      padding-right:0.6vw;
+      padding-left:0.6vw;
+      font-weight: bold;
+      outline: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:2.5vh;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
     .tab button {
       background-color: #222222;
       min-width:12vw;
@@ -648,6 +681,8 @@
       <button class="tablinks" title="Generates a link-stream (based on the rollernet experiment) depending on some parameters" onclick="openTab('generator_div')">Generator</button>
       <button class="tablinks" title="Enables you to paste your personnal link-stream" onclick="openTab('import_div')">Import</button>
       <button class="tablinks" title="Processes the kernel algorithm on the actual link-stream" onclick="process_alert_message();openTab('algorithm_div')">Process</button>
+      <input id="gamma_value" type="number" title="The value of gamma" min="2" value="3" onchange="launch()"></input>
+      <label>Gamma</br></label>
     </div>
 
 
