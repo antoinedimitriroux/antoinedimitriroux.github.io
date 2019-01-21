@@ -1328,6 +1328,21 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           document.getElementById("max_approx_link_stream_edges_counter").innerHTML = "Bad</br>2-approx</br>" + max_two_approx_link_stream.list_edges.length + " edges";
           document.getElementById("kernel_link_stream_edges_counter").innerHTML = "Kernel</br>" + kernel_link_stream.list_edges.length + " edges";
           
+          while ( document.getElementById("original_link_stream_to_process").firstChild) {
+               document.getElementById("original_link_stream_to_process").removeChild( document.getElementById("original_link_stream_to_process").firstChild);
+          }
+           while ( document.getElementById("gamma_link_stream_to_process").firstChild) {
+               document.getElementById("gamma_link_stream_to_process").removeChild( document.getElementById("gamma_link_stream_to_process").firstChild);
+          }
+           while ( document.getElementById("min_greedy_gamma_link_stream_to_process").firstChild) {
+               document.getElementById("min_greedy_gamma_link_stream_to_process").removeChild( document.getElementById("min_greedy_gamma_link_stream_to_process").firstChild);
+          }
+           while ( document.getElementById("max_greedy_gamma_link_stream_to_process").firstChild) {
+               document.getElementById("max_greedy_gamma_link_stream_to_process").removeChild( document.getElementById("max_greedy_gamma_link_stream_to_process").firstChild);
+          }
+           while ( document.getElementById("kernel_gamma_link_stream_to_process").firstChild) {
+               document.getElementById("kernel_gamma_link_stream_to_process").removeChild( document.getElementById("kernel_gamma_link_stream_to_process").firstChild);
+          }
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length - 0; i++){
             
