@@ -846,8 +846,8 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
         Come back when it's done! :)
       </div>
 
-        <div class="btn-group" href="#" id="original_link_stream_to_process" title="the original link stream"  >
-           </div>
+        <div class="btn-group" href="#" id="original_link_stream_to_process" title="the original link stream">
+        </div>
         <div class="btn-group" href="#" id="gamma_link_stream_to_process" title="the gamma link stream" onkeydown="chercher_delta_arete_click(this);" onmousedown="this.onkeydown();" touchstart="chercher_delta_arete_click(this);" >
         </div>
         <div class="btn-group" href="#" id="min_greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" onkeydown="chercher_gamma_arete_ok_nope(this);" onmousedown="this.onkeydown();" touchstart="chercher_gamma_arete_ok_nope(this);" >
@@ -1326,14 +1326,12 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           
           var txt_original_link_stream = "";
           for (var i = 0; i < original_link_stream.list_edges.length - 0; i++){
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML =original_link_stream.list_edges[i][2] + " " +
+                                          original_link_stream.list_edges[i][0] + " " +
+                                          original_link_stream.list_edges[i][1];
             document.getElementById("original_link_stream_to_process")
-              .append("<button>"
-                      +
-                      original_link_stream.list_edges[i][2] + " " +
-                      original_link_stream.list_edges[i][0] + " " +
-                      original_link_stream.list_edges[i][1] 
-                      +
-                      "</button>");
+              .append(btn);
             
                 
             txt_original_link_stream +=   original_link_stream.list_edges[i][2] + " " +
@@ -1359,42 +1357,36 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           }
           var txt_min_two_approx_link_stream = "";
           for (var i = 0; i < min_two_approx_link_stream.list_edges.length - 0; i++){
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML =min_two_approx_link_stream.list_edges[i][2] + " " +
+                                            min_two_approx_link_stream.list_edges[i][0] + " " + 
+                                            min_two_approx_link_stream.list_edges[i][1];
             document.getElementById("min_greedy_gamma_link_stream_to_process")
-              .append("<button>"
-                      +
-                      min_two_approx_link_stream.list_edges[i][2] + " " +
-                      min_two_approx_link_stream.list_edges[i][0] + " " +
-                      min_two_approx_link_stream.list_edges[i][1] 
-                      +
-                      "</button>");
+              .append(btn);
             txt_min_two_approx_link_stream +=   min_two_approx_link_stream.list_edges[i][2] + " " +
                                             min_two_approx_link_stream.list_edges[i][0] + " " + 
                                             min_two_approx_link_stream.list_edges[i][1] + "\n";
           }
           var txt_max_two_approx_link_stream = "";
           for (var i = 0; i < max_two_approx_link_stream.list_edges.length - 0; i++){
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML =max_two_approx_link_stream.list_edges[i][2] + " " +
+                                            max_two_approx_link_stream.list_edges[i][0] + " " + 
+                                            max_two_approx_link_stream.list_edges[i][1];
             document.getElementById("max_greedy_gamma_link_stream_to_process")
-              .append("<button>"
-                      +
-                      max_two_approx_link_stream.list_edges[i][2] + " " +
-                      max_two_approx_link_stream.list_edges[i][0] + " " +
-                      max_two_approx_link_stream.list_edges[i][1] 
-                      +
-                      "</button>");
+              .append(btn);
             txt_max_two_approx_link_stream +=   max_two_approx_link_stream.list_edges[i][2] + " " +
                                             max_two_approx_link_stream.list_edges[i][0] + " " + 
                                             max_two_approx_link_stream.list_edges[i][1] + "\n";
           }
           var txt_kernel_link_stream = "";
           for (var i = 0; i < kernel_link_stream.list_edges.length - 0; i++){
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML =kernel_link_stream.list_edges[i][2] + " " +
+                                        kernel_link_stream.list_edges[i][0] + " " +
+                                        kernel_link_stream.list_edges[i][1];
             document.getElementById("kernel_gamma_link_stream_to_process")
-              .append("<button>"
-                      +
-                      kernel_link_stream.list_edges[i][2] + " " +
-                      kernel_link_stream.list_edges[i][0] + " " +
-                      kernel_link_stream.list_edges[i][1] 
-                      +
-                      "</button>");
+              .append(btn);
             txt_kernel_link_stream +=   kernel_link_stream.list_edges[i][2] + " " +
                                         kernel_link_stream.list_edges[i][0] + " " +
                                         kernel_link_stream.list_edges[i][1] + "\n";
