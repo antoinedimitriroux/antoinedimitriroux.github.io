@@ -64,7 +64,6 @@
     
     .tab label {
       background-color: #222222;
-      min-width:12vw;
       color: #cccccc;
       height:6vh;
       float: left;
@@ -716,8 +715,6 @@
           <label style="z-index:-1;font-size:3vw;color:#cccccc;">#Teams</br></label>
           <input style="width=25vw" class="input_parameters"  id="disksteam_value" type="number" title="The number of disks in each team" min="1" value ="15" max="100" onchange="launch()">
           <label style="z-index:-1;font-size:3vw;color:#cccccc;">#Disks/Team</br></label>
-          <input style="width=25vw" class="input_parameters"  id="gamma_value" type="number" title="The value of gamma" min="2" value="3" width="Gamma" onchange="launch()">
-          <label style="z-index:-1;font-size:3vw;color:#cccccc;">Gamma</br></label>
           <input style="width=25vw" class="input_parameters"  id="rayon_value" type="number" title="The rayon of disks" step="0.01" value="14" max="100" onchange="launch()">
           <label style="z-index:-1;font-size:3vw;color:#cccccc;">Rayon</br></label>               
           <input style="width=25vw" class="input_parameters"  id="max_veloc_value" type="number" step="0.01" title="The maximum velocity of disks" min="0.01" value="3" max="100" onchange="launch()">
@@ -1355,7 +1352,7 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           max_two_approx_link_stream.list_edges.sort(sort_edges_by_time);
           kernel_link_stream.list_edges.sort(sort_edges_by_time);
           
-          document.getElementById("gamma_value_explained").innerHTML = "Gamma = " + gamma + ".</br>If you want to change this value,</br>you can go in the Generator tab,</br>then go in the paramaters (gear icon).</br>";
+        //  document.getElementById("gamma_value_explained").innerHTML = "Gamma = " + gamma + ".</br>If you want to change this value,</br>you can go in the Generator tab,</br>then go in the paramaters (gear icon).</br>";
           
           document.getElementById("original_link_stream_edges_counter").innerHTML = "Original</br>" + original_link_stream.list_edges.length + " edges";
           document.getElementById("gamma_link_stream_edges_counter").innerHTML = "Gamma</br>" + gamma_link_stream.list_edges.length + " edges";
