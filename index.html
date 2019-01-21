@@ -192,31 +192,27 @@
       background-color: #222222;
     }
     
-    .vertical-menu
+    .btn-group
     {
       width:22vw;
     }
 
-    .vertical-menu a
+    .btn-group button
     {
-      background-color: #eee; /* Grey background color */
-      color: black; /* Black text color */
-      display: block; /* Make the links appear below each other */
-      padding: 12px; /* Add some padding */
-      text-decoration: none; /* Remove underline from links */
+      background-color: #4CAF50; /* Green background */
+      border: 1px solid green; /* Green border */
+      color: white; /* White text */
+      height:3vw;
+      padding: 10px 24px; /* Some padding */
+      cursor: pointer; /* Pointer/hand icon */
+      width: 18vw; /* Set a width if needed */
+      display: block; /* Make the buttons appear below each other */
     }
-
-    .vertical-menu a:hover
-    {
-      background-color: #ccc; /* Dark grey background on mouse-over */
+    
+    /* Add a background color on hover */
+    .btn-group button:hover {
+      background-color: #3e8e41;
     }
-
-    .vertical-menu a.active
-    {
-      background-color: #4CAF50; /* Add a green color to the "active/current" link */
-      color: white;
-    }
-
 
     #original_link_stream_to_process{
       position: relative;
@@ -506,6 +502,30 @@
       position: relative;
       background-color: #222222;
     }
+    
+    .btn-group
+    {
+      width:22vw;
+    }
+
+    .btn-group button
+    {
+      background-color: #4CAF50; /* Green background */
+      border: 1px solid green; /* Green border */
+      color: white; /* White text */
+      height:3vw;
+      padding: 10px 24px; /* Some padding */
+      cursor: pointer; /* Pointer/hand icon */
+      width: 18vw; /* Set a width if needed */
+      display: block; /* Make the buttons appear below each other */
+    }
+    
+    /* Add a background color on hover */
+    .btn-group button:hover {
+      background-color: #3e8e41;
+    }
+    
+    
     #original_link_stream_to_process{
       position: relative;
       width:18vw;
@@ -826,214 +846,214 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
       </div>
 
         <div href="#" id="original_link_stream_to_process" title="the original link stream"  class="vertical-menu">
-           <a class="active">1</a>
-           <a >2</a>
-           <a >3</a>
-           <a >4</a>
-           <a >5</a>
-           <a >6</a>
-           <a >7</a>
-           <a >8</a>
-           <a >9</a>
-           <a >10</a>
-           <a >11</a>
-           <a >12</a>
-           <a >13</a>
-           <a >14</a>
-           <a >15</a>
-           <a >16</a>
-           <a >17</a>
-           <a >18</a>
-           <a >19</a>
-           <a >20</a>
-           <a >21</a>
-           <a >22</a>
-           <a >23</a>
-           <a >24</a>
-           <a >25</a>
-           <a >26</a>
-           <a >27</a>
-           <a >28</a>
-           <a >29</a>
-           <a >20</a>
-           <a >31</a>
-           <a >32</a>
-           <a >33</a>
-           <a >34</a>
-           <a >35</a>
-           <a >36</a>
-           <a >37</a>
-           <a >38</a>
-           <a >39</a>
-           <a >30</a>
+           <button>1</button>
+           <a >2</button>
+           <a >3</button>
+           <a >4</button>
+           <a >5</button>
+           <a >6</button>
+           <a >7</button>
+           <a >8</button>
+           <a >9</button>
+           <a >10</button>
+           <a >11</button>
+           <a >12</button>
+           <a >13</button>
+           <a >14</button>
+           <a >15</button>
+           <a >16</button>
+           <a >17</button>
+           <a >18</button>
+           <a >19</button>
+           <a >20</button>
+           <a >21</button>
+           <a >22</button>
+           <a >23</button>
+           <a >24</button>
+           <a >25</button>
+           <a >26</button>
+           <a >27</button>
+           <a >28</button>
+           <a >29</button>
+           <a >20</button>
+           <a >31</button>
+           <a >32</button>
+           <a >33</button>
+           <a >34</button>
+           <a >35</button>
+           <a >36</button>
+           <a >37</button>
+           <a >38</button>
+           <a >39</button>
+           <a >30</button>
         </div>
         <div href="#" id="gamma_link_stream_to_process" title="the gamma link stream" onkeydown="chercher_delta_arete_click(this);" onmousedown="this.onkeydown();" touchstart="chercher_delta_arete_click(this);" class="vertical-menu">
-           <a >1</a>
-           <a >2</a>
-           <a >3</a>
-           <a >4</a>
-           <a >5</a>
-           <a >6</a>
-           <a >7</a>
-           <a >8</a>
-           <a >9</a>
-           <a >10</a>
-           <a >11</a>
-           <a >12</a>
-           <a >13</a>
-           <a >14</a>
-           <a >15</a>
-           <a >16</a>
-           <a >17</a>
-           <a >18</a>
-           <a >19</a>
-           <a >20</a>
-           <a >21</a>
-           <a >22</a>
-           <a >23</a>
-           <a >24</a>
-           <a >25</a>
-           <a >26</a>
-           <a >27</a>
-           <a >28</a>
-           <a >29</a>
-           <a >20</a>
-           <a >31</a>
-           <a >32</a>
-           <a >33</a>
-           <a >34</a>
-           <a >35</a>
-           <a >36</a>
-           <a >37</a>
-           <a >38</a>
-           <a >39</a>
-           <a >30</a>
+           <a >1</button>
+           <a >2</button>
+           <a >3</button>
+           <a >4</button>
+           <a >5</button>
+           <a >6</button>
+           <a >7</button>
+           <a >8</button>
+           <a >9</button>
+           <a >10</button>
+           <a >11</button>
+           <a >12</button>
+           <a >13</button>
+           <a >14</button>
+           <a >15</button>
+           <a >16</button>
+           <a >17</button>
+           <a >18</button>
+           <a >19</button>
+           <a >20</button>
+           <a >21</button>
+           <a >22</button>
+           <a >23</button>
+           <a >24</button>
+           <a >25</button>
+           <a >26</button>
+           <a >27</button>
+           <a >28</button>
+           <a >29</button>
+           <a >20</button>
+           <a >31</button>
+           <a >32</button>
+           <a >33</button>
+           <a >34</button>
+           <a >35</button>
+           <a >36</button>
+           <a >37</button>
+           <a >38</button>
+           <a >39</button>
+           <a >30</button>
         </div>
         <div href="#" id="min_greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" onkeydown="chercher_gamma_arete_ok_nope(this);" onmousedown="this.onkeydown();" touchstart="chercher_gamma_arete_ok_nope(this);" class="vertical-menu">
-           <a class="active">1</a>
-           <a class="active">2</a>
-           <a class="active">3</a>
-           <a class="active">4</a>
-           <a class="active">5</a>
-           <a class="active">6</a>
-           <a class="active">7</a>
-           <a class="active">8</a>
-           <a class="active">9</a>
-           <a class="active">10</a>
-           <a class="active">11</a>
-           <a class="active">12</a>
-           <a class="active">13</a>
-           <a class="active">14</a>
-           <a class="active">15</a>
-           <a class="active">16</a>
-           <a class="active">17</a>
-           <a class="active">18</a>
-           <a class="active">19</a>
-           <a class="active">20</a>
-           <a class="active">21</a>
-           <a class="active">22</a>
-           <a class="active">23</a>
-           <a class="active">24</a>
-           <a class="active">25</a>
-           <a class="active">26</a>
-           <a class="active">27</a>
-           <a class="active">28</a>
-           <a class="active">29</a>
-           <a class="active">20</a>
-           <a class="active">31</a>
-           <a class="active">32</a>
-           <a class="active">33</a>
-           <a class="active">34</a>
-           <a class="active">35</a>
-           <a class="active">36</a>
-           <a class="active">37</a>
-           <a class="active">38</a>
-           <a class="active">39</a>
-           <a class="active">30</a>
+           <button>1</button>
+           <button>2</button>
+           <button>3</button>
+           <button>4</button>
+           <button>5</button>
+           <button>6</button>
+           <button>7</button>
+           <button>8</button>
+           <button>9</button>
+           <button>10</button>
+           <button>11</button>
+           <button>12</button>
+           <button>13</button>
+           <button>14</button>
+           <button>15</button>
+           <button>16</button>
+           <button>17</button>
+           <button>18</button>
+           <button>19</button>
+           <button>20</button>
+           <button>21</button>
+           <button>22</button>
+           <button>23</button>
+           <button>24</button>
+           <button>25</button>
+           <button>26</button>
+           <button>27</button>
+           <button>28</button>
+           <button>29</button>
+           <button>20</button>
+           <button>31</button>
+           <button>32</button>
+           <button>33</button>
+           <button>34</button>
+           <button>35</button>
+           <button>36</button>
+           <button>37</button>
+           <button>38</button>
+           <button>39</button>
+           <button>30</button>
         </div>
         <div href="#" id="max_greedy_gamma_link_stream_to_process" title="the greedy temporal matching link stream" onkeydown="chercher_gamma_arete_ok_nope(this);" onmousedown="this.onkeydown();" touchstart="chercher_gamma_arete_ok_nope(this);" class="vertical-menu">
-           <a class="active">1</a>
-           <a class="active">2</a>
-           <a class="active">3</a>
-           <a class="active">4</a>
-           <a class="active">5</a>
-           <a class="active">6</a>
-           <a class="active">7</a>
-           <a class="active">8</a>
-           <a class="active">9</a>
-           <a class="active">10</a>
-           <a class="active">11</a>
-           <a class="active">12</a>
-           <a class="active">13</a>
-           <a class="active">14</a>
-           <a class="active">15</a>
-           <a class="active">16</a>
-           <a class="active">17</a>
-           <a class="active">18</a>
-           <a class="active">19</a>
-           <a class="active">20</a>
-           <a class="active">21</a>
-           <a class="active">22</a>
-           <a class="active">23</a>
-           <a class="active">24</a>
-           <a class="active">25</a>
-           <a class="active">26</a>
-           <a class="active">27</a>
-           <a class="active">28</a>
-           <a class="active">29</a>
-           <a class="active">20</a>
-           <a class="active">31</a>
-           <a class="active">32</a>
-           <a class="active">33</a>
-           <a class="active">34</a>
-           <a class="active">35</a>
-           <a class="active">36</a>
-           <a class="active">37</a>
-           <a class="active">38</a>
-           <a class="active">39</a>
-           <a class="active">30</a>
+           <button>1</button>
+           <button>2</button>
+           <button>3</button>
+           <button>4</button>
+           <button>5</button>
+           <button>6</button>
+           <button>7</button>
+           <button>8</button>
+           <button>9</button>
+           <button>10</button>
+           <button>11</button>
+           <button>12</button>
+           <button>13</button>
+           <button>14</button>
+           <button>15</button>
+           <button>16</button>
+           <button>17</button>
+           <button>18</button>
+           <button>19</button>
+           <button>20</button>
+           <button>21</button>
+           <button>22</button>
+           <button>23</button>
+           <button>24</button>
+           <button>25</button>
+           <button>26</button>
+           <button>27</button>
+           <button>28</button>
+           <button>29</button>
+           <button>20</button>
+           <button>31</button>
+           <button>32</button>
+           <button>33</button>
+           <button>34</button>
+           <button>35</button>
+           <button>36</button>
+           <button>37</button>
+           <button>38</button>
+           <button>39</button>
+           <button>30</button>
         </div>
         <div href="#" id="kernel_gamma_link_stream_to_process"title="the kernel of the optimal temporal matching">
-           <a class="active">1</a>
-           <a class="active">2</a>
-           <a class="active">3</a>
-           <a class="active">4</a>
-           <a class="active">5</a>
-           <a class="active">6</a>
-           <a class="active">7</a>
-           <a class="active">8</a>
-           <a class="active">9</a>
-           <a class="active">10</a>
-           <a class="active">11</a>
-           <a class="active">12</a>
-           <a class="active">13</a>
-           <a class="active">14</a>
-           <a class="active">15</a>
-           <a class="active">16</a>
-           <a class="active">17</a>
-           <a class="active">18</a>
-           <a class="active">19</a>
-           <a class="active">20</a>
-           <a class="active">21</a>
-           <a class="active">22</a>
-           <a class="active">23</a>
-           <a class="active">24</a>
-           <a class="active">25</a>
-           <a class="active">26</a>
-           <a class="active">27</a>
-           <a class="active">28</a>
-           <a class="active">29</a>
-           <a class="active">20</a>
-           <a class="active">31</a>
-           <a class="active">32</a>
-           <a class="active">33</a>
-           <a class="active">34</a>
-           <a class="active">35</a>
-           <a class="active">36</a>
-           <a class="active">37</a>
-           <a class="active">38</a>
-           <a class="active">39</a>
-           <a class="active">30</a>
+           <button>1</button>
+           <button>2</button>
+           <button>3</button>
+           <button>4</button>
+           <button>5</button>
+           <button>6</button>
+           <button>7</button>
+           <button>8</button>
+           <button>9</button>
+           <button>10</button>
+           <button>11</button>
+           <button>12</button>
+           <button>13</button>
+           <button>14</button>
+           <button>15</button>
+           <button>16</button>
+           <button>17</button>
+           <button>18</button>
+           <button>19</button>
+           <button>20</button>
+           <button>21</button>
+           <button>22</button>
+           <button>23</button>
+           <button>24</button>
+           <button>25</button>
+           <button>26</button>
+           <button>27</button>
+           <button>28</button>
+           <button>29</button>
+           <button>20</button>
+           <button>31</button>
+           <button>32</button>
+           <button>33</button>
+           <button>34</button>
+           <button>35</button>
+           <button>36</button>
+           <button>37</button>
+           <button>38</button>
+           <button>39</button>
+           <button>30</button>
         </div>
         </br>
         <label id="original_link_stream_edges_counter" style="z-index:-1;font-size:3vw;color:#cccccc; width:17vw;" ></br></label> 
