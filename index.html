@@ -1189,8 +1189,8 @@ If you want to change the gamma value, you can do it in the Generator tab, by cl
           var gamma_link_stream = original_to_gamma_link_stream(original_link_stream,gamma);
           
          // var two_approx_link_stream = gamma_to_2approx_link_stream_MAX(gamma_link_stream,100);
-          var min_two_approx_link_stream = gamma_to_2approx_link_stream_MIN(gamma_link_stream,100);
-          var max_two_approx_link_stream = gamma_to_2approx_link_stream_MAX(gamma_link_stream,100);
+          var min_two_approx_link_stream = gamma_to_2approx_link_stream_MIN(gamma_link_stream,1000);
+          var max_two_approx_link_stream = gamma_to_2approx_link_stream_MAX(gamma_link_stream,1000);
           var kernel_link_stream = approx_to_kernel(max_two_approx_link_stream);
           
           original_link_stream.list_edges.sort(sort_edges_by_time);
